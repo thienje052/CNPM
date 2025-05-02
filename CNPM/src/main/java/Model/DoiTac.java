@@ -1,18 +1,16 @@
 package Model;
 
-public class NhanVien {
+public class DoiTac {
 	private int ID;
 	private String Name;
 	private String Email;
 	private String PhoneNumber;
-	private ChucVu Position;
-	public NhanVien(int iD, String name, String email, String sDT, ChucVu position) {
+	public DoiTac(int iD, String name, String email, String phoneNumber) {
 		super();
 		ID = iD;
 		Name = name;
 		Email = email;
-		PhoneNumber = sDT;
-		Position = position;
+		PhoneNumber = phoneNumber;
 	}
 	public int getID() {
 		return ID;
@@ -32,16 +30,10 @@ public class NhanVien {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	public String getSDT() {
+	public String getPhoneNumber() {
 		return PhoneNumber;
 	}
-	public void setSDT(String sDT) {
-		PhoneNumber = sDT;
-	}
-	public ChucVu getPosition() {
-		return Position;
-	}
-	public void setPosition(ChucVu position) {
-		Position = position;
+	public void setPhoneNumber(String phoneNumber) {
+		PhoneNumber = phoneNumber;
 	}
 }
