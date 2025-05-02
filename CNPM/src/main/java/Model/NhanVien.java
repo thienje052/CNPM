@@ -6,12 +6,12 @@ public class NhanVien {
 	private String Email;
 	private String PhoneNumber;
 	private ChucVu Position;
-	public NhanVien(int iD, String name, String email, String sDT, ChucVu position) {
+	public NhanVien(int iD, String name, String email, String phoneNumber, ChucVu position) {
 		super();
 		ID = iD;
 		Name = name;
 		Email = email;
-		PhoneNumber = sDT;
+		PhoneNumber = phoneNumber;
 		Position = position;
 	}
 	public int getID() {
@@ -32,11 +32,11 @@ public class NhanVien {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	public String getSDT() {
+	public String getPhoneNumber() {
 		return PhoneNumber;
 	}
-	public void setSDT(String sDT) {
-		PhoneNumber = sDT;
+	public void setPhoneNumber(String phoneNumber) {
+		PhoneNumber = phoneNumber;
 	}
 	public ChucVu getPosition() {
 		return Position;
