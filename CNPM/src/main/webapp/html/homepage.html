@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="eng">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang chủ - Quản lý Kho</title>
+    <link rel="stylesheet" href="../css/homepage.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="profile">
+          <img
+            src="../hinh_anh/"
+            alt="Avatar người dùng"
+            class="avatar"
+          />
+          <p><strong>User:</strong> Sora</p>
+          <p><strong>ID:</strong> 123456789</p>
+        </div>
+
+        <nav class="menu">
+          <ul>
+            <li><a href="#">🏠 Trang chủ</a></li>
+            <li><a href="#">📦 Quản lý hàng hóa</a></li>
+            <li><a href="#">🛒 Quản lý nhập xuất</a></li>
+            <li><a href="#">📊 Báo cáo thống kê</a></li>
+            <li><a href="#">👤 Quản lý tài khoản</a></li>
+            <li><a href="#">🤝 Thông tin đối tác</a></li>
+          </ul>
+        </nav>
+
+        <div class="logout">
+          <a href="#">🔓 Đăng xuất</a>
+        </div>
+      </aside>
+
+      <!-- Nội dung chính -->
+      <main class="main-content">
+        <div class="header">
+          <h1>Trang chủ</h1>
+        </div>
+
+        <!-- Thống kê -->
+        <div class="stats-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Đơn nhập hôm nay</th>
+                <th>Đơn xuất hôm nay</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>10</td>
+                <td>6</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Nội dung 3 phần -->
+        <div class="main-grid">
+          <!-- Thông báo -->
+          <div class="notification-box">
+            <h3>Thông báo mới</h3>
+            <ul>
+              <li>Cảnh báo đầy kho</li>
+              <li>Thông báo lịch nghỉ</li>
+            </ul>
+          </div>
+
+          <!-- Nút chức năng -->
+          <div class="button-box">
+            <button>Tạo đơn mới</button>
+            <button>Truy xuất đơn</button>
+            <button>Thống kê tồn kho</button>
+          </div>
+
+          <!-- Số kệ trống -->
+          <div class="rack-box">
+            <h3>Số kệ trống</h3>
+            <p>8</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
