@@ -13,11 +13,14 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="D:/Java_lib/lib_school/JSTL/jstl.jar"/>
-	<classpathentry kind="lib" path="D:/Java_lib/lib_school/JSTL/servlet-api.jar"/>
-	<classpathentry kind="lib" path="D:/Java_lib/lib_school/JSTL/standard.jar"/>
-	<classpathentry kind="lib" path="D:/Java_lib/lib_school/JSTL/JSTL 1.2/jstl-api-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/Java_lib/lib_school/JSTL/JSTL 1.2/jstl-impl-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/Java_lib/lib_school/JSTL/javax.servlet-3.0.jar"/>
+	<classpathentry kind="lib" path="D:/CNPM-main/CNPM-main/CNPM/src/main/java/Jar_files/javax.servlet-3.0.jar"/>
+	<classpathentry kind="lib" path="D:/CNPM-main/CNPM-main/CNPM/src/main/java/Jar_files/jstl.jar"/>
+	<classpathentry kind="lib" path="D:/CNPM-main/CNPM-main/CNPM/src/main/java/Jar_files/jstl-api-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/CNPM-main/CNPM-main/CNPM/src/main/java/Jar_files/jstl-impl-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/CNPM-main/CNPM-main/CNPM/src/main/java/Jar_files/mssql-jdbc-12.10.0.jre11.jar"/>
+	<classpathentry kind="lib" path="D:/CNPM-main/CNPM-main/CNPM/src/main/java/Jar_files/mssql-jdbc-12.10.0.jre11-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/CNPM-main/CNPM-main/CNPM/src/main/java/Jar_files/mssql-jdbc-12.10.0.jre11-sources.jar"/>
+	<classpathentry kind="lib" path="D:/CNPM-main/CNPM-main/CNPM/src/main/java/Jar_files/servlet-api.jar"/>
+	<classpathentry kind="lib" path="D:/CNPM-main/CNPM-main/CNPM/src/main/java/Jar_files/standard.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
