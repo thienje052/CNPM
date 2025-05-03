@@ -96,7 +96,7 @@ body {
   color: #1e3a8a;
 }
 
-/* Thống kê đơn */
+/* Bảng thống kê đơn nhập / xuất hôm nay */
 .stats-table {
   display: flex;
   justify-content: center;
@@ -105,15 +105,21 @@ body {
 
 .stats-table table {
   border-collapse: collapse;
-  width: 400px;
+  width: 500px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #333;
 }
 
 .stats-table th,
 .stats-table td {
-  border: 1px solid #000;
+  border: 1px solid #333;
   padding: 12px;
-  text-align: center;
-  font-size: 16px;
+}
+
+.stats-table th {
+  background-color: #fff;
+  font-weight: bold;
 }
 
 /* Nội dung 3 phần dưới */
