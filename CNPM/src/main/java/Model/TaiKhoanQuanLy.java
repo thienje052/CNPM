@@ -14,5 +14,5 @@ public class TaiKhoanQuanLy extends TaiKhoanNhanVien {
 	}
 	public void setManagingID(List<Integer> managingID) {
 		ManagingID = managingID;
-	}
+	} 
 }
