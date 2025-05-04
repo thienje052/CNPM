@@ -8,7 +8,6 @@ public class TaiKhoanQuanLy extends TaiKhoanNhanVien {
 			int iD_Warehouse) {
 		super(iD, userAccount, password, roles, iD_Employee, iD_Warehouse);
 		ManagingID = null;
-		// TODO Auto-generated constructor stub
 	}
 	public List<Integer> getManagingID() {
 		return ManagingID;
