@@ -4,13 +4,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
+import DAO.DAOTaiKhoanNhanVien;
 import Model.TaiKhoanNhanVien;
 
 public class AuthLogin {
-	private final TaiKhoanNhanVienDao taiKhoanNhanVienDao;
+	private final DAOTaiKhoanNhanVien DAOTaiKhoanNhanVien;
 
-    public AuthLogin(TaiKhoanNhanVienDao taiKhoanNhanVienDao) {
-        this.taiKhoanNhanVienDao = taiKhoanNhanVienDao;
+    public AuthLogin(DAOTaiKhoanNhanVien DAOTaiKhoanNhanVien) {
+        this.DAOTaiKhoanNhanVien = DAOTaiKhoanNhanVien;
     }
 
     /*
@@ -21,7 +22,7 @@ public class AuthLogin {
      */
     public TaiKhoanNhanVien authenticate(String username, String password) {
         try {
-            TaiKhoanNhanVien taiKhoanNhanVien = taiKhoanNhanVienDao.findByUsername(username);
+            TaiKhoanNhanVien taiKhoanNhanVien = DAOTaiKhoanNhanVien.findByUsername(username);
             if (taiKhoanNhanVien != null && verifyPassword(password, taiKhoanNhanVien.getPassword())) {
                 return taiKhoanNhanVien;
             }
