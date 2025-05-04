@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnector {
-	private static String URL = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyLuong;encrypt=true;trustServerCertificate=true";
+	private static String URL = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyKho;encrypt=true;trustServerCertificate=true";
 	private static String user = "jdbc_user";
 	private static String password = "123456";
-	
+	//hmm do t quên message thôi
 	static {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
