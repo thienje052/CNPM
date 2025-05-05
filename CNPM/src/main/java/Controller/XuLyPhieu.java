@@ -9,22 +9,23 @@ import java.sql.*;
 
 import Model.LoaiPhieu;
 import Model.Phieu;
+import DAO.DAOPhieu;
+import DAO.DAOThemDoiTac;
 import DAO.DBConnector;
 
 @WebServlet("/XuLyPhieu")
 public class XuLyPhieu extends HttpServlet {
+	private DAOPhieu daoPhieu;
 	
 	@Override
     public void init() {
         try {
             Connection conn = DBConnector.getConnection();
-            phieuDao = new PhieuDaoImpl(conn);
+            daoPhieu = new DAOPhieu(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
-	
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -36,7 +37,7 @@ public class XuLyPhieu extends HttpServlet {
 
             Phieu phieu = new Phieu(id, idPartner, idEmployee, type, dateTime);
 
-            // TODO: Lưu phiếu vào cơ sở dữ liệu (gọi service hoặc DAO tương ứng)
+           
 
             req.setAttribute("message", "Tạo phiếu thành công!");
         } catch (Exception e) {

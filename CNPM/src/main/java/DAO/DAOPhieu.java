@@ -1,5 +1,10 @@
 package DAO;
 
-public class DAOPhieu {
+import java.sql.Connection;
 
+public class DAOPhieu {
+	private static Connection conn;
+	public DAOPhieu(Connection conn) {
+		DAOPhieu.conn = conn;
+	}
 }
