@@ -7,17 +7,17 @@ import java.io.IOException;
 import java.sql.*;
 
 import Model.DoiTac;
-import DAO.DAODoiTac;
+import DAO.DAOThemDoiTac;
 import DAO.DBConnector;
 
 public class ThemDoiTac extends HttpServlet {
-	private DAODoiTac DAODoiTac;
+	private DAOThemDoiTac DAOThemDoiTac;
 
     @Override
     public void init() {
         try {
             Connection conn = DBConnector.getConnection();
-            DAODoiTac = new DAODoiTac(conn);
+            DAOThemDoiTac = new DAOThemDoiTac(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -37,7 +37,7 @@ public class ThemDoiTac extends HttpServlet {
         String phone = req.getParameter("phone");
 
         DoiTac doiTac = new DoiTac(0, name, email, phone);
-        DAODoiTac.them(doiTac);
+        DAOThemDoiTac.them(doiTac);
 
         resp.sendRedirect(req.getContextPath() + "/webapp/ThemDoiTac.html");
     }

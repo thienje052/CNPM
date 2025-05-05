@@ -9,6 +9,7 @@ import java.sql.*;
 
 import Model.LoaiPhieu;
 import Model.Phieu;
+import DAO.DAOPhieu;
 import DAO.DBConnector;
 
 @WebServlet("/XuLyPhieu")
@@ -18,7 +19,7 @@ public class XuLyPhieu extends HttpServlet {
     public void init() {
         try {
             Connection conn = DBConnector.getConnection();
-            phieuDao = new PhieuDaoImpl(conn);
+            DAOPhieu = new DAOPhieu(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
