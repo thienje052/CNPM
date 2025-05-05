@@ -10,27 +10,22 @@ import java.sql.*;
 import Model.LoaiPhieu;
 import Model.Phieu;
 import DAO.DAOPhieu;
+import DAO.DAOThemDoiTac;
 import DAO.DBConnector;
 
 @WebServlet("/XuLyPhieu")
 public class XuLyPhieu extends HttpServlet {
+	private DAOPhieu daoPhieu;
 	
-	private DAOPhieu phieudao;
 	@Override
     public void init() {
         try {
             Connection conn = DBConnector.getConnection();
-<<<<<<< HEAD
-            DAOPhieu = new DAOPhieu(conn);
-=======
-            phieudao = new PhieuDaoImpl(conn);
->>>>>>> branch 'main' of https://github.com/thienje052/CNPM
+            daoPhieu = new DAOPhieu(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
-	
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
