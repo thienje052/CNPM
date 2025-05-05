@@ -21,14 +21,10 @@ public class AuthLogin {
      * @return đối tượng User nếu thành công, null nếu không
      */
     public TaiKhoanNhanVien authenticate(String username, String password) {
-        try {
-            TaiKhoanNhanVien taiKhoanNhanVien = DAOTaiKhoanNhanVien.findByUsername(username);
-            if (taiKhoanNhanVien != null && verifyPassword(password, taiKhoanNhanVien.getPassword())) {
-                return taiKhoanNhanVien;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        TaiKhoanNhanVien taiKhoanNhanVien = DAO.DAOTaiKhoanNhanVien.findByUsername(username);
+		if (taiKhoanNhanVien != null && verifyPassword(password, taiKhoanNhanVien.getPassword())) {
+		    return taiKhoanNhanVien;
+		}
         return null;
     }
 

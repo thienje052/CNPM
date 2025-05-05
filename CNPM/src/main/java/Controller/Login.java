@@ -7,21 +7,25 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import DAO.DAOTaiKhoanNhanVien;
+import DAO.DBConnector;
 import Model.TaiKhoanNhanVien;
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private AuthLogin authLogin;
 
     @Override
     public void init() {
         // Khởi tạo kết nối DB và service
-        String url = "jdbc:mysql://localhost:3306/mydb";
-        String user = "root";
-        String pass = "password";
         try {
-            Connection conn = DriverManager.getConnection(url, user, pass);
-            authLogin = new AuthLogin(new UserDaoImpl(conn));
+            Connection conn = DBConnector.getConnection();
+            authLogin = new AuthLogin(new DAOTaiKhoanNhanVien(conn));
+            System.out.println("Kết nối thành công");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -36,10 +40,10 @@ public class Login extends HttpServlet {
         if (taiKhoanNhanVien != null) {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", taiKhoanNhanVien);
-            resp.sendRedirect(req.getContextPath() + "/home.jsp");
+            resp.sendRedirect(req.getContextPath() + "./homepage.html");
         } else {
             req.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
-            req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/login.html").forward(req, resp);
         }
     }
 

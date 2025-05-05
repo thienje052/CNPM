@@ -4,13 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-import Model.ChucVu;
 import Model.QuyenTruyCap;
 import Model.TaiKhoanNhanVien;
 
 public class DAOTaiKhoanNhanVien {
+	private final Connection conn;
+	
+	public DAOTaiKhoanNhanVien(Connection conn) {
+		this.conn = conn;
+	}
 	public static TaiKhoanNhanVien findByUsername(String username) {
 		try (Connection conn = DBConnector.getConnection()){
 			String sql = "select * from TaiKhoanNhanVien where Ten_dang_nhap=?";
