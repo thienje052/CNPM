@@ -21,7 +21,6 @@ public class login extends HttpServlet {
 
     @Override
     public void init() {
-        // Khởi tạo kết nối DB và service
         try {
             Connection conn = DBConnector.getConnection();
             authLogin = new AuthLogin(new DAOTaiKhoanNhanVien(conn));

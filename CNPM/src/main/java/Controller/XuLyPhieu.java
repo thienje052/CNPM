@@ -11,7 +11,7 @@ import Model.LoaiPhieu;
 import Model.Phieu;
 import DAO.DBConnector;
 
-@WebServlet("/tao-phieu")
+@WebServlet("/XuLyPhieu")
 public class XuLyPhieu extends HttpServlet {
 	
 	@Override
