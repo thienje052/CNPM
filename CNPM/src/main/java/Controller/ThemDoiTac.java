@@ -10,14 +10,15 @@ import Model.DoiTac;
 import DAO.DAOThemDoiTac;
 import DAO.DBConnector;
 
+@WebServlet("/themDoiTac")
 public class ThemDoiTac extends HttpServlet {
-	private DAOThemDoiTac DAOThemDoiTac;
+	private DAOThemDoiTac dAOThemDoiTac;
 
     @Override
     public void init() {
         try {
             Connection conn = DBConnector.getConnection();
-            DAOThemDoiTac = new DAOThemDoiTac(conn);
+            dAOThemDoiTac = new DAOThemDoiTac(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -37,7 +38,7 @@ public class ThemDoiTac extends HttpServlet {
         String phone = req.getParameter("phone");
 
         DoiTac doiTac = new DoiTac(0, name, email, phone);
-        DAOThemDoiTac.them(doiTac);
+        dAOThemDoiTac.them(doiTac);
 
         resp.sendRedirect(req.getContextPath() + "/webapp/ThemDoiTac.html");
     }

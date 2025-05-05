@@ -15,11 +15,16 @@ import DAO.DBConnector;
 @WebServlet("/XuLyPhieu")
 public class XuLyPhieu extends HttpServlet {
 	
+	private DAOPhieu phieudao;
 	@Override
     public void init() {
         try {
             Connection conn = DBConnector.getConnection();
+<<<<<<< HEAD
             DAOPhieu = new DAOPhieu(conn);
+=======
+            phieudao = new PhieuDaoImpl(conn);
+>>>>>>> branch 'main' of https://github.com/thienje052/CNPM
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -37,7 +42,7 @@ public class XuLyPhieu extends HttpServlet {
 
             Phieu phieu = new Phieu(id, idPartner, idEmployee, type, dateTime);
 
-            // TODO: Lưu phiếu vào cơ sở dữ liệu (gọi service hoặc DAO tương ứng)
+           
 
             req.setAttribute("message", "Tạo phiếu thành công!");
         } catch (Exception e) {
