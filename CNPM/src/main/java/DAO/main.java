@@ -8,16 +8,15 @@ import java.sql.SQLException;
 public class main {
     public static void main(String[] args) {
         try (Connection conn = DBConnector.getConnection()) {
-            String sql = "select MSBL, MaNhanVien from BangLuong";
+            String sql = "select mat_khau from TaiKhoanNhanVien";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("MSBL");
-                String MSNV = rs.getString("MaNhanVien");
-                System.out.println(id + " " + MSNV);
+                String id = rs.getString("mat_khau");
+                System.out.println(id);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-}
+}	

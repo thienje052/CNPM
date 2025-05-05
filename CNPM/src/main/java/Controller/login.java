@@ -12,7 +12,7 @@ import DAO.DBConnector;
 import Model.TaiKhoanNhanVien;
 
 @WebServlet("/login")
-public class Login extends HttpServlet {
+public class login extends HttpServlet {
 	/**
 	 * 
 	 */
@@ -25,7 +25,6 @@ public class Login extends HttpServlet {
         try {
             Connection conn = DBConnector.getConnection();
             authLogin = new AuthLogin(new DAOTaiKhoanNhanVien(conn));
-            System.out.println("Kết nối thành công");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -40,15 +39,15 @@ public class Login extends HttpServlet {
         if (taiKhoanNhanVien != null) {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", taiKhoanNhanVien);
-            resp.sendRedirect(req.getContextPath() + "./homepage.html");
+            resp.sendRedirect(req.getContextPath() + "/html/homepage.html");
         } else {
             req.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
-            req.getRequestDispatcher("/WEB-INF/login.html").forward(req, resp);
+            req.getRequestDispatcher("/webapp/login.html").forward(req, resp);
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("/webapp/login.html").forward(req, resp);
     }
 }

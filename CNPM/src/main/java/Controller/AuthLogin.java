@@ -22,7 +22,7 @@ public class AuthLogin {
      */
     public TaiKhoanNhanVien authenticate(String username, String password) {
         TaiKhoanNhanVien taiKhoanNhanVien = DAO.DAOTaiKhoanNhanVien.findByUsername(username);
-		if (taiKhoanNhanVien != null && verifyPassword(password, taiKhoanNhanVien.getPassword())) {
+		if (taiKhoanNhanVien != null && password.equals(taiKhoanNhanVien.getPassword())) {
 		    return taiKhoanNhanVien;
 		}
         return null;

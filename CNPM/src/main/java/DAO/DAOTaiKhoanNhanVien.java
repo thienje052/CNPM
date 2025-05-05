@@ -9,16 +9,16 @@ import Model.QuyenTruyCap;
 import Model.TaiKhoanNhanVien;
 
 public class DAOTaiKhoanNhanVien {
-	private final Connection conn;
+	private static Connection conn;
 	
 	public DAOTaiKhoanNhanVien(Connection conn) {
 		this.conn = conn;
 	}
 	public static TaiKhoanNhanVien findByUsername(String username) {
-		try (Connection conn = DBConnector.getConnection()){
-			String sql = "select * from TaiKhoanNhanVien where Ten_dang_nhap=?";
+		try {
+			String sql = "select * from TaiKhoanNhanVien where Ten_dang_nhap like ?";	
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(0, username);
+			pstmt.setString(1, username);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				return new TaiKhoanNhanVien(rs.getInt("ID"), rs.getString("Ten_dang_nhap"),
