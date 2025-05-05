@@ -4,7 +4,7 @@ import java.util.List;
 
 public class TaiKhoanQuanLy extends TaiKhoanNhanVien {
 	private List<Integer> ManagingID;
-	public TaiKhoanQuanLy(int iD, String userAccount, String password, QuyenTruyCap roles, int iD_Employee,
+	public TaiKhoanQuanLy(int iD, String userAccount, String password, List<QuyenTruyCap> roles, int iD_Employee,
 			int iD_Warehouse) {
 		super(iD, userAccount, password, roles, iD_Employee, iD_Warehouse);
 		ManagingID = null;

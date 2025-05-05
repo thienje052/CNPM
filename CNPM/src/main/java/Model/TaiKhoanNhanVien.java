@@ -1,13 +1,15 @@
 package Model;
 
+import java.util.List;
+
 public class TaiKhoanNhanVien {
 	private int ID;
 	private String UserAccount;
 	private String Password;
-	private QuyenTruyCap Roles;
+	private List<QuyenTruyCap> Roles;
 	private int ID_Employee;
 	private int ID_Warehouse;
-	public TaiKhoanNhanVien(int iD, String userAccount, String password, QuyenTruyCap roles, int iD_Employee,
+	public TaiKhoanNhanVien(int iD, String userAccount, String password, List<QuyenTruyCap> roles, int iD_Employee,
 			int iD_Warehouse) {
 		super();
 		ID = iD;
@@ -16,6 +18,9 @@ public class TaiKhoanNhanVien {
 		Roles = roles;
 		ID_Employee = iD_Employee;
 		ID_Warehouse = iD_Warehouse;
+	}
+	public TaiKhoanNhanVien() {
+		super();
 	}
 	public int getID() {
 		return ID;
@@ -35,10 +40,10 @@ public class TaiKhoanNhanVien {
 	public void setPassword(String password) {
 		Password = password;
 	}
-	public QuyenTruyCap getRoles() {
+	public List<QuyenTruyCap>getRoles() {
 		return Roles;
 	}
-	public void setRoles(QuyenTruyCap roles) {
+	public void setRoles(List<QuyenTruyCap> roles) {
 		Roles = roles;
 	}
 	public int getID_Employee() {
@@ -53,4 +58,10 @@ public class TaiKhoanNhanVien {
 	public void setID_Warehouse(int iD_Warehouse) {
 		ID_Warehouse = iD_Warehouse;
 	}
+	@Override
+	public String toString() {
+		return "TaiKhoanNhanVien [ID=" + ID + ", UserAccount=" + UserAccount + ", Password=" + Password + ", Roles="
+				+ Roles + ", ID_Employee=" + ID_Employee + ", ID_Warehouse=" + ID_Warehouse + "]";
+	}
+
 }
