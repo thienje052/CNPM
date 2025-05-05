@@ -1,7 +1,7 @@
 package Model;
 
 public enum QuyenTruyCap {
-	ImportAndExport("Quản lý nhập/xuất"), AccountManagement("Quản lý tài khoản"), GoodsManagement("Quản lý hàng hóa"), Report("Báo cáo thống kê");
+	NXH("Quan ly nhap/xuat"), TK("Quan ly tai khoan"), HH("Quan ly hang hoa"), BC("Quan ly thong ke");
 	private String description;
 	QuyenTruyCap(String description) {
 		this.description = description;
