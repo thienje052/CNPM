@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font-family: Arial, sans-serif;
+  }
+
+  header {
+    background: #d3d3d3;
+    color: #1e56a0;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .form-grid input,
+  .form-grid select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  thead {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+
+  .footer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .action-buttons {
+      justify-content: center;
+    }
+  }

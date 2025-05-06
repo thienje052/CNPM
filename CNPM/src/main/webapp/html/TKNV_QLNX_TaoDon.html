@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+ <html lang="vi">
+ <head>
+   <meta charset="UTF-8" />
+   <title>Quản lý nhập/xuất - Tạo đơn</title>
+   <link rel="stylesheet" href="../css/TKNV_QLNX_TaoDon.css">
+ </head>
+ <body>
+   <header>Quản lý nhập/xuất - Tạo đơn</header>
+ 
+   <div class="container">
+     <div class="form-grid">
+       <select><option>Loại đơn</option></select>
+       <input type="text" placeholder="Mã đối tác" />
+       <input type="date" />
+       <input type="text" placeholder="Mã hàng" />
+ 
+       <input type="text" placeholder="Tên hàng" />
+       <select><option>Loại hàng</option></select>
+       <select><option>Vị trí</option></select>
+       <input type="number" placeholder="Số lượng" />
+ 
+       <input type="text" placeholder="Đơn vị tính" />
+       <input type="text" placeholder="Mô tả" />
+     </div>
+ 
+     <div class="action-buttons">
+       <button>Thêm hàng</button>
+       <button>Xóa hàng</button>
+     </div>
+ 
+     <table>
+       <thead>
+         <tr>
+           <th>Mã hàng</th>
+           <th>Tên hàng</th>
+           <th>Loại hàng</th>
+           <th>Số lượng</th>
+           <th>Đơn vị tính</th>
+           <th>Mô tả</th>
+           <th>Vị trí</th>
+         </tr>
+       </thead>
+       <tbody>
+         <!-- Hàng sẽ thêm ở đây -->
+       </tbody>
+     </table>
+ 
+     <div class="footer-buttons">
+       <button>Xác nhận</button>
+       <button>Hủy</button
