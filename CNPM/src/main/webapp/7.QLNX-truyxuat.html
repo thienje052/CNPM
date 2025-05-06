@@ -2,27 +2,37 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quản lý nhập/xuất - Truy xuất đơn</title>
-  <link rel="stylesheet" href="./css/7.QLNX-truyxuat.css">
+  <link rel="stylesheet" href="../css/7.QLNX-truyxuat.css">
 </head>
 <body>
-  <header>Quản lý nhập/xuất - Truy xuất đơn</header>
-
+  <div class="header">Quản lý nhập/xuất - Truy xuất đơn</div>
   <div class="container">
-    <div class="form-grid">
-      <select><option>Loại đơn</option></select>
-      <input type="text" placeholder="Mã đối tác" />
-      <input type="date" />
-
-      <input type="text" placeholder="Mã đơn" />
-      <input type="text" placeholder="Mã nhân viên" />
+    <div class="form-row">
+      <div class="form-group">
+        <label>Loại đơn</label>
+        <select>
+          <option value="">-- Chọn --</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mã đối tác</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Ngày</label>
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <label>Mã đơn</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Mã nhân viên</label>
+        <input type="text">
+      </div>
     </div>
-
-    <div class="action-buttons">
-      <button>Tìm kiếm</button>
-      <button>Đặt lại</button>
-    </div>
-
     <table>
       <thead>
         <tr>
@@ -34,7 +44,9 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Dữ liệu kết quả sẽ được chèn vào đây -->
+        <tr>
+          <td colspan="5" style="height: 50px;"></td>
+        </tr>
       </tbody>
     </table>
   </div>

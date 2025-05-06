@@ -1,17 +1,17 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
   background: #fff;
 }
 .header {
-  background: #ccc;
-  text-align: center;
-  padding: 10px 0;
-  font-weight: bold;
-  color: #0a50a1;
-  font-size: 18px;
-}
+  background-color: #e0e0e0;
+    text-align: center;
+    padding: 10px;
+    color: #0D47A1;
+    font-size: 25px;
+    font-weight: bold;
+  }
 .form-container {
   display: flex;
   flex-wrap: wrap;

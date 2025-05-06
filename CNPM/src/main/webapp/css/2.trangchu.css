@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", sans-serif;
     background-color: white;
   }
   
@@ -13,6 +13,8 @@ body {
   .header h2 {
     color: #0D47A1;
     margin: 0;
+    font-size: 25px;
+    font-weight: bold;
   }
   
   .dashboard {

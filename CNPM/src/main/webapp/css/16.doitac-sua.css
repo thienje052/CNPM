@@ -1,0 +1,18 @@
+
+    .header {
+      background-color: #dcdcdc;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      color: #0056b3;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding-top: 30px;
+    }
+    .btn-custom {
+      width: 90px;
+      padding: 8px 0;
+    }
