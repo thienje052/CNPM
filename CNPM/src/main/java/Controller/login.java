@@ -33,20 +33,20 @@ public class login extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-
+        System.out.println("Da toi day");
         TaiKhoanNhanVien taiKhoanNhanVien = authLogin.authenticate(username, password);
         if (taiKhoanNhanVien != null) {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", taiKhoanNhanVien);
-            resp.sendRedirect(req.getContextPath() + "/webapp/html/2.trangchu.html");
+            resp.sendRedirect(req.getContextPath() + "/2.trangchu.html");
         } else {
             req.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
-            req.getRequestDispatcher("/webapp/html/0.login.html").forward(req, resp);
+            req.getRequestDispatcher("/0.login.html").forward(req, resp);
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/webapp/html/0.login.html").forward(req, resp);
+        req.getRequestDispatcher("/0.login.html").forward(req, resp);
     }
 }
