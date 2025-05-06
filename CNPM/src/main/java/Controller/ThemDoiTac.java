@@ -12,17 +12,14 @@ import DAO.DBConnector;
 
 @WebServlet("/themDoiTac")
 public class ThemDoiTac extends HttpServlet {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private DAODoiTac DAODoiTac;
+	private DAODoiTac dAODoiTac;
 
     @Override
     public void init() {
         try {
             Connection conn = DBConnector.getConnection();
-            DAODoiTac = new DAODoiTac(conn);
+            dAODoiTac = new DAODoiTac(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -40,10 +37,8 @@ public class ThemDoiTac extends HttpServlet {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
-
         DoiTac doiTac = new DoiTac(0, name, email, phone);
-        DAODoiTac.add(doiTac);
-
+        dAODoiTac.add(doiTac);
         resp.sendRedirect(req.getContextPath() + "/webapp/ThemDoiTac.html");
     }
 }
