@@ -14,6 +14,7 @@ public class DAOTaiKhoanNhanVien {
 	public DAOTaiKhoanNhanVien(Connection conn) {
 		DAOTaiKhoanNhanVien.conn = conn;
 	}
+	
 	public TaiKhoanNhanVien findByUsername(String username) {
 		TaiKhoanNhanVien tk = null;
 		DAODSQuyenTruyCap tc = new DAODSQuyenTruyCap(conn);
@@ -36,6 +37,7 @@ public class DAOTaiKhoanNhanVien {
 		}
 		return null;
 	}
+	
 	public boolean addUserAccount(TaiKhoanNhanVien newAccount) {
 		DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(conn);
 		DAODSQuyenTruyCap DAODSQTC = new DAODSQuyenTruyCap(conn);
@@ -58,6 +60,7 @@ public class DAOTaiKhoanNhanVien {
 		}
 		return false;
 	}
+	
 	public boolean deleteUserAccount(TaiKhoanNhanVien Account) {
 		DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(conn);
 		DAODSQuyenTruyCap DAOQTC = new DAODSQuyenTruyCap(conn);

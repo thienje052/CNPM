@@ -10,7 +10,7 @@ import DAO.DBConnector;
 import DAO.DAOLoaiHang;
 import Model.LoaiHang;
 
-@WebServlet("3.QLHH-DMHH.jsp")
+@WebServlet("/3.QLHH-DMHH")
 public class QuanLyHangHoa extends HttpServlet {
 
     @Override
@@ -31,7 +31,7 @@ public class QuanLyHangHoa extends HttpServlet {
             } catch (NumberFormatException e) {
                 message = "Mã loại phải là số nguyên.";
                 req.setAttribute("message", message);
-                req.getRequestDispatcher("3.QLHH-DMHH.jsp").forward(req, resp);
+                req.getRequestDispatcher("/webapp/html/3.QLHH-DMHH.html").forward(req, resp);
                 return;
             }
 
@@ -70,7 +70,7 @@ public class QuanLyHangHoa extends HttpServlet {
 
         //phần này chưa biết cách để nó hiện lên html
         req.setAttribute("message", message);
-        RequestDispatcher rd = req.getRequestDispatcher("3.QLHH-DMHH.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/webapp/html/3.QLHH-DMHH.html");
         rd.forward(req, resp);
     }
 }
