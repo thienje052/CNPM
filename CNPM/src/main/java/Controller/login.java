@@ -36,7 +36,7 @@ public class login extends HttpServlet {
         if (taiKhoanNhanVien != null) {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", taiKhoanNhanVien);
-            resp.sendRedirect(req.getContextPath() + "/2.trangchu.html");
+            resp.sendRedirect(req.getContextPath() + "/1.sidebar.html");
         } else {
             req.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
             req.getRequestDispatcher("/0.login.html").forward(req, resp);
