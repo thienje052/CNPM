@@ -7,18 +7,22 @@ import java.io.IOException;
 import java.sql.*;
 
 import Model.DoiTac;
-import DAO.DAOThemDoiTac;
+import DAO.DAODoiTac;
 import DAO.DBConnector;
 
 @WebServlet("/themDoiTac")
 public class ThemDoiTac extends HttpServlet {
-	private DAOThemDoiTac dAOThemDoiTac;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private DAODoiTac DAODoiTac;
 
     @Override
     public void init() {
         try {
             Connection conn = DBConnector.getConnection();
-            dAOThemDoiTac = new DAOThemDoiTac(conn);
+            DAODoiTac = new DAODoiTac(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +42,7 @@ public class ThemDoiTac extends HttpServlet {
         String phone = req.getParameter("phone");
 
         DoiTac doiTac = new DoiTac(0, name, email, phone);
-        dAOThemDoiTac.them(doiTac);
+        DAODoiTac.add(doiTac);
 
         resp.sendRedirect(req.getContextPath() + "/webapp/ThemDoiTac.html");
     }

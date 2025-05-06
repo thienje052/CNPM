@@ -8,7 +8,7 @@ import DAO.DAOTaiKhoanNhanVien;
 import Model.TaiKhoanNhanVien;
 
 public class AuthLogin {
-	private final DAOTaiKhoanNhanVien DAOTaiKhoanNhanVien;
+	private DAOTaiKhoanNhanVien DAOTaiKhoanNhanVien;
 
     public AuthLogin(DAOTaiKhoanNhanVien DAOTaiKhoanNhanVien) {
         this.DAOTaiKhoanNhanVien = DAOTaiKhoanNhanVien;
