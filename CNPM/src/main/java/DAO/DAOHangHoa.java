@@ -26,7 +26,7 @@ private static Connection conn;
 						rs.getString("Ten"), 
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
-						rs.getString("Mo_ta"),
+						rs.getString("Mo_ta"),	
 						rs.getString("ID_LH"));
 			}
 			return hh;

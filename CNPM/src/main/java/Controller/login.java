@@ -38,15 +38,15 @@ public class login extends HttpServlet {
         if (taiKhoanNhanVien != null) {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", taiKhoanNhanVien);
-            resp.sendRedirect(req.getContextPath() + "/html/homepage.html");
+            resp.sendRedirect(req.getContextPath() + "/webapp/html/2.trangchu.html");
         } else {
             req.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
-            req.getRequestDispatcher("/webapp/login.html").forward(req, resp);
+            req.getRequestDispatcher("/webapp/html/0.login.html").forward(req, resp);
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/webapp/login.html").forward(req, resp);
+        req.getRequestDispatcher("/webapp/html/0.login.html").forward(req, resp);
     }
 }
