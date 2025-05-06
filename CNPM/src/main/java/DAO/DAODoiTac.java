@@ -11,6 +11,7 @@ public class DAODoiTac {
 	public DAODoiTac(Connection conn) {
 		this.conn = conn;
 	}
+	
 	public DoiTac findByName(String username) {
 		DoiTac dt = null;
 		try {
@@ -30,4 +31,19 @@ public class DAODoiTac {
 		}
 		return null;
 	}
+	
+	public boolean add(DoiTac dt) {
+        String sql = "INSERT INTO doitac (name, email, phone_number) VALUES (?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, dt.getName());
+            stmt.setString(2, dt.getEmail());
+            stmt.setString(3, dt.getPhoneNumber());
+            int success = stmt.executeUpdate();
+            if (success == 1)
+            	return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
