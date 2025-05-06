@@ -13,9 +13,7 @@ import java.sql.*;
 
 @WebServlet("/truyxuat")
 public class TruyXuatDon extends HttpServlet {
-    //private static final long serialVersionUID = 1L;
 	private DAODonHang donHangDAO;
-
     public void init() {
         donHangDAO = new DAODonHang();
     }
