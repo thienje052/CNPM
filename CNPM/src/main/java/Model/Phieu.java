@@ -16,6 +16,9 @@ public class Phieu {
 		Type = type;
 		DateTime = dateTime;
 	}
+	public Phieu() {
+		super();
+	}
 	public int getID() {
 		return ID;
 	}

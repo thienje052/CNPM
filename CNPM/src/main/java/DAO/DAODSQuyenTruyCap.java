@@ -70,7 +70,6 @@ public class DAODSQuyenTruyCap {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, String.valueOf(Account.getID()));
 			int success = pstmt.executeUpdate();
-			System.out.println("Đã tới QTC");
 			if(success != 0)
 				return true;
 		} catch (Exception e) {
