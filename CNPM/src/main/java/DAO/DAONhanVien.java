@@ -21,12 +21,14 @@ public class DAONhanVien {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ID);
 			ResultSet rs = pstmt.executeQuery();
-			NhanVien result = new NhanVien(Integer.parseInt(rs.getString("ID")),
-						rs.getString("Ho_ten"),
-						rs.getString("Email"),
-						rs.getString("SDT"),
-						rs.getString("Chuc_vu")=="Quan ly"?ChucVu.Manager:ChucVu.Employee);
-			return result;
+			while (rs.next()) {			
+				NhanVien result = new NhanVien(Integer.parseInt(rs.getString("ID")),
+				rs.getString("Ho_ten"),
+				rs.getString("Email"),
+				rs.getString("SDT"),
+				rs.getString("Chuc_vu")=="Quan ly"?ChucVu.Manager:ChucVu.Employee);
+				return result;}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

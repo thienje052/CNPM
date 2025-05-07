@@ -1,6 +1,11 @@
 package Model;
 
 public class NhanVien {
+	@Override
+	public String toString() {
+		return "NhanVien [ID=" + ID + ", Name=" + Name + ", Email=" + Email + ", PhoneNumber=" + PhoneNumber
+				+ ", Position=" + Position + "]";
+	}
 	private int ID;
 	private String Name;
 	private String Email;

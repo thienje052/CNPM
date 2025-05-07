@@ -7,8 +7,10 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import DAO.DAONhanVien;
 import DAO.DAOTaiKhoanNhanVien;
 import DAO.DBConnector;
+import Model.ChucVu;
 import Model.TaiKhoanNhanVien;
 
 @WebServlet("/login")
@@ -38,8 +40,9 @@ public class login extends HttpServlet {
         if (taiKhoanNhanVien != null) {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", taiKhoanNhanVien);
-            if (taiKhoanNhanVien.getID_Warehouse()==1) {
-            	System.out.println("Cac");
+            DAONhanVien daoNhanVien = new DAONhanVien(conn);
+            daoNhanVien.findNVbyID(String.valueOf(taiKhoanNhanVien.getID_Employee())).getPosition().toString();
+            if(daoNhanVien.findNVbyID(String.valueOf(taiKhoanNhanVien.getID_Employee())).getPosition()==ChucVu.Manager) {
             	try {
 					conn.close();
 					conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
@@ -48,8 +51,15 @@ public class login extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-            } else {
-                resp.sendRedirect(req.getContextPath() + "/TKNV_sidebar.html");
+			} else {
+				try {
+					conn.close();
+					conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
+					resp.sendRedirect(req.getContextPath() + "/TKNV_sidebar.html");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         } else {
             req.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
