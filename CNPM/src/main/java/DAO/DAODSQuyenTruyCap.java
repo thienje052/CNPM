@@ -55,9 +55,7 @@ public class DAODSQuyenTruyCap {
 				pstmt.setString(2, String.valueOf(qtc));
 				success += pstmt.executeUpdate();
 			}
-			if(success == List.size()) {
-				return true;
-			}
+			return success == List.size();
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -70,8 +68,7 @@ public class DAODSQuyenTruyCap {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, String.valueOf(Account.getID()));
 			int success = pstmt.executeUpdate();
-			if(success != 0)
-				return true;
+			return success != 0;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
