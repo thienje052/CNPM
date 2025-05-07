@@ -1,0 +1,35 @@
+package DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import Model.ChucVu;
+import Model.NhanVien;
+
+public class DAONhanVien {
+	private static Connection conn;
+	
+	public DAONhanVien(Connection conn) {
+		DAONhanVien.conn = conn;
+	}
+	
+	public NhanVien findNVbyID(String ID) {
+		try {
+			String sql = "select * from NhanVien where ID=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ID);
+			ResultSet rs = pstmt.executeQuery();
+			NhanVien result = new NhanVien(Integer.parseInt(rs.getString("ID")),
+						rs.getString("Ho_ten"),
+						rs.getString("Email"),
+						rs.getString("SDT"),
+						rs.getString("Chuc_vu")=="Quan ly"?ChucVu.Manager:ChucVu.Employee);
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+}
