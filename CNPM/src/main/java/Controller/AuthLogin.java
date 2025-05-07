@@ -21,7 +21,7 @@ public class AuthLogin {
      * @return đối tượng User nếu thành công, null nếu không
      */
     public TaiKhoanNhanVien authenticate(String username, String password) {
-        TaiKhoanNhanVien taiKhoanNhanVien = this.DAOTaiKhoanNhanVien.findByUsername(username);
+        TaiKhoanNhanVien taiKhoanNhanVien = this.DAOTaiKhoanNhanVien.findByUserAccount(username);
 		if (taiKhoanNhanVien != null && password.equals(taiKhoanNhanVien.getPassword())) {
 		    return taiKhoanNhanVien;
 		}
