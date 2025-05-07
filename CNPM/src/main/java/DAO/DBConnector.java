@@ -6,8 +6,10 @@ import java.sql.SQLException;
 
 public class DBConnector {
 	private static String URL = "jdbc:sqlserver://localhost:1433;databaseName=QuanlyKho;encrypt=true;trustServerCertificate=true";
-	private static String user = "jdbc_user";
-	private static String password = "123456";
+	private static String auth = "jdbc_user";
+	private static String passwordAuth = "123456";
+	private static String kho1 = "kho1";
+	private static String passwordKho1 = "NhatHao0910";
 	static {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -16,7 +18,10 @@ public class DBConnector {
 			ex.printStackTrace();
 		}
 	}
-	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(URL, user, password);
+	public static Connection getConnectionAuth() throws SQLException {
+		return DriverManager.getConnection(URL, auth, passwordAuth);
+	}
+	public static Connection getConnectionKho1() throws SQLException {
+		return DriverManager.getConnection(URL, kho1, passwordKho1);
 	}
 }

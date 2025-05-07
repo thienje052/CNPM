@@ -18,11 +18,11 @@ public class login extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private AuthLogin authLogin;
-
+	private Connection conn;
     @Override
     public void init() {
         try {
-            Connection conn = DBConnector.getConnection();
+            conn = DBConnector.getConnectionAuth();
             authLogin = new AuthLogin(new DAOTaiKhoanNhanVien(conn));
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -33,12 +33,29 @@ public class login extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        System.out.println("Da toi day");
+       
         TaiKhoanNhanVien taiKhoanNhanVien = authLogin.authenticate(username, password);
         if (taiKhoanNhanVien != null) {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", taiKhoanNhanVien);
-            resp.sendRedirect(req.getContextPath() + "/2.trangchu.html");
+            if (taiKhoanNhanVien.getID_Warehouse()==1) {
+            	System.out.println("Cac");
+            	try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	try {
+					conn = DBConnector.getConnectionKho1();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                resp.sendRedirect(req.getContextPath() + "/1.sidebar.html");
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/TKNV_sidebar.html");
+            }
         } else {
             req.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
             req.getRequestDispatcher("/0.login.html").forward(req, resp);
