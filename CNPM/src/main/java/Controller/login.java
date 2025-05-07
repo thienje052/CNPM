@@ -42,17 +42,12 @@ public class login extends HttpServlet {
             	System.out.println("Cac");
             	try {
 					conn.close();
+					conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
+	                resp.sendRedirect(req.getContextPath() + "/1.sidebar.html");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-            	try {
-					conn = DBConnector.getConnectionKho1();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-                resp.sendRedirect(req.getContextPath() + "/1.sidebar.html");
             } else {
                 resp.sendRedirect(req.getContextPath() + "/TKNV_sidebar.html");
             }
