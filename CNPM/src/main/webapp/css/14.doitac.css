@@ -1,0 +1,20 @@
+
+    .header {
+      background-color: #dcdcdc;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      color: #0056b3;
+    }
+    .form-inline .form-group {
+      margin-right: 15px;
+    }
+    .btn-custom {
+      width: 80px;
+    }
+    .table td, .table th {
+      vertical-align: middle;
+      text-align: center;
+    }
+  
