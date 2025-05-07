@@ -1,13 +1,14 @@
 package Model;
 
 public class LoaiHang {
+	private int ID;
+	private String Name;
+	
 	public LoaiHang(int iD, String name) {
 		super();
 		ID = iD;
 		Name = name;
 	}
-	private int ID;
-	private String Name;
 	
 	public int getID() {
 		return ID;
@@ -20,6 +21,10 @@ public class LoaiHang {
 	}
 	public void setName(String name) {
 		Name = name;
+	}
+	@Override
+	public String toString() {
+		return "LoaiHang [ID=" + ID + ", Name=" + Name + "]";
 	}
 	
 }

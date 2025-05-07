@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.LoaiHang;
+import Model.LoaiPhieu;
 import Model.QuyenTruyCap;
 import Model.TaiKhoanNhanVien;
 
@@ -30,8 +32,13 @@ public class main_test_connection {
 //            	TaiKhoanNhanVien test = tk.findByUserName("Tran Chi Thien");
 //            	System.out.println(test.toString());
             	
-            	TaiKhoanNhanVien test = tk.findByWarehouseID("1");
-            	System.out.println(test.toString());
+//            	TaiKhoanNhanVien test = tk.findByWarehouseID("1");
+//            	System.out.println(test.toString());
+            	
+            	DAOLoaiHang lh = new DAOLoaiHang(conn);
+            	LoaiHang test = new LoaiHang(1, "De vo");
+            	if(lh.find(test) != null)
+            		System.out.println("Tim thay!");;
         } catch (SQLException e) {
 			e.printStackTrace();
 		} 
