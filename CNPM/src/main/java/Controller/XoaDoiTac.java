@@ -13,7 +13,7 @@ import DAO.DAODoiTac;
 import DAO.DBConnector;
 import Model.DoiTac;
 
-@WebServlet("/xoaDoiTac")
+@WebServlet("/doiTac")
 public class XoaDoiTac extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DAODoiTac dAODoiTac;

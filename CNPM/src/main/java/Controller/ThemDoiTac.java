@@ -27,7 +27,7 @@ public class ThemDoiTac extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/webapp/ThemDoiTac.html").forward(req, resp);
+        req.getRequestDispatcher("/15.doitac-them.html").forward(req, resp);
     }
 
     // Xử lý thêm đối tác
@@ -39,6 +39,6 @@ public class ThemDoiTac extends HttpServlet {
         String phone = req.getParameter("phone");
         DoiTac doiTac = new DoiTac(0, name, email, phone);
         dAODoiTac.add(doiTac);
-        resp.sendRedirect(req.getContextPath() + "/webapp/ThemDoiTac.html");
+        resp.sendRedirect(req.getContextPath() + "/15.doitac-them.html");
     }
 }
