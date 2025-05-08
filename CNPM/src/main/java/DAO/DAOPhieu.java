@@ -129,8 +129,8 @@ public class DAOPhieu {
 		try {
 			String sql = "insert into Phieu(ID_DoiTac, ID_TKNV, NgayTao, LoaiPhieu) values (?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, String.valueOf(phieu.getID_Partner()));
-			pstmt.setString(2, String.valueOf(phieu.getID_Employee()));
+			pstmt.setInt(1, phieu.getID_Partner());
+			pstmt.setInt(2, phieu.getID_Employee());
 			pstmt.setDate(3, Date.valueOf(phieu.getDateTime().toLocalDate()));
 			pstmt.setString(4, String.valueOf(phieu.getType()));
 			return pstmt.executeUpdate() != 0;
@@ -144,11 +144,11 @@ public class DAOPhieu {
 		try {
 			String sql = "update Phieu set ID_DoiTac=?, ID_TKNV=?, NgayTao=?, LoaiPhieu=? where ID=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, String.valueOf(phieu.getID_Partner()));
-			pstmt.setString(2, String.valueOf(phieu.getID_Employee()));
+			pstmt.setInt(1, phieu.getID_Partner());
+			pstmt.setInt(2, phieu.getID_Employee());
 			pstmt.setDate(3, Date.valueOf(phieu.getDateTime().toLocalDate()));
 			pstmt.setString(4, String.valueOf(phieu.getType()));
-			pstmt.setString(5, String.valueOf(phieu.getID()));
+			pstmt.setInt(5, phieu.getID());
 			return pstmt.executeUpdate() != 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -160,7 +160,7 @@ public class DAOPhieu {
 		try {
 			String sql = "delete from Phieu where ID=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, String.valueOf(phieu.getID()));
+			pstmt.setInt(1, phieu.getID());
 			return pstmt.executeUpdate() != 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
