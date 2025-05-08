@@ -41,14 +41,16 @@ public class main_test_connection {
 //            	if(lh.find(test) != null)
 //            		System.out.println("Tim thay!");
             	
-            	TaiKhoanNhanVien taiKhoanNhanVien = tk.findByUserAccount("Tuan");
-            	DAONhanVien daoNhanVien = new DAONhanVien(conn);
-            	NhanVien test = daoNhanVien.findNVbyID(String.valueOf(taiKhoanNhanVien.getID_Employee()));
-            	if(test != null) {
-            		test.toString();
-            		System.out.println(test.toString());
-            	}
-            		
+//            	TaiKhoanNhanVien taiKhoanNhanVien = tk.findByUserAccount("Tuan");
+//            	DAONhanVien daoNhanVien = new DAONhanVien(conn);
+//            	NhanVien test = daoNhanVien.findNVbyID(String.valueOf(taiKhoanNhanVien.getID_Employee()));
+//            	if(test != null) {
+//            		test.toString();
+//            		System.out.println(test.toString());
+//            	}
+            	
+            	TaiKhoanNhanVien test = new TaiKhoanNhanVien(2, "KyAnh", "Ky@nh2004", new ArrayList<QuyenTruyCap>(List.of(QuyenTruyCap.NXH)), 2, 1);
+            	tk.addUserAccount(test);
         } catch (SQLException e) {
 			e.printStackTrace();
 		} 

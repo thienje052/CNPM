@@ -1,9 +1,11 @@
 package DAO;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import Model.QuyenTruyCap;
@@ -142,27 +144,26 @@ public class DAOTaiKhoanNhanVien {
 		DAODSQuyenTruyCap DAODSQTC = new DAODSQuyenTruyCap(conn);
 		TaiKhoanNhanVien existed = DAOTK.findByAccountID(newAccount.getID());
 		if(existed == null) {
-			String sql = "insert into TaiKhoanNhanVien values(?,?,?,?) "
-					+ "create login ? with password=? "
-					+ "create user ? for login ?";
 			try {
+				String sql = "INSERT INTO TaiKhoanNhanVien VALUES (?, ?, ?, ?)";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, newAccount.getUserAccount());
 				pstmt.setString(2, newAccount.getPassword());
 				pstmt.setString(3, String.valueOf(newAccount.getID_Employee()));
 				pstmt.setString(4, String.valueOf(newAccount.getID_Warehouse()));
 				int success = pstmt.executeUpdate();
-				if(success != 0){
-					List<QuyenTruyCap> list = newAccount.getRoles();
-//					for(QuyenTruyCap qtc : list) {
-//						switch(qtc) {
-//						case NXH:
-//							
-//						}
-//					}
-					DAODSQTC.addDSQuyenTruyCapbyIDNV(newAccount.getID(), list);
+				if (success != 0) {
+				    Statement stmt = conn.createStatement();
+				    stmt.executeUpdate("CREATE LOGIN [" + newAccount.getUserAccount() + "] WITH PASSWORD = '" + newAccount.getPassword() + "'");
+				    stmt.executeUpdate("CREATE USER [" + newAccount.getUserAccount() + "] FOR LOGIN [" + newAccount.getUserAccount() + "]");
+				    String grant = "{call sp_QLNhapXuat(?, ?)}";
+				    CallableStatement grantstmt = conn.prepareCall(grant);
+				    grantstmt.setString(1, newAccount.getUserAccount());
+				    grantstmt.setString(2, newAccount.getPassword());
+				    return grantstmt.execute();
 				}
 			} catch (SQLException e) {
+				// TODO: handle exception
 				e.printStackTrace();
 			}
 		}

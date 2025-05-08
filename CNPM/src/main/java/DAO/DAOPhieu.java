@@ -88,7 +88,7 @@ public class DAOPhieu {
 		try {
 			String sql = "select * from Phieu where ID_NV=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, String.valueOf(account.getID_Employee()));
+			pstmt.setInt(1, account.getID_Employee());
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(new Phieu(rs.getInt("ID"), 

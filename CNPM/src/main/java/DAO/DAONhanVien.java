@@ -22,7 +22,7 @@ public class DAONhanVien {
 			pstmt.setString(1, ID);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {			
-				NhanVien result = new NhanVien(Integer.parseInt(rs.getString("ID")),
+				NhanVien result = new NhanVien(rs.getInt("ID"),
 				rs.getString("Ho_ten"),
 				rs.getString("Email"),
 				rs.getString("SDT"),
