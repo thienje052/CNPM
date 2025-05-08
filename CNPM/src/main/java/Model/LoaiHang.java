@@ -1,19 +1,19 @@
 package Model;
 
 public class LoaiHang {
-	private int ID;
+	private String ID;
 	private String Name;
 	
-	public LoaiHang(int iD, String name) {
+	public LoaiHang(String iD, String name) {
 		super();
 		ID = iD;
 		Name = name;
 	}
 	
-	public int getID() {
+	public String getID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void setID(String iD) {
 		ID = iD;
 	}
 	public String getName() {

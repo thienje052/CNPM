@@ -41,7 +41,6 @@ public class login extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", taiKhoanNhanVien);
             DAONhanVien daoNhanVien = new DAONhanVien(conn);
-            daoNhanVien.findNVbyID(String.valueOf(taiKhoanNhanVien.getID_Employee())).getPosition().toString();
             if(daoNhanVien.findNVbyID(String.valueOf(taiKhoanNhanVien.getID_Employee())).getPosition()==ChucVu.Manager) {
             	try {
 					conn.close();

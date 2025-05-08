@@ -12,6 +12,25 @@ public class DAODoiTac {
 		this.conn = conn;
 	}
 	
+	public DoiTac findByID(int ID) {
+		DoiTac dt = null;
+		try {
+			String sql = "select * from DoiTac where ID=?";	
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ID);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dt = new DoiTac(rs.getInt("ID"),
+						rs.getString("Ten"),
+						rs.getString("Email"),
+						rs.getString("SDT"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dt;
+	}
+	
 	public DoiTac findByName(String username) {
 		DoiTac dt = null;
 		try {
@@ -25,25 +44,50 @@ public class DAODoiTac {
 						rs.getString("Email"),
 						rs.getString("SDT"));
 			}
-			return dt;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return dt;
 	}
 	
 	public boolean add(DoiTac dt) {
-        String sql = "INSERT INTO doitac (name, email, phone_number) VALUES (?, ?, ?)";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try {
+        	String sql = "INSERT INTO doitac (name, email, phone_number) VALUES (?, ?, ?)";
+        	PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, dt.getName());
             stmt.setString(2, dt.getEmail());
             stmt.setString(3, dt.getPhoneNumber());
-            int success = stmt.executeUpdate();
-            if (success == 1)
-            	return true;
+            return stmt.executeUpdate() != 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
+	
+	public boolean delete(DoiTac dt) {
+		try {
+			String sql = "delete from DoiTac where ID=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dt.getID());
+			return pstmt.executeUpdate() != 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean update(DoiTac dt) {
+		try {
+			String sql = "update DoiTac set Ten=?, So_dien_thoai=?, Email=? where ID=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dt.getName());
+			pstmt.setString(2, dt.getPhoneNumber());
+			pstmt.setString(3, dt.getEmail());
+			pstmt.setInt(4, dt.getID());
+			return pstmt.executeUpdate() != 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

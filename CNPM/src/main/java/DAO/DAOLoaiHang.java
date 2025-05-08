@@ -24,7 +24,7 @@ public class DAOLoaiHang {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				list.add(new LoaiHang(Integer.parseInt(rs.getString("ID")), rs.getString("TenHang")));
+				list.add(new LoaiHang(rs.getString("ID"), rs.getString("TenHang")));
 			}
 			if(!list.isEmpty())
 				return list;
