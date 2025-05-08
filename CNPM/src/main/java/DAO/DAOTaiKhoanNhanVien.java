@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import Model.QuyenTruyCap;
 import Model.TaiKhoanNhanVien;
@@ -19,14 +20,14 @@ public class DAOTaiKhoanNhanVien {
 		TaiKhoanNhanVien tk = null;
 		DAODSQuyenTruyCap tc = new DAODSQuyenTruyCap(conn);
 		try {
-			String sql = "select * from TaiKhoanNhanVien where Ten_dang_nhap like ?";	
+			String sql = "select * from TaiKhoanNhanVien where TenDangNhap like ?";	
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userAccount);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				tk = new TaiKhoanNhanVien(rs.getInt("ID"),
-						rs.getString("Ten_dang_nhap"),
-						rs.getString("Mat_khau"), 
+						rs.getString("TenDangNhap"),
+						rs.getString("MatKhau"), 
 						tc.getDSQuyenTruyCapbyIDNV(rs.getInt("ID")),
 						rs.getInt("ID_NV"),
 						rs.getInt("ID_Kho"));
@@ -50,8 +51,8 @@ public class DAOTaiKhoanNhanVien {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				tk = new TaiKhoanNhanVien(rs.getInt("ID"),
-						rs.getString("Ten_dang_nhap"),
-						rs.getString("Mat_khau"), 
+						rs.getString("TenDangNhap"),
+						rs.getString("MatKhau"), 
 						tc.getDSQuyenTruyCapbyIDNV(rs.getInt("ID")),
 						rs.getInt("ID_NV"),
 						rs.getInt("ID_Kho"));
@@ -63,18 +64,18 @@ public class DAOTaiKhoanNhanVien {
 		return null;
 	}
 	
-	public TaiKhoanNhanVien findByAccountID(String accountID) {
+	public TaiKhoanNhanVien findByAccountID(int accountID) {
 		TaiKhoanNhanVien tk = null;
 		DAODSQuyenTruyCap tc = new DAODSQuyenTruyCap(conn);
 		try {
 			String sql = "select * from TaiKhoanNhanVien where ID like ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, accountID);
+			pstmt.setInt(1, accountID);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				tk = new TaiKhoanNhanVien(rs.getInt("ID"),
-						rs.getString("Ten_dang_nhap"),
-						rs.getString("Mat_khau"), 
+						rs.getString("TenDangNhap"),
+						rs.getString("MatKhau"), 
 						tc.getDSQuyenTruyCapbyIDNV(rs.getInt("ID")),
 						rs.getInt("ID_NV"),
 						rs.getInt("ID_Kho"));
@@ -86,7 +87,7 @@ public class DAOTaiKhoanNhanVien {
 		return null;
 	}
 	
-	public TaiKhoanNhanVien findByUserID(String userID) {
+	public TaiKhoanNhanVien findByUserID(int userID) {
 		TaiKhoanNhanVien tk = null;
 		DAODSQuyenTruyCap tc = new DAODSQuyenTruyCap(conn);
 		try {
@@ -94,12 +95,12 @@ public class DAOTaiKhoanNhanVien {
 					+ "join NhanVien on TaiKhoanNhanVien.ID_NV=NhanVien.ID"
 					+ " where NhanVien.ID like ?";	
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userID);
+			pstmt.setInt(1, userID);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				tk = new TaiKhoanNhanVien(rs.getInt("ID"),
-						rs.getString("Ten_dang_nhap"),
-						rs.getString("Mat_khau"), 
+						rs.getString("TenDangNhap"),
+						rs.getString("MatKhau"), 
 						tc.getDSQuyenTruyCapbyIDNV(rs.getInt("ID")),
 						rs.getInt("ID_NV"),
 						rs.getInt("ID_Kho"));
@@ -111,7 +112,7 @@ public class DAOTaiKhoanNhanVien {
 		return null;
 	}
 	
-	public TaiKhoanNhanVien findByWarehouseID(String warehouseID) {
+	public TaiKhoanNhanVien findByWarehouseID(int warehouseID) {
 		TaiKhoanNhanVien tk = null;
 		DAODSQuyenTruyCap tc = new DAODSQuyenTruyCap(conn);
 		try {
@@ -119,12 +120,12 @@ public class DAOTaiKhoanNhanVien {
 					+ "join Kho on TaiKhoanNhanVien.ID_Kho=Kho.ID"
 					+ " where Kho.ID like ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, warehouseID);
+			pstmt.setInt(1, warehouseID);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				tk = new TaiKhoanNhanVien(rs.getInt("ID"),
-						rs.getString("Ten_dang_nhap"),
-						rs.getString("Mat_khau"), 
+						rs.getString("TenDangNhap"),
+						rs.getString("MatKhau"), 
 						tc.getDSQuyenTruyCapbyIDNV(rs.getInt("ID")),
 						rs.getInt("ID_NV"),
 						rs.getInt("ID_Kho"));
@@ -139,19 +140,28 @@ public class DAOTaiKhoanNhanVien {
 	public boolean addUserAccount(TaiKhoanNhanVien newAccount) {
 		DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(conn);
 		DAODSQuyenTruyCap DAODSQTC = new DAODSQuyenTruyCap(conn);
-		TaiKhoanNhanVien existed = DAOTK.findByAccountID(String.valueOf(newAccount.getID()));
+		TaiKhoanNhanVien existed = DAOTK.findByAccountID(newAccount.getID());
 		if(existed == null) {
-			String sql = "insert into TaiKhoanNhanVien values(?,?,?,?,?)";
+			String sql = "insert into TaiKhoanNhanVien values(?,?,?,?) "
+					+ "create login ? with password=? "
+					+ "create user ? for login ?";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, String.valueOf(newAccount.getID()));
-				pstmt.setString(2, newAccount.getUserAccount());
-				pstmt.setString(3, newAccount.getPassword());
-				pstmt.setString(4, String.valueOf(newAccount.getID_Employee()));
-				pstmt.setString(5, String.valueOf(newAccount.getID_Warehouse()));
+				pstmt.setString(1, newAccount.getUserAccount());
+				pstmt.setString(2, newAccount.getPassword());
+				pstmt.setString(3, String.valueOf(newAccount.getID_Employee()));
+				pstmt.setString(4, String.valueOf(newAccount.getID_Warehouse()));
 				int success = pstmt.executeUpdate();
-				if(success != 0 && DAODSQTC.addDSQuyenTruyCapbyIDNV(String.valueOf(newAccount.getID()), newAccount.getRoles()))
-					return true;
+				if(success != 0){
+					List<QuyenTruyCap> list = newAccount.getRoles();
+//					for(QuyenTruyCap qtc : list) {
+//						switch(qtc) {
+//						case NXH:
+//							
+//						}
+//					}
+					DAODSQTC.addDSQuyenTruyCapbyIDNV(newAccount.getID(), list);
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -162,11 +172,11 @@ public class DAOTaiKhoanNhanVien {
 	public boolean deleteUserAccount(TaiKhoanNhanVien Account) {
 		DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(conn);
 		DAODSQuyenTruyCap DAOQTC = new DAODSQuyenTruyCap(conn);
-		TaiKhoanNhanVien existed = DAOTK.findByAccountID(String.valueOf(Account.getID()));
+		TaiKhoanNhanVien existed = DAOTK.findByAccountID(Account.getID());
 		if(existed != null) {
 			try {
 				boolean deleteQuyenTruyCap = DAOQTC.deleteDSQuyenTruyCapbyIDNV(Account);
-				String sql = "delete from TaiKhoanNhanVien where Ten_dang_nhap like ?";
+				String sql = "delete from TaiKhoanNhanVien where TenDangNhap like ?";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, Account.getUserAccount());
 				int success = pstmt.executeUpdate();
@@ -182,12 +192,12 @@ public class DAOTaiKhoanNhanVien {
 	public boolean updateUserAccount(TaiKhoanNhanVien Account) {
 		DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(conn);
 		DAODSQuyenTruyCap DAOQTC = new DAODSQuyenTruyCap(conn);
-		TaiKhoanNhanVien existed = DAOTK.findByAccountID(String.valueOf(Account.getID()));
+		TaiKhoanNhanVien existed = DAOTK.findByAccountID(Account.getID());
 		if(existed != null) {
 			try {
 				boolean deleteQuyenTruyCap = DAOQTC.deleteDSQuyenTruyCapbyIDNV(Account);
 				String sql = "update TaiKhoanNhanVien "
-						+ "set Ten_dang_nhap=?, Mat_khau=?, ID_NV=?, ID_Kho=?"
+						+ "set TenDangNhap=?, MatKhau=?, ID_NV=?, ID_Kho=?"
 						+ " where ID like ?";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, Account.getUserAccount());

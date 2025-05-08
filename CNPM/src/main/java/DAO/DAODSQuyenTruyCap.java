@@ -18,9 +18,9 @@ public class DAODSQuyenTruyCap {
 	public List<QuyenTruyCap> getDSQuyenTruyCapbyIDNV(int ID){
 		List<QuyenTruyCap> result = new ArrayList<QuyenTruyCap>();
 		try {
-			String sql = "select ID_Quyen from DSQuyenTruyCap where ID_NV like ?";
+			String sql = "select ID_Quyen from DSQuyenTruyCap where ID_NV=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, String.valueOf(ID));
+			pstmt.setInt(1, ID);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				switch(rs.getString("ID_Quyen")){
@@ -45,11 +45,11 @@ public class DAODSQuyenTruyCap {
 		}
 		return result;
 	}
-	public boolean addDSQuyenTruyCapbyIDNV(String ID, List<QuyenTruyCap> List) {
+	public boolean addDSQuyenTruyCapbyIDNV(int ID, List<QuyenTruyCap> List) {
 		try {
 			String sql = "insert into DSQuyenTruyCap values(?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ID);
+			pstmt.setInt(1, ID);
 			int success = 0;
 			for (QuyenTruyCap qtc : List) {
 				pstmt.setString(2, String.valueOf(qtc));
@@ -64,9 +64,9 @@ public class DAODSQuyenTruyCap {
 	}
 	public boolean deleteDSQuyenTruyCapbyIDNV(TaiKhoanNhanVien Account) {
 		try {
-			String sql = "delete from DSQuyenTruyCap where ID_NV like ?";
+			String sql = "delete from DSQuyenTruyCap where ID_NV=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, String.valueOf(Account.getID()));
+			pstmt.setInt(1, Account.getID());
 			int success = pstmt.executeUpdate();
 			return success != 0;
 		} catch (Exception e) {
