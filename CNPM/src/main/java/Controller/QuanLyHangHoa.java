@@ -22,7 +22,7 @@ public class QuanLyHangHoa extends HttpServlet {
         String Name = req.getParameter("tenLoai");
         String message = "";
 
-        try (Connection conn = DBConnector.getConnection()) {
+        try (Connection conn = DBConnector.getConnectionAuth()) {
             DAOLoaiHang dao = new DAOLoaiHang(conn);
 
             int maLoai;

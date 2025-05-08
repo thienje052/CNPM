@@ -21,7 +21,7 @@ public class XoaDoiTac extends HttpServlet {
     @Override
     public void init() {
         try {
-            Connection conn = DBConnector.getConnection();
+            Connection conn = DBConnector.getConnectionAuth();
             dAODoiTac = new DAODoiTac(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -33,7 +33,7 @@ public class XoaDoiTac extends HttpServlet {
             throws ServletException, IOException {
         try {
             int id = Integer.parseInt(req.getParameter("id"));
-            dAODoiTac.remove(id);
+            dAODoiTac.delete(id);
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Mã đối tác không hợp lệ.");
         }
