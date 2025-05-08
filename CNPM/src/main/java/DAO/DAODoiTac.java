@@ -52,7 +52,7 @@ public class DAODoiTac {
 	
 	public boolean add(DoiTac dt) {
         try {
-        	String sql = "INSERT INTO doitac (name, email, phone_number) VALUES (?, ?, ?)";
+        	String sql = "INSERT INTO doitac (ten, email, so_dien_thoai) VALUES (?, ?, ?)";
         	PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, dt.getName());
             stmt.setString(2, dt.getEmail());

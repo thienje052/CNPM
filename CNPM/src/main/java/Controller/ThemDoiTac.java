@@ -39,6 +39,6 @@ public class ThemDoiTac extends HttpServlet {
         String phone = req.getParameter("phone");
         DoiTac doiTac = new DoiTac(0, name, email, phone);
         dAODoiTac.add(doiTac);
-        resp.sendRedirect(req.getContextPath() + "/15.doitac-them.html");
+        resp.sendRedirect(req.getContextPath() + "/15.doitac-themDT.html");
     }
 }
