@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng nhập - Hệ thống kho</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/0.stylelogin.css">
+</head>
+<body>
+  <header>
+    <h1>HỆ THỐNG QUẢN LÝ NHẬP/XUẤT KHO HÀNG</h1>
+  </header>
+
+  <main class="container">
+    <section class="login-box">
+      <h2>ĐĂNG NHẬP</h2>
+      <form action="${pageContext.request.contextPath}/login" method="post">
+        <input type="text" placeholder="Tên người dùng" name="username" required />
+        <div class="password-field">
+          <input type="password" id="password" placeholder="Mật khẩu" name="password" required />
+          <img src="${pageContext.request.contextPath}/image-source/loginyey.svg" alt="Hiện mật khẩu" id="togglePassword" />
+        </div>
+        
+        <c:if test="${param.error != null}">
+          <p class="error">Sai tên đăng nhập hoặc mật khẩu!</p>
+        </c:if>
+
+        <button type="submit">Đăng nhập</button>
+      </form>
+    </section>
+  </main>
+  <footer></footer>
+</body>
+</html>
