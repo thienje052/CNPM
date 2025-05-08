@@ -36,19 +36,17 @@ public class XuLyPhieu extends HttpServlet {
             LocalDateTime dateTime = LocalDateTime.parse(req.getParameter("datetime"));
 
             Phieu phieu = new Phieu(id, idPartner, idEmployee, type, dateTime);
-
-           
-
+            
             req.setAttribute("message", "Tạo phiếu thành công!");
         } catch (Exception e) {
             req.setAttribute("error", "Lỗi khi tạo phiếu: " + e.getMessage());
         }
-        req.getRequestDispatcher("/WEB-INF/tao_phieu.jsp").forward(req, resp);
+        req.getRequestDispatcher("/6.QLNX-taodon.html").forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/tao_phieu.jsp").forward(req, resp);
+        req.getRequestDispatcher("/6.QLNX-taodon.html").forward(req, resp);
     }
 }
 
