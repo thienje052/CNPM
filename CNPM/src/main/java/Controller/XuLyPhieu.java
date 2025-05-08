@@ -20,7 +20,7 @@ public class XuLyPhieu extends HttpServlet {
 	@Override
     public void init() {
         try {
-            Connection conn = DBConnector.getConnection();
+            Connection conn = DBConnector.getConnectionAuth();
             daoPhieu = new DAOPhieu(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -21,7 +21,7 @@ public class XoaDoiTac extends HttpServlet {
     @Override
     public void init() {
         try {
-            Connection conn = DBConnector.getConnection();
+            Connection conn = DBConnector.getConnectionAuth();
             dAODoiTac = new DAODoiTac(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
