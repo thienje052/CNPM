@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class DBConnector {
 	private static String URL = "jdbc:sqlserver://localhost:1433;databaseName=QuanlyKho;encrypt=true;trustServerCertificate=true";
-	private static String auth = "jdbc_user";
-	private static String passwordAuth = "123456";
+	private static String auth = "authenticate";
+	private static String passwordAuth = "@uthent1cate";
 	static {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
