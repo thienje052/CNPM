@@ -16,22 +16,18 @@ public class DAONhanVien {
 	}
 	
 	public NhanVien findNVbyID(String ID) {
+		NhanVien result = null;
 		try {
 			String sql = "select * from NhanVien where ID=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ID);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {			
-				NhanVien result = new NhanVien(rs.getInt("ID"),
-				rs.getString("Hoten"),
-				rs.getString("Email"),
-				rs.getString("SDT"),
-				(rs.getString("Chucvu")).equals("Quan ly")?ChucVu.Manager:ChucVu.Employee);
-				return result;}
-
+				result = new NhanVien(rs.getInt("ID"), rs.getString("Hoten"),rs.getString("Email"),rs.getString("SDT"),(rs.getString("Chucvu")).equals("Quan ly")?ChucVu.Manager:ChucVu.Employee);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return result;
 	}
 }

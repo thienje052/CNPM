@@ -3,7 +3,9 @@
 	
 	import java.io.IOException;
 	import java.sql.*;
-	import javax.servlet.*;
+import java.util.List;
+
+import javax.servlet.*;
 	import javax.servlet.annotation.WebServlet;
 	import javax.servlet.http.*;
 	
@@ -11,7 +13,8 @@
 	import DAO.DAOTaiKhoanNhanVien;
 	import DAO.DBConnector;
 	import Model.ChucVu;
-	import Model.TaiKhoanNhanVien;
+import Model.QuyenTruyCap;
+import Model.TaiKhoanNhanVien;
 	
 	@WebServlet("/login")
 	public class login extends HttpServlet {
@@ -33,17 +36,11 @@
 		        if (taiKhoanNhanVien != null) {
 		            HttpSession session = req.getSession();
 		            session.setAttribute("currentUser", taiKhoanNhanVien);
-		            DAONhanVien daoNhanVien = new DAONhanVien(conn);
-	
-		            if (daoNhanVien.findNVbyID(String.valueOf(taiKhoanNhanVien.getID_Employee())).getPosition() == ChucVu.Manager) {
-		                conn.close();
-		                conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
-		                resp.sendRedirect(req.getContextPath() + "/sidebar_dynamic_roles.jsp");
-		            } else {
-		                conn.close();
-		                conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
-		                resp.sendRedirect(req.getContextPath() + "/TKNV_sidebar.html");
-		            }
+		            List<QuyenTruyCap> userPermissions = taiKhoanNhanVien.getRoles();
+	                conn.close();
+	                conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
+	                req.setAttribute("permissions", userPermissions);
+	                req.getRequestDispatcher("/frame.jsp").forward(req, resp);
 		        } else {
 		            req.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
 		            req.getRequestDispatcher("/login.jsp").forward(req, resp);
@@ -52,8 +49,7 @@
 		        throw new RuntimeException(e);
 		    }
 		}
-	        
-	
+		
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		    req.getRequestDispatcher("/login.jsp").forward(req, resp);
