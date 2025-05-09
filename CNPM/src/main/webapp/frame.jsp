@@ -21,13 +21,10 @@
       </div>
       <div class="menu">
         <ul>
-          <c:if test="${permissions.contains('Trang chủ')}">
             <li><img src="${pageContext.request.contextPath}/image-source/home-1.svg" alt="">
               <a href="${pageContext.request.contextPath}/2.trangchu.jsp" target="main-frame">Trang chủ</a>
             </li>
-          </c:if>
-          
-          <c:if test="${permissions.contains('Quản lý hàng hóa')}">
+          <c:if test="${permissions.contains(quyenTruyCap.HH)}">
             <li><img src="${pageContext.request.contextPath}/image-source/QLHH.svg" alt="">
               <a class="collapsible" data-bs-toggle="collapse" href="#collapseHangHoa">Quản lý hàng hóa</a>
             </li>
