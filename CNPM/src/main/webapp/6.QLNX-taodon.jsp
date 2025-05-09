@@ -1,12 +1,112 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>Quản lý nhập/xuất - Tạo đơn</title>
+  <link rel="stylesheet" href="./css/6.QLNX-taodon.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
 
+  <header>Quản lý nhập/xuất - Tạo đơn</header>
+
+  <form action="XyLyPhieu" method="POST">
+
+    <!-- Hàng 1 -->
+    <div class="row">
+      <div class="form-group">
+        <label for="loaiDon">Loại đơn</label>
+        <select id="loaiDon" name="loaiDon">
+          <option>Nhập</option>
+          <option>Xuất</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="maDoiTac">Mã đối tác</label>
+        <input type="text" id="maDoiTac" name="maDoiTac">
+      </div>
+      <div class="form-group">
+        <label for="ngay">Ngày</label>
+        <input type="date" id="ngay" name="ngay">
+      </div>
+    </div>
+
+    <!-- Hàng 2 -->
+    <div class="row">
+      <div class="form-group">
+        <label for="maHang">Mã hàng</label>
+        <input type="text" id="maHang" name="maHang">
+      </div>
+      <div class="form-group">
+        <label for="tenHang">Tên hàng</label>
+        <input type="text" id="tenHang" name="tenHang">
+      </div>
+      <div class="form-group">
+        <label for="loaiHang">Loại hàng</label>
+        <input type="text" id="loaiHang" name="loaiHang">
+      </div>
+      <div class="form-group">
+        <label for="viTri">Vị trí</label>
+        <input type="text" id="viTri" name="viTri">
+      </div>
+    </div>
+
+    <!-- Hàng 3 -->
+    <div class="row">
+      <div class="form-group">
+        <label for="soLuong">Số lượng</label>
+        <input type="number" id="soLuong" name="soLuong">
+      </div>
+      <div class="form-group">
+        <label for="donViTinh">Đơn vị tính</label>
+        <input type="text" id="donViTinh" name="donViTinh">
+      </div>
+      <div class="form-group">
+        <label for="moTa">Mô tả</label>
+        <input type="text" id="moTa" name="moTa">
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button type="submit" name="action" value="themHang">Thêm hàng</button>
+      <button type="submit" name="action" value="xoaHang">Xóa hàng</button>
+    </div>
+
+    <!-- Bảng dữ liệu -->
+    <table>
+      <thead>
+        <tr>
+          <th>Mã hàng</th>
+          <th>Tên hàng</th>
+          <th>Loại hàng</th>
+          <th>Số lượng</th>
+          <th>Đơn vị tính</th>
+          <th>Mô tả</th>
+          <th>Vị trí</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SP001</td>
+          <td>Cá hồi</td>
+          <td>Thủy sản</td>
+          <td>20</td>
+          <td>Kg</td>
+          <td>Tươi sống</td>
+          <td>Kho A</td>
+        </tr>
+        <!-- Thêm dòng khác tại đây -->
+      </tbody>
+    </table>
+
+    <div class="footer-buttons">
+      <button type="submit" name="action" value="xacNhan">Xác nhận</button>
+      <button type="submit" name="action" value="huy">Hủy</button>
+    </div>
+  </form>
 </body>
+
 </html>

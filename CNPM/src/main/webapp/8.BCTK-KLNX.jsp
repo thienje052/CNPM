@@ -1,12 +1,99 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Báo cáo thống kê</title>
+    <link rel="stylesheet" href="./css/8.BCTK-KLNX.css" />
 </head>
 <body>
+  <div class="header">Báo cáo thống kê - Khối lượng nhập/xuất</div>
 
+  <div class="section">
+    <h4>KHỐI LƯỢNG NHẬP</h4>
+    <form class="form-inline" action="/report/import" method="POST">
+      <label for="thang-nhap">Tháng</label>
+      <select name="thang" id="thang-nhap">
+        <option>1</option><option>2</option><option>3</option><option selected>4</option>
+        <option>5</option><option>6</option><option>7</option><option>8</option>
+        <option>9</option><option>10</option><option>11</option><option>12</option>
+      </select>
+
+      <label for="nam-nhap">Năm</label>
+      <select name="nam" id="nam-nhap">
+        <option>2023</option><option>2024</option><option selected>2025</option>
+      </select>
+
+      <button type="submit" class="btn-submit">Submit</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Mã đơn</th>
+          <th>Mã đối tác</th>
+          <th>Mã nhân viên</th>
+          <th>Mã hàng</th>
+          <th>Loại phiếu</th>
+          <th>Ngày lập</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data rows go here -->
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="summary">
+      Tổng đơn nhập: 15<br/>
+      Loại hàng: ......
+    </div>
+  </div>
+
+  <div class="section">
+    <h4>KHỐI LƯỢNG XUẤT</h4>
+    <form class="form-inline" action="/report/export" method="POST">
+      <label for="thang-xuat">Tháng</label>
+      <select name="thang" id="thang-xuat">
+        <option>1</option><option>2</option><option>3</option><option selected>4</option>
+        <option>5</option><option>6</option><option>7</option><option>8</option>
+        <option>9</option><option>10</option><option>11</option><option>12</option>
+      </select>
+
+      <label for="nam-xuat">Năm</label>
+      <select name="nam" id="nam-xuat">
+        <option>2023</option><option>2024</option><option selected>2025</option>
+      </select>
+
+      <button type="submit" class="btn-submit">Submit</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Mã đơn</th>
+          <th>Mã đối tác</th>
+          <th>Mã nhân viên</th>
+          <th>Mã hàng</th>
+          <th>Loại phiếu</th>
+          <th>Ngày lập</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data rows go here -->
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="summary">
+      Tổng đơn xuất: <br/>
+      Loại hàng:
+    </div>
+  </div>
 </body>
 </html>
