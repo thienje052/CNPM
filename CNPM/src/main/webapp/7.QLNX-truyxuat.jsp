@@ -1,0 +1,55 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý nhập/xuất - Truy xuất đơn</title>
+  <link rel="stylesheet" href="./css/7.QLNX-truyxuat.css">
+</head>
+<body>
+  <div class="header">Quản lý nhập/xuất - Truy xuất đơn</div>
+  <div class="container">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Loại đơn</label>
+        <select>
+          <option value="">-- Chọn --</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mã đối tác</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Ngày</label>
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <label>Mã đơn</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Mã nhân viên</label>
+        <input type="text">
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Mã đối tác</th>
+          <th>Mã nhân viên</th>
+          <th>Mã đơn</th>
+          <th>Ngày lập đơn</th>
+          <th>Loại đơn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="5" style="height: 50px;"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
