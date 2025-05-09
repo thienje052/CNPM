@@ -21,55 +21,6 @@ public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AuthLogin authLogin;
 	private Connection conn;
-
-<<<<<<< HEAD
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-		      conn = DBConnector.getConnectionAuth();
-		      authLogin = new AuthLogin(new DAOTaiKhoanNhanVien(conn));
-		      String username = req.getParameter("username");
-		        String password = req.getParameter("password");
-		       
-		        TaiKhoanNhanVien taiKhoanNhanVien = authLogin.authenticate(username, password);
-		        if (taiKhoanNhanVien != null) {
-		            HttpSession session = req.getSession();
-		            session.setAttribute("currentUser", taiKhoanNhanVien);
-		            DAONhanVien daoNhanVien = new DAONhanVien(conn);
-		            daoNhanVien.findNVbyID(String.valueOf(taiKhoanNhanVien.getID_Employee())).getPosition().toString();
-		            if(daoNhanVien.findNVbyID(String.valueOf(taiKhoanNhanVien.getID_Employee())).getPosition()==ChucVu.Manager) {
-		            	try {
-							conn.close();
-							conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
-			                resp.sendRedirect(req.getContextPath() + "/1.sidebar.html");
-						} catch (SQLException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					} else {
-						try {
-							conn.close();
-							conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
-							resp.sendRedirect(req.getContextPath() + "/TKNV_sidebar.html");
-						} catch (SQLException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-		            }
-		        } else {
-		            req.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
-		            req.getRequestDispatcher("/0.login.html").forward(req, resp);
-		        }
-		} catch (Exception e) {
-		      throw new RuntimeException(e);
-		}
-    }
-    
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/0.login.html").forward(req, resp);
-    }
-=======
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    try {
@@ -94,7 +45,6 @@ public class login extends HttpServlet {
 	                resp.sendRedirect(req.getContextPath() + "/TKNV_sidebar.html");
 	            }
 	        } else {
-	        	System.out.println("Thanh cong toi day");
 	            req.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
 	            req.getRequestDispatcher("/login.jsp").forward(req, resp);
 	        }
@@ -108,5 +58,4 @@ public class login extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    req.getRequestDispatcher("/login.jsp").forward(req, resp);
 	}
->>>>>>> branch 'main' of https://github.com/thienje052/CNPM
 }
