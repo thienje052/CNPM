@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List, Model.HangHoa" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -18,62 +18,62 @@
 
     <!-- Hàng 1 -->
     <div class="row">
-      <div class="form-group col">
+      <div class="form-group">
         <label for="loaiDon">Loại đơn</label>
-        <select id="loaiDon" name="loaiDon" class="form-control">
-          <option>Nhập</option>
-          <option>Xuất</option>
+        <select id="loaiDon" name="loaiDon">
+          <option value="Nhập" ${param.loaiDon == 'Nhập' ? 'selected' : ''}>Nhập</option>
+          <option value="Xuất" ${param.loaiDon == 'Xuất' ? 'selected' : ''}>Xuất</option>
         </select>
       </div>
-      <div class="form-group col">
+      <div class="form-group">
         <label for="maDoiTac">Mã đối tác</label>
-        <input type="text" id="maDoiTac" name="maDoiTac" class="form-control">
+        <input type="text" id="maDoiTac" name="maDoiTac"  value="${param.maDoiTac}" />
       </div>
-      <div class="form-group col">
+      <div class="form-group">
         <label for="ngay">Ngày</label>
-        <input type="date" id="ngay" name="ngay" class="form-control">
+        <input type="date" id="ngay" name="ngay"  value="${param.ngay}" />
       </div>
     </div>
 
     <!-- Hàng 2 -->
-    <div class="row mt-3">
-      <div class="form-group col">
+    <div class="row">
+      <div class="form-group">
         <label for="maHang">Mã hàng</label>
-        <input type="text" id="maHang" name="maHang" class="form-control">
+        <input type="text" id="maHang" name="maHang"  value="${param.maHang}" />
       </div>
-      <div class="form-group col">
+      <div class="form-group">
         <label for="tenHang">Tên hàng</label>
-        <input type="text" id="tenHang" name="tenHang" class="form-control">
+        <input type="text" id="tenHang" name="tenHang"  value="${param.tenHang}" />
       </div>
-      <div class="form-group col">
+      <div class="form-group">
         <label for="loaiHang">Loại hàng</label>
-        <input type="text" id="loaiHang" name="loaiHang" class="form-control">
+        <input type="text" id="loaiHang" name="loaiHang"  value="${param.loaiHang}" />
       </div>
-      <div class="form-group col">
+      <div class="form-group">
         <label for="viTri">Vị trí</label>
-        <input type="text" id="viTri" name="viTri" class="form-control">
+        <input type="text" id="viTri" name="viTri"  value="${param.viTri}" />
       </div>
     </div>
 
     <!-- Hàng 3 -->
-    <div class="row mt-3">
-      <div class="form-group col">
+    <div class="row">
+      <div class="form-group">
         <label for="soLuong">Số lượng</label>
-        <input type="number" id="soLuong" name="soLuong" class="form-control">
+        <input type="number" id="soLuong" name="soLuong"  value="${param.soLuong}" />
       </div>
-      <div class="form-group col">
+      <div class="form-group">
         <label for="donViTinh">Đơn vị tính</label>
-        <input type="text" id="donViTinh" name="donViTinh" class="form-control">
+        <input type="text" id="donViTinh" name="donViTinh"  value="${param.donViTinh}" />
       </div>
-      <div class="form-group col">
+      <div class="form-group">
         <label for="moTa">Mô tả</label>
-        <input type="text" id="moTa" name="moTa" class="form-control">
+        <input type="text" id="moTa" name="moTa"  value="${param.moTa}" />
       </div>
     </div>
 
-    <div class="action-buttons mt-3">
-      <button type="submit" name="action" value="themHang" class="btn btn-primary">Thêm hàng</button>
-      <button type="submit" name="action" value="xoaHang" class="btn btn-danger">Xóa hàng</button>
+    <div class="action-buttons">
+      <button type="submit" name="action" value="themHang">Thêm hàng</button>
+      <button type="submit" name="action" value="xoaHang">Xóa hàng</button>
     </div>
 
     <!-- Bảng dữ liệu -->
@@ -91,31 +91,31 @@
         </tr>
       </thead>
       <tbody>
-        <%
-          List<HangHoa> cart = (List<HangHoa>) session.getAttribute("cart");
-          if (cart != null) {
-            for (HangHoa hh : cart) {
-        %>
-        <tr>
-          <td><input type="radio" name="selectedMaHang" value="<%= hh.getID() %>"></td>
-          <td><%= hh.getID() %></td>
-          <td><%= hh.getName() %></td>
-          <td><%= hh.getCatagory() %></td>
-          <td><%= hh.getQuantity() %></td>
-          <td><%= hh.getMeasurement() %></td>
-          <td><%= hh.getDescription() %></td>
-          <td><%= request.getParameter("viTri") != null ? request.getParameter("viTri") : hh.getDescription() %></td>
-        </tr>
-        <%
-            }
-          }
-        %>
+        <c:if test="${not empty sessionScope.cart}">
+          <c:forEach var="hh" items="${sessionScope.cart}">
+            <tr>
+              <td><input type="radio" name="selectedMaHang" value="${hh.id}" /></td>
+              <td>${hh.id}</td>
+              <td>${hh.name}</td>
+              <td>${hh.catagory}</td>
+              <td>${hh.quantity}</td>
+              <td>${hh.measurement}</td>
+              <td>${hh.description}</td>
+              <td>
+                <c:choose>
+                  <c:when test="${not empty param.viTri}">${param.viTri}</c:when>
+                  <c:otherwise>${hh.vitri}</c:otherwise>
+                </c:choose>
+              </td>
+            </tr>
+          </c:forEach>
+        </c:if>
       </tbody>
     </table>
 
-    <div class="footer-buttons mt-3">
-      <button type="submit" name="action" value="xacNhan" class="btn btn-success">Xác nhận</button>
-      <button type="submit" name="action" value="huy" class="btn btn-secondary">Hủy</button>
+    <div class="footer-buttons">
+      <button type="submit" name="action" value="xacNhan">Xác nhận</button>
+      <button type="submit" name="action" value="huy">Hủy</button>
     </div>
   </form>
 </body>
