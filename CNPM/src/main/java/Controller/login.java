@@ -13,6 +13,7 @@ import DAO.DAONhanVien;
 import DAO.DAOTaiKhoanNhanVien;
 import DAO.DBConnector;
 import Model.ChucVu;
+import Model.NhanVien;
 import Model.QuyenTruyCap;
 import Model.TaiKhoanNhanVien;
 	
@@ -33,13 +34,21 @@ public class login extends HttpServlet {
 	        String password = req.getParameter("password");
 	        TaiKhoanNhanVien taiKhoanNhanVien = authLogin.authenticate(username, password);
 	        if (taiKhoanNhanVien != null) {
+	        	DAONhanVien DAONV = new DAONhanVien(conn);
+	        	NhanVien nv = DAONV.findNVbyID(taiKhoanNhanVien.getID_Employee());
+	        	ChucVu chucVu = nv.getPosition();
 	            HttpSession session = req.getSession();
 	            session.setAttribute("currentUser", taiKhoanNhanVien);
 	            List<QuyenTruyCap> userPermissions = taiKhoanNhanVien.getRoles();
                 conn.close();
                 conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
                 req.setAttribute("permissions", userPermissions);
-                req.setAttribute("quyenTruyCap", QuyenTruyCap.class);
+                req.setAttribute("ChucVu", chucVu);
+                req.setAttribute("QuanLyRole", ChucVu.Manager);
+                req.setAttribute("QuyenTruyCap_HH", QuyenTruyCap.HH);
+                req.setAttribute("QuyenTruyCap_NXH", QuyenTruyCap.NXH);
+                req.setAttribute("QuyenTruyCap_TK", QuyenTruyCap.TK);
+                req.setAttribute("QuyenTruyCap_BC", QuyenTruyCap.BC);
                 req.getRequestDispatcher("/frame.jsp").forward(req, resp);
 	        } else {
 	            req.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");

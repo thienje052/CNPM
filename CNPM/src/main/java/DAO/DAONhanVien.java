@@ -15,12 +15,12 @@ public class DAONhanVien {
 		DAONhanVien.conn = conn;
 	}
 	
-	public NhanVien findNVbyID(String ID) {
+	public NhanVien findNVbyID(int ID) {
 		NhanVien result = null;
 		try {
 			String sql = "select * from NhanVien where ID=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ID);
+			pstmt.setInt(1, ID);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {			
 				result = new NhanVien(rs.getInt("ID"), rs.getString("Hoten"),rs.getString("Email"),rs.getString("SDT"),(rs.getString("Chucvu")).equals("Quan ly")?ChucVu.Manager:ChucVu.Employee);
