@@ -26,9 +26,6 @@
 	   <c:if test="${not empty error}">
 	    	<p style="color:red;">${error}</p>
 		</c:if>
- 		 
- 		 
-
         <button type="submit">Đăng nhập</button>
 
       </form>
