@@ -39,6 +39,7 @@ public class login extends HttpServlet {
                 conn.close();
                 conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
                 req.setAttribute("permissions", userPermissions);
+                req.setAttribute("quyenTruyCap", QuyenTruyCap.class);
                 req.getRequestDispatcher("/frame.jsp").forward(req, resp);
 	        } else {
 	            req.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
