@@ -1,0 +1,53 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh mục hàng hóa</title>
+  <link rel="stylesheet" href="./css/3.QLHH-DMHH.css">
+  
+</head>
+<body>
+  <header>
+    Quản lý hàng hóa - Danh mục hàng hóa
+  </header>
+
+  <form action="/xu-ly-danh-muc" method="POST">
+    <div class="form-top">
+      <div class="form-group">
+        <label for="maLoai">Mã loại</label>
+        <input type="text" id="maLoai" name="maLoai" placeholder="Mã loại">
+      </div>
+      <div class="form-group">
+        <label for="tenLoai">Tên loại</label>
+        <input type="text" id="tenLoai" name="tenLoai" placeholder="Tên loại">
+      </div>
+      <div class="form-buttons">
+        <button type="submit" name="action" value="them">Thêm</button>
+        <button type="submit" name="action" value="xoa">Xóa</button>
+        <button type="submit" name="action" value="sua">Sửa</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Mã loại</th>
+          <th>Tên loại</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>DM001</td>
+          <td>Thực phẩm tươi sống</td>
+        </tr>
+        <tr>
+          <td>DM002</td>
+          <td>Đồ hộp</td>
+        </tr>
+        <!-- Thêm các dòng dữ liệu khác tại đây -->
+      </tbody>
+    </table>
+  </form>
+</body>
+</html>
