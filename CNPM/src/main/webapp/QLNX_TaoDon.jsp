@@ -80,7 +80,7 @@
     <table class="table table-bordered mt-4">
       <thead>
         <tr>
-          <th></th>
+          <th>Chọn</th>
           <th>Mã hàng</th>
           <th>Tên hàng</th>
           <th>Loại hàng</th>
