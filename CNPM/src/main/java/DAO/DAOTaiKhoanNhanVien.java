@@ -29,7 +29,7 @@ public class DAOTaiKhoanNhanVien {
 			while(rs.next()) {
 				tk = new TaiKhoanNhanVien(rs.getInt("ID"),
 						rs.getString("TenDangNhap"),
-						rs.getString("MatKhau"), 
+						rs.getString("MatKhau"),
 						tc.getDSQuyenTruyCapbyIDNV(rs.getInt("ID")),
 						rs.getInt("ID_NV"),
 						rs.getInt("ID_Kho"));

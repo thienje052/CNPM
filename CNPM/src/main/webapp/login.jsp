@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -22,9 +22,9 @@
           <img src="${pageContext.request.contextPath}/image-source/loginyey.svg" alt="Hiện mật khẩu" id="togglePassword" />
         </div>
         
-        <c:if test="${param.error != null}">
-          <p class="error">Sai tên đăng nhập hoặc mật khẩu!</p>
-        </c:if>
+        <c:if test="${not empty requestScope.error}">
+		    <p class="error">${requestScope.error}</p>
+		</c:if>
 
         <button type="submit">Đăng nhập</button>
       </form>
