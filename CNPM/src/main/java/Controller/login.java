@@ -1,18 +1,18 @@
-	package Controller;
+package Controller;
 	
 	
-	import java.io.IOException;
-	import java.sql.*;
+import java.io.IOException;
+import java.sql.*;
 import java.util.List;
 
 import javax.servlet.*;
-	import javax.servlet.annotation.WebServlet;
-	import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 	
-	import DAO.DAONhanVien;
-	import DAO.DAOTaiKhoanNhanVien;
-	import DAO.DBConnector;
-	import Model.ChucVu;
+import DAO.DAONhanVien;
+import DAO.DAOTaiKhoanNhanVien;
+import DAO.DBConnector;
+import Model.ChucVu;
 import Model.QuyenTruyCap;
 import Model.TaiKhoanNhanVien;
 	
