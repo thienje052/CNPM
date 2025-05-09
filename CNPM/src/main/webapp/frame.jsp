@@ -15,7 +15,7 @@
       <div class="sidebar-header">
         <img src="${pageContext.request.contextPath}/image-source/User_fill.svg" alt="User avatar" />
         <div class="user-info">
-          <strong>User: ${sessionScope.currentUser.username}</strong><br />
+          <strong>User: ${sessionScope.currentUser.userAccount}</strong><br />
           ID: ${sessionScope.currentUser.ID_Employee}
         </div>
       </div>
