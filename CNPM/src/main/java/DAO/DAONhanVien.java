@@ -23,10 +23,18 @@ public class DAONhanVien {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {			
 				NhanVien result = new NhanVien(rs.getInt("ID"),
-				rs.getString("Ho_ten"),
+<<<<<<< HEAD
+				rs.getString("HoTen"),
+=======
+				rs.getString("Hoten"),
+>>>>>>> branch 'main' of https://github.com/thienje052/CNPM.git
 				rs.getString("Email"),
 				rs.getString("SDT"),
-				(rs.getString("Chuc_vu")).equals("Quan ly")?ChucVu.Manager:ChucVu.Employee);
+<<<<<<< HEAD
+				(rs.getString("ChucVu")).equals("Quan ly")?ChucVu.Manager:ChucVu.Employee);
+=======
+				(rs.getString("Chucvu")).equals("Quan ly")?ChucVu.Manager:ChucVu.Employee);
+>>>>>>> branch 'main' of https://github.com/thienje052/CNPM.git
 				return result;}
 
 		} catch (SQLException e) {
