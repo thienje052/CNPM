@@ -23,10 +23,10 @@ public class DAONhanVien {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {			
 				NhanVien result = new NhanVien(rs.getInt("ID"),
-				rs.getString("Ho_ten"),
+				rs.getString("HoTen"),
 				rs.getString("Email"),
 				rs.getString("SDT"),
-				(rs.getString("Chuc_vu")).equals("Quan ly")?ChucVu.Manager:ChucVu.Employee);
+				(rs.getString("ChucVu")).equals("Quan ly")?ChucVu.Manager:ChucVu.Employee);
 				return result;}
 
 		} catch (SQLException e) {
