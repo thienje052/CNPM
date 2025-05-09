@@ -63,8 +63,7 @@ public class login extends HttpServlet {
 		      throw new RuntimeException(e);
 		}
     }
-        
-
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/0.login.html").forward(req, resp);
