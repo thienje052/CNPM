@@ -23,11 +23,14 @@
           <img src="${pageContext.request.contextPath}/image-source/loginyey.svg" alt="Hiện mật khẩu" id="togglePassword" />
         </div>
         
-        <c:if test="${not empty requestScope.error}">
-		    <p class="error">${requestScope.error}</p>
+	   <c:if test="${not empty error}">
+	    	<p style="color:red;">${error}</p>
 		</c:if>
+ 		 
+ 		 
 
         <button type="submit">Đăng nhập</button>
+
       </form>
     </section>
   </main>
