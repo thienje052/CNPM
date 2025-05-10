@@ -52,12 +52,11 @@ public class DAODoiTac {
 	
 	public boolean add(DoiTac dt) {
         try {
-        	String sql = "INSERT INTO doitac (ID, ten, email, so_dien_thoai) VALUES (?, ?, ?, ?)";
+        	String sql = "INSERT INTO doitac (ten, email, so_dien_thoai) VALUES (?, ?, ?)";
         	PreparedStatement stmt = conn.prepareStatement(sql);
-        	stmt.setInt(1, 1);
-            stmt.setString(2, dt.getName());
-            stmt.setString(3, dt.getEmail());
-            stmt.setString(4, dt.getPhoneNumber());
+            stmt.setString(1, dt.getName());
+            stmt.setString(2, dt.getEmail());
+            stmt.setString(3, dt.getPhoneNumber());
             return stmt.executeUpdate() != 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,16 +64,24 @@ public class DAODoiTac {
         return false;
     }
 	
-	public boolean delete(DoiTac dt) {
+	public String delete(DoiTac dt) {
 		try {
-			String sql = "delete from DoiTac where ID=?";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dt.getID());
-			return pstmt.executeUpdate() != 0;
+			String checkDoiTac = "select * from Phieu where ID_DoiTac=?";
+			PreparedStatement pstmt = conn.prepareStatement(checkDoiTac);
+			ResultSet rs = pstmt.executeQuery();
+			if(!rs.next())  {
+				String sql = "delete from DoiTac where ID=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, dt.getID());
+				return "Success";
+			}
+			else {
+				return "Failed";
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return "Failed";
 	}
 	
 	public boolean update(DoiTac dt) {
