@@ -64,7 +64,7 @@ public class DAODoiTac {
         return false;
     }
 	
-	public String delete(DoiTac dt) {
+	public boolean delete(DoiTac dt) {
 		try {
 			String checkDoiTac = "select * from Phieu where ID_DoiTac=?";
 			PreparedStatement pstmt = conn.prepareStatement(checkDoiTac);
@@ -73,15 +73,15 @@ public class DAODoiTac {
 				String sql = "delete from DoiTac where ID=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, dt.getID());
-				return "Success";
+				return true;
 			}
 			else {
-				return "Failed";
+				return false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return "Failed";
+		return false;
 	}
 	
 	public boolean update(DoiTac dt) {
