@@ -12,6 +12,9 @@ public class DoiTac {
 		Email = email;
 		PhoneNumber = phoneNumber;
 	}
+	public DoiTac() {
+		super();
+	}
 	public int getID() {
 		return ID;
 	}

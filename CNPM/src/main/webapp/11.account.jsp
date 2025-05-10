@@ -40,7 +40,7 @@
       </div>
 
       <div class="button-group">
-        <a href="${pageContext.request.contextPath}/QuanLyTaiKhoanThem" class="button">Thêm</a>
+        <a href="13.account-themtk.html" class="button">Thêm</a>
         <a href="/xoa-tai-khoan" class="button">Xóa</a>
         <a href="12.account-suatk.html" class="button">Sửa</a>
       </div>

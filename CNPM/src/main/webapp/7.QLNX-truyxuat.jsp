@@ -11,12 +11,26 @@
   <div class="header">
     Truy xuất đơn nhập/xuất
   </div>
-
-  <div class="search-bar">
+  
+  <!--<div class="search-bar">
     <input type="text" placeholder="Tìm theo mã đơn, đối tác, loại đơn..." name="keyword" />
     <button type="submit">Tìm kiếm</button>
-  </div>
-
+  </div>-->
+  
+  <form method="post" action="TruyXuatDon">
+    <div class="search-bar">
+      <input type="text" name="maDon" placeholder="Mã đơn" value="${param.maDon}" onchange="this.form.submit()"/>
+      <select name="loaiDon" onchange="this.form.submit()">
+    <option value="">Chọn loại đơn</option>
+    <option value="Export" ${param.loaiDon == 'Export' ? 'selected' : ''}>Phiếu Xuất</option>
+    <option value="Import" ${param.loaiDon == 'Import' ? 'selected' : ''}>Phiếu Nhập</option>
+</select>
+      <input type="text" name="maNhanVien" placeholder="Mã nhân viên" value="${param.maNhanVien}" onchange="this.form.submit()"/>
+      <input type="text" name="maDoiTac" placeholder="Mã đối tác" value="${param.maDoiTac}" onchange="this.form.submit()"/>
+      <input type="date" name="ngay" value="${param.ngay}" onchange="this.form.submit()"/>
+    </div>
+  </form>
+  
   <div class="table-container">
     <table>
       <thead>
@@ -31,11 +45,11 @@
       <tbody>
         <c:forEach var="phieu" items="${dsPhieu}">
           <tr>
-            <td>${phieu.maPhieu}</td>
-            <td>${phieu.ngayLap}</td>
-            <td>${phieu.loaiPhieu}</td>
-            <td>${phieu.nguoiLap}</td>
-            <td>${phieu.doiTac}</td>
+            <td>${phieu.ID}</td>
+      		<td>${phieu.dateTime.toLocalDate()}</td>
+      		<td>${phieu.type}</td>
+      		<td>${phieu.ID_Employee}</td>
+      		<td>${phieu.ID_Partner}</td>
           </tr>
         </c:forEach>
       </tbody>
