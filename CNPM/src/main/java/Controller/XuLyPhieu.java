@@ -37,7 +37,9 @@ public class XuLyPhieu extends HttpServlet {
     @SuppressWarnings("unchecked")
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("action");
+    	req.setCharacterEncoding("UTF-8");
+    	resp.setContentType("text/html; charset=UTF-8");
+    	String action = req.getParameter("action");
         HttpSession session = req.getSession();
 
 		List<HangHoa> dshh = (List<HangHoa>) session.getAttribute("dshh");
@@ -107,7 +109,9 @@ public class XuLyPhieu extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
+    	req.setCharacterEncoding("UTF-8");
+    	resp.setContentType("text/html; charset=UTF-8");
+    	req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
     }
 }
 
