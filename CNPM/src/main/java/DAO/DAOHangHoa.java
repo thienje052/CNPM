@@ -137,7 +137,7 @@ private static Connection conn;
 	        pst.setString(3, hh.getMeasurement());
 	        pst.setString(4, hh.getDescription());
 	        pst.setString(5, hh.getCatagory());
-	        pst.setInt(6, hh.getID());
+	        pst.setInt(6, hh.getId());
 
 	        int rowsAffected = pst.executeUpdate();
 	        return rowsAffected > 0;

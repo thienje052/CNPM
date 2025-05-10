@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -24,7 +25,7 @@
     </div>
 
     <div class="mb-3">
-      <a href="15.doitac-themDT.jsp" class="btn btn-primary btn-custom">Thêm</a>
+      <a href="15.doitac-themDT.html" class="btn btn-primary btn-custom">Thêm</a>
       <button type="submit" class="btn btn-primary btn-custom">Xóa</button>
       <a href="suaDoiTac" class="btn btn-primary btn-custom">Sửa</a>
     </div>
@@ -34,6 +35,7 @@
     <table class="table table-bordered">
       <thead class="table-light">
         <tr>
+          <th>Chọn</th>
           <th>Mã đối tác</th>
           <th>Tên đối tác</th>
           <th>Số điện thoại</th>
