@@ -11,6 +11,7 @@ import java.util.List;
 
 import DAO.DAOHangHoa;
 import DAO.DAOPhieu;
+import DAO.DAOViTri;
 import DAO.DBConnector;
 import Model.HangHoa;
 import Model.LoaiPhieu;
@@ -22,18 +23,12 @@ public class XuLyPhieu extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private DAOPhieu daoPhieu;
-    private DAOHangHoa daoHangHoa;
+	private DAOPhieu daoPhieu = new DAOPhieu(DBConnector.conn);
+    private DAOHangHoa daoHangHoa = new DAOHangHoa(DBConnector.conn);
+    private DAOViTri daoViTri;
+    List<HangHoa> dshh;
+    int MAXID = daoHangHoa.findMAXID();   
 	
-	@Override
-    public void init() {
-        try {
-            Connection conn = DBConnector.getConnectionAuth();
-            daoPhieu = new DAOPhieu(conn);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
     @SuppressWarnings("unchecked")
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,16 +36,17 @@ public class XuLyPhieu extends HttpServlet {
     	resp.setContentType("text/html; charset=UTF-8");
     	String action = req.getParameter("action");
         HttpSession session = req.getSession();
-
-		List<HangHoa> dshh = (List<HangHoa>) session.getAttribute("dshh");
-        if (dshh == null) {
-            dshh = new ArrayList<>();
-            session.setAttribute("dshh", dshh);
-        }
-
+             
         switch (action) {
             case "themHang":
-                int maHang    = Integer.parseInt(req.getParameter("maHang"));
+            	int maHang;
+            	if (MAXID == 0) {
+            		maHang = 1;
+                }
+            	else {
+            		maHang=MAXID+1;
+            	}
+                MAXID +=1;
                 String ten    = req.getParameter("tenHang");
                 String loai   = req.getParameter("loaiHang");
                 String viTri  = req.getParameter("viTri");
@@ -59,17 +55,21 @@ public class XuLyPhieu extends HttpServlet {
                 String moTa   = req.getParameter("moTa");
                 HangHoa hh = new HangHoa(maHang, ten, soLuong, dvt, moTa, loai);
                 dshh.add(hh);
+                req.setAttribute("MAXID", MAXID);
                 req.setAttribute("message", "Đã thêm hàng " + ten);
                 req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
                 break;
 
             case "xoaHang":
                 // Lấy mã hàng đã chọn qua radio button
-                String selected = req.getParameter("selectedMaHang");
+                String selected = req.getParameter("selectedHang");
+                List<HangHoa> dshh = (List<HangHoa>) session.getAttribute("dshh");
                 if (selected != null && !selected.isEmpty()) {
-                    int selId = Integer.parseInt(selected);
-                    dshh.removeIf(item -> item.getId() == selId);
-                    req.setAttribute("message", "Đã xóa mã hàng " + selId);
+                    int id = Integer.parseInt(selected);
+                    dshh.removeIf(item -> item.getId() == id );
+                    session.setAttribute("selected", selected);
+                    session.setAttribute("dshh", dshh);
+                    MAXID -=1;
                 } else {
                     req.setAttribute("error", "Vui lòng chọn một hàng để xóa.");
                 }

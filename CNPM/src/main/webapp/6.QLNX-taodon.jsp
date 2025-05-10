@@ -94,7 +94,7 @@
         <c:if test="${not empty sessionScope.dshh}">
           <c:forEach var="hh" items="${sessionScope.dshh}">
             <tr>
-              <td><input type="radio" name="selectedMaHang" value="${hh.id}" /></td>
+              <td><input type="radio" name="selectedHang" value="${hh.id}" /></td>
               <td>${hh.id}</td>
               <td>${hh.name}</td>
               <td>${hh.catagory}</td>
@@ -104,7 +104,7 @@
               <td>
                 <c:choose>
                   <c:when test="${not empty param.viTri}">${param.viTri}</c:when>
-                  <c:otherwise>${hh.vitri}</c:otherwise>
+                  <c:otherwise></c:otherwise>
                 </c:choose>
               </td>
             </tr>

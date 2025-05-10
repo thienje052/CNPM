@@ -4,6 +4,7 @@ package DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import Model.HangHoa;
 import Model.LoaiHang;
@@ -12,6 +13,20 @@ public class DAOHangHoa {
 private static Connection conn;
 	public DAOHangHoa(Connection conn) {
 		DAOHangHoa.conn = conn;
+	}
+	
+	public int findMAXID() {
+		try {
+			String sql = "select max(ID) as id from HangHoa";	
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				return rs.getInt("id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 	
 	public HangHoa findByID(int ID) {
