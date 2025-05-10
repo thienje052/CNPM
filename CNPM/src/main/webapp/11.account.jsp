@@ -44,7 +44,7 @@
       </div>
 
       <div class="button-group">
-        <a href="13.account-themtk.jsp" class="button">Thêm</a>
+        <a href="QuanLyTaiKhoanThemInterface" class="button">Thêm</a>
         <a href="/xoa-tai-khoan" class="button">Xóa</a>
         <a href="12.account-suatk.html" class="button">Sửa</a>
       </div>

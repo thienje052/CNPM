@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -12,7 +13,7 @@
   <div class="header">Quản lý tài khoản - Thêm tài khoản</div>
 
   <div class="container">
-    <form method="POST" action="/them-tai-khoan">
+    <form method="POST" action="QuanLyTaiKhoanThemSubmit">
       <div class="form-column">
         <div class="form-group">
           <label for="employeeName">Tên nhân viên</label>
@@ -48,18 +49,22 @@
         <div class="form-group">
           <label for="warehouse">Kho phụ trách</label>
           <select id="warehouse" name="warehouse">
-            <option value="">-- Chọn kho --</option>
-            <option value="kho1">Kho 1</option>
-            <option value="kho2">Kho 2</option>
+			<c:if test="${empty Kho}">
+			    <p>Không có dữ liệu kho.</p>
+			</c:if>
+			<c:forEach var="kho" items="${Kho}">
+		        <option value="${kho}">${kho}</option>
+		    </c:forEach>
+        </select>
           </select>
         </div>
         <div class="form-group">
           <label>Quyền truy cập <span class="required">( * )</span></label>
           <div class="checkbox-group">
-            <label><input type="checkbox" name="permissions[]" value="nhapxuat" checked> Quản lý nhập/xuất</label>
-            <label><input type="checkbox" name="permissions[]" value="hanghoa" checked> Quản lý hàng hóa</label>
-            <label><input type="checkbox" name="permissions[]" value="taikhoan"> Quản lý tài khoản</label>
-            <label><input type="checkbox" name="permissions[]" value="thongke"> Báo cáo thống kê</label>
+            <label><input type="checkbox" name="permissions[]" value="NXH"> Quản lý nhập/xuất</label>
+            <label><input type="checkbox" name="permissions[]" value="HH"> Quản lý hàng hóa</label>
+            <label><input type="checkbox" name="permissions[]" value="TK"> Quản lý tài khoản</label>
+            <label><input type="checkbox" name="permissions[]" value="BC"> Báo cáo thống kê</label>
           </div>
         </div>
       </div>
