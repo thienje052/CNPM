@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.Kho;
 import Model.LoaiHang;
 import Model.LoaiPhieu;
 import Model.NhanVien;
@@ -49,8 +50,13 @@ public class main_test_connection {
 //            		System.out.println(test.toString());
 //            	}
             	
-            	TaiKhoanNhanVien test = new TaiKhoanNhanVien(2, "KyAnh", "Ky@nh2004", new ArrayList<QuyenTruyCap>(List.of(QuyenTruyCap.NXH)), 2, 1);
-            	tk.addUserAccount(test);
+//            	TaiKhoanNhanVien test = new TaiKhoanNhanVien(2, "KyAnh", "Ky@nh2004", new ArrayList<QuyenTruyCap>(List.of(QuyenTruyCap.NXH)), 2, 1);
+//            	tk.addUserAccount(test);
+            	
+            	DAOKho DAOK = new DAOKho(conn);
+            	List<Kho> list = DAOK.findAll();
+            	for(Kho k:list)
+            		System.out.println(k.getID());
         } catch (SQLException e) {
 			e.printStackTrace();
 		} 

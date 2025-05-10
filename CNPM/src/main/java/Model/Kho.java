@@ -5,11 +5,11 @@ public class Kho {
 	private String Address;
 	private int EmptyShelves;
 	private int ShelvesAmount;
-	public Kho(int iD, String address, int shelvesAmount) {
+	public Kho(int iD, String address, int emptyShelves, int shelvesAmount) {
 		super();
 		ID = iD;
 		Address = address;
-		EmptyShelves = shelvesAmount;
+		EmptyShelves = emptyShelves;
 		ShelvesAmount = shelvesAmount;
 	}
 	public int getID() {
@@ -35,5 +35,9 @@ public class Kho {
 	}
 	public void setShelvesAmount(int shelvesAmount) {
 		ShelvesAmount = shelvesAmount;
+	}
+	@Override
+	public String toString() {
+		return "Kho " + ID;
 	}
 }

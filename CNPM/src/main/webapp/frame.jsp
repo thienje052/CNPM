@@ -52,7 +52,7 @@
 				</div>
       		</c:if>
 			<c:if test="${permissions.contains(QuyenTruyCap_TK) }">
-				<li><img src="image-source/STAFF.svg" alt=""><a href="11.account.jsp"target="main-frame">Quản lý tài khoản</a></li>
+				<li><img src="image-source/STAFF.svg" alt=""><a href="QuanLyTaiKhoan" target="main-frame">Quản lý tài khoản</a></li>
 			</c:if>
 			<c:if test="${permissions.contains(QuyenTruyCap_BC)}">
 				<li><img src="image-source/BCTK.svg"alt=""><a class="collapsible" data-bs-toggle="collapse" href="#collapsebchk">Báo cáo thống kê</a></li>
@@ -65,7 +65,7 @@
 				</div>
 			</c:if>
 			<c:if test="${ChucVu eq QuanLyRole}">
-				<li><img src="image-source/doitac.svg" alt=""><a href="14.doitac.html"target="main-frame">Thông tin đối tác</a></li>
+				<li><img src="image-source/doitac.svg" alt=""><a href="14.doitac.jsp"target="main-frame">Thông tin đối tác</a></li>
 			</c:if>
 				<a href="${pageContext.request.contextPath}/logout" class="menu-item dangxuat"><img src="${pageContext.request.contextPath}/image-source/logout.svg" alt="Đăng xuất"> Đăng xuất</a>
 		</ul>

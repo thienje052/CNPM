@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -33,14 +34,17 @@
       <div class="form-group">
         <label for="warehouse">Kho phụ trách</label>
         <select id="warehouse" name="warehouse">
-          <option value="">-- Chọn kho --</option>
-          <option value="kho1">Kho 1</option>
-          <option value="kho2">Kho 2</option>
+			<c:if test="${empty Kho}">
+			    <p>Không có dữ liệu kho.</p>
+			</c:if>
+			<c:forEach var="kho" items="${Kho}">
+		        <option value="${kho}">${kho}</option>
+		    </c:forEach>
         </select>
       </div>
 
       <div class="button-group">
-        <a href="${pageContext.request.contextPath}/QuanLyTaiKhoanThem" class="button">Thêm</a>
+        <a href="13.account-themtk.jsp" class="button">Thêm</a>
         <a href="/xoa-tai-khoan" class="button">Xóa</a>
         <a href="12.account-suatk.html" class="button">Sửa</a>
       </div>

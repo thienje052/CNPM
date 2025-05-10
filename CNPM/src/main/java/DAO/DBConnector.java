@@ -8,6 +8,7 @@ public class DBConnector {
 	private static String URL = "jdbc:sqlserver://localhost:1433;databaseName=QuanlyKho;encrypt=true;trustServerCertificate=true";
 	private static String auth = "authenticate";
 	private static String passwordAuth = "@uthent1cate";
+	public static Connection conn;
 	static {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -17,9 +18,11 @@ public class DBConnector {
 		}
 	}
 	public static Connection getConnectionAuth() throws SQLException {
-		return DriverManager.getConnection(URL, auth, passwordAuth);
+		conn = DriverManager.getConnection(URL, auth, passwordAuth);
+		return conn;
 	}
 	public static Connection getConnectionForLogin(String username, String password) throws SQLException {
-		return DriverManager.getConnection(URL, username, password);
+		conn = DriverManager.getConnection(URL, username, password);
+		return conn;
 	}
 }
