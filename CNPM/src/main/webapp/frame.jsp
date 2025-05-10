@@ -45,13 +45,13 @@
           		<a class="collapsible" data-bs-toggle="collapse" href="#collapsenx">Quản lý nhập xuất</a></li>
 				<div class="collapse" id="collapsenx" style=''>
 					<ul>
-						<li class="submenu"><a href="6.QLNX-taodon.html" target="main-frame"> &gt; Tạo đơn</a></li>
-						<li class="submenu"><a href="7.QLNX-truyxuat.html" target="main-frame"> &gt; Truy xuất đơn</a></li>
+						<li class="submenu"><a href="6.QLNX-taodon.jsp" target="main-frame"> &gt; Tạo đơn</a></li>
+						<li class="submenu"><a href="7.QLNX-truyxuat.jsp" target="main-frame"> &gt; Truy xuất đơn</a></li>
 					</ul>
 				</div>
           </c:if>
           <c:if test="${permissions.contains(QuyenTruyCap_TK) }">
-          	<li><img src="image-source/STAFF.svg" alt=""><a href="11.account.html"target="main-frame">Quản lý tài khoản</a></li>
+          	<li><img src="image-source/STAFF.svg" alt=""><a href="11.account.jsp"target="main-frame">Quản lý tài khoản</a></li>
           </c:if>
           <c:if test="${permissions.contains(QuyenTruyCap_BC)}">
           	<li><img src="image-source/BCTK.svg"alt="">
@@ -59,14 +59,14 @@
 	          </li>
 	          <div class="collapse" id="collapsebchk">
 	            <ul>
-	              <li class="submenu"><a href="8.BCTK-KLNX.html"target="main-frame"> > Khối lượng nhập xuất</a></li>
-	              <li class="submenu"><a href="9.BCTK-HTK.html"target="main-frame"> > Hàng tồn kho</a></li>
-	              <li class="submenu"><a href="10.BCTK-LSGD.html"target="main-frame"> > Lịch sử giao dịch</a></li>
+	              <li class="submenu"><a href="8.BCTK-KLNX.jsp"target="main-frame"> > Khối lượng nhập xuất</a></li>
+	              <li class="submenu"><a href="9.BCTK-HTK.jsp"target="main-frame"> > Hàng tồn kho</a></li>
+	              <li class="submenu"><a href="10.BCTK-LSGD.jsp"target="main-frame"> > Lịch sử giao dịch</a></li>
 	            </ul>
 	          </div>
           </c:if>
           <c:if test="${ChucVu eq QuanLyRole}">
-          	<li><img src="image-source/doitac.svg" alt=""><a href="14.doitac.html"target="main-frame">Thông tin đối tác</a></li>
+          	<li><img src="image-source/doitac.svg" alt=""><a href="14.doitac.jsp"target="main-frame">Thông tin đối tác</a></li>
           </c:if>
           <a href="${pageContext.request.contextPath}/logout" class="menu-item dangxuat"><img src="${pageContext.request.contextPath}/image-source/logout.svg" alt="Đăng xuất"> Đăng xuất</a>
         </ul>

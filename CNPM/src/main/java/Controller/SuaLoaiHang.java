@@ -30,7 +30,7 @@ public class SuaLoaiHang extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String maLoai = (String) req.getSession().getAttribute("maLoaiSua");
         if (maLoai == null) {
-            resp.sendRedirect(req.getContextPath() + "/danhmuc-loai-hang");
+            resp.sendRedirect(req.getContextPath() + "/3.QLHH-DMHH.jsp");
             return;
         }
         req.getRequestDispatcher("/suaLoaiHang.jsp").forward(req, resp);
@@ -55,6 +55,6 @@ public class SuaLoaiHang extends HttpServlet {
             }
         }
         session.removeAttribute("maLoaiSua");
-        resp.sendRedirect(req.getContextPath() + "/3.QLHH-DMHH.html");
+        resp.sendRedirect(req.getContextPath() + "/3.QLHH-DMHH.jsp");
     }
 }
