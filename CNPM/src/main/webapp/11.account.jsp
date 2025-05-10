@@ -44,11 +44,7 @@
       </div>
 
       <div class="button-group">
-<<<<<<< HEAD
         <a href="13.account-themtk.jsp" class="button">Thêm</a>
-=======
-        <a href="13.account-themtk.html" class="button">Thêm</a>
->>>>>>> branch 'main' of https://github.com/thienje052/CNPM.git
         <a href="/xoa-tai-khoan" class="button">Xóa</a>
         <a href="12.account-suatk.html" class="button">Sửa</a>
       </div>
