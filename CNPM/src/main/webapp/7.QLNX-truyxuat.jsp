@@ -1,53 +1,43 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lý nhập/xuất - Truy xuất đơn</title>
+  <title>Truy xuất đơn nhập/xuất</title>
   <link rel="stylesheet" href="./css/7.QLNX-truyxuat.css">
 </head>
 <body>
-  <div class="header">Quản lý nhập/xuất - Truy xuất đơn</div>
-  <div class="container">
-    <div class="form-row">
-      <div class="form-group">
-        <label>Loại đơn</label>
-        <select>
-          <option value="">-- Chọn --</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Mã đối tác</label>
-        <input type="text">
-      </div>
-      <div class="form-group">
-        <label>Ngày</label>
-        <input type="date">
-      </div>
-      <div class="form-group">
-        <label>Mã đơn</label>
-        <input type="text">
-      </div>
-      <div class="form-group">
-        <label>Mã nhân viên</label>
-        <input type="text">
-      </div>
-    </div>
+  <div class="header">
+    Truy xuất đơn nhập/xuất
+  </div>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Tìm theo mã đơn, đối tác, loại đơn..." name="keyword" />
+    <button type="submit">Tìm kiếm</button>
+  </div>
+
+  <div class="table-container">
     <table>
       <thead>
         <tr>
-          <th>Mã đối tác</th>
-          <th>Mã nhân viên</th>
           <th>Mã đơn</th>
-          <th>Ngày lập đơn</th>
+          <th>Ngày lập</th>
           <th>Loại đơn</th>
+          <th>Người lập</th>
+          <th>Đối tác</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td colspan="5" style="height: 50px;"></td>
-        </tr>
+        <c:forEach var="phieu" items="${dsPhieu}">
+          <tr>
+            <td>${phieu.maPhieu}</td>
+            <td>${phieu.ngayLap}</td>
+            <td>${phieu.loaiPhieu}</td>
+            <td>${phieu.nguoiLap}</td>
+            <td>${phieu.doiTac}</td>
+          </tr>
+        </c:forEach>
       </tbody>
     </table>
   </div>

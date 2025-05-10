@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -11,6 +12,7 @@
   <header>
     Quản lý hàng hóa - Danh mục hàng hóa
   </header>
+
 
   <form action="/xu-ly-danh-muc" method="POST">
     <div class="form-top">
@@ -37,15 +39,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>DM001</td>
-          <td>Thực phẩm tươi sống</td>
-        </tr>
-        <tr>
-          <td>DM002</td>
-          <td>Đồ hộp</td>
-        </tr>
-        <!-- Thêm các dòng dữ liệu khác tại đây -->
+       <c:forEach var="loai" items="${dsLoaiHang}">
+ 		 <tr>
+    		<td>${loai.ID}</td>
+    		<td>${loai.Name}</td>
+  		</tr>
+		</c:forEach>
       </tbody>
     </table>
   </form>
