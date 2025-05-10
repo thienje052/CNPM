@@ -4,23 +4,29 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import DAO.DAODoiTac;
-import DAO.DAODonHang;
+import DAO.DAOPhieu;
 import DAO.DBConnector;
+import Model.DoiTac;
+import Model.LoaiPhieu;
 import Model.Phieu;
+import Model.TaiKhoanNhanVien;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.sql.*;
 
 @WebServlet("/TruyXuatDon")
 public class TruyXuatDon extends HttpServlet {
-	private DAODonHang donHangDAO;
+	private DAOPhieu phieu;
     public void init() {
         try {
             Connection conn = DBConnector.getConnectionAuth();
-            donHangDAO = new DAODonHang(conn);
+            phieu = new DAOPhieu(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -37,8 +43,65 @@ public class TruyXuatDon extends HttpServlet {
         String maNhanVien = request.getParameter("maNhanVien");
 
         // Truy xuất danh sách đơn hàng phù hợp
-        List<Phieu> danhSachDonHang = donHangDAO.timKiemDonHang(loaiDon, maDoiTac, ngay, maDon, maNhanVien);
-        request.setAttribute("donHang", danhSachDonHang);
+        List<Phieu> result = phieu.getAllPhieu();
+
+        if (loaiDon != null && !loaiDon.isEmpty()) {
+            try {
+                LoaiPhieu lp = LoaiPhieu.valueOf(loaiDon);
+                result.retainAll(phieu.findByLoaiPhieu(lp));
+            } catch (IllegalArgumentException e) {
+                // nếu không đúng enum
+            }
+        }
+
+        if (maNhanVien != null && !maNhanVien.isEmpty()) {
+            try {
+                int idNV = Integer.parseInt(maNhanVien);
+                TaiKhoanNhanVien nv = new TaiKhoanNhanVien();
+                nv.setID_Employee(idNV);
+                result.retainAll(phieu.findByIDNV(nv));
+            } catch (NumberFormatException e) {
+                // xử lý nếu nhập sai số
+            }
+        }
+
+        if (maDoiTac != null && !maDoiTac.isEmpty()) {
+            try {
+                int idDoiTac = Integer.parseInt(maDoiTac);
+                DoiTac dt = new DoiTac();
+                dt.setID(idDoiTac);
+                result.retainAll(phieu.findByLoaiIDDoiTac(dt));
+            } catch (NumberFormatException e) {
+                // xử lý nếu nhập sai số
+            }
+        }
+
+        if (ngay != null && !ngay.isEmpty()) {
+            try {
+                LocalDateTime date = LocalDateTime.parse(ngay + "T00:00:00");
+                Phieu p = new Phieu();
+                p.setDateTime(date);
+                result.retainAll(phieu.findByIDPhieu(p));
+            } catch (Exception e) {
+                // định dạng sai
+            }
+        }
+
+        if (maDon != null && !maDon.isEmpty()) {
+            try {
+                int idPhieu = Integer.parseInt(maDon);
+                List<Phieu> temp = new ArrayList<>();
+                for (Phieu p : result) {
+                    if (p.getID() == idPhieu) {
+                        temp.add(p);
+                        break;
+                    }
+                }
+                result = temp;
+            } catch (NumberFormatException e) {
+                // xử lý nếu sai
+            }
+        }
 
         // Chuyển hướng sang giao diện JSP để hiển thị kết quả
         RequestDispatcher dispatcher = request.getRequestDispatcher("/7.QLNX-truyxuat.jsp");

@@ -1,5 +1,5 @@
 package Model;
-
+import java.util.Objects;
 import java.time.LocalDateTime;
 
 public class Phieu {
@@ -49,4 +49,21 @@ public class Phieu {
 	public void setDateTime(LocalDateTime dateTime) {
 		DateTime = dateTime;
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Phieu)) return false;
+        Phieu phieu = (Phieu) o;
+        return ID == phieu.ID &&
+                ID_Partner == phieu.ID_Partner &&
+                ID_Employee == phieu.ID_Employee &&
+                Type == phieu.Type &&
+                Objects.equals(DateTime, phieu.DateTime);
+    }
+
+    @Override
+    public int hashCode() {
+    	return Objects.hash(ID, ID_Partner, ID_Employee, Type, DateTime);
+    }
 }
