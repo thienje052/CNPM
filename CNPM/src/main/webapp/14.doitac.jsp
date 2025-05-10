@@ -24,7 +24,7 @@
     </div>
 
     <div class="mb-3">
-      <a href="15.doitac-themDT.html" class="btn btn-primary btn-custom">Thêm</a>
+      <a href="15.doitac-themDT.jsp" class="btn btn-primary btn-custom">Thêm</a>
       <button type="submit" class="btn btn-primary btn-custom">Xóa</button>
       <a href="suaDoiTac" class="btn btn-primary btn-custom">Sửa</a>
     </div>
