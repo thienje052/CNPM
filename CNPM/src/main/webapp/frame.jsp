@@ -46,11 +46,10 @@
 	      		</li>
 				<div class="collapse" id="collapsenx" style=''>
 					<ul>
-						<li class="submenu"><a href="6.QLNX-taodon.jsp" target="main-frame"> &gt; Tạo đơn</a></li>
-						<li class="submenu"><a href="7.QLNX-truyxuat.jsp" target="main-frame"> &gt; Truy xuất đơn</a></li>
+						<li class="submenu"><a href="6.QLNX-taodon.html" target="main-frame"> &gt; Tạo đơn</a></li>
+						<li class="submenu"><a href="7.QLNX-truyxuat.html" target="main-frame"> &gt; Truy xuất đơn</a></li>
 					</ul>
 				</div>
-<<<<<<< HEAD
       		</c:if>
 			<c:if test="${permissions.contains(QuyenTruyCap_TK) }">
 				<li><img src="image-source/STAFF.svg" alt=""><a href="11.account.html"target="main-frame">Quản lý tài khoản</a></li>
@@ -77,35 +76,5 @@
 style="flex: 1; border: none; width: 100%; height: 100vh; padding: 0;"></iframe>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-=======
-          </c:if>
-          <c:if test="${permissions.contains(QuyenTruyCap_TK) }">
-          	<li><img src="image-source/STAFF.svg" alt=""><a href="11.account.jsp"target="main-frame">Quản lý tài khoản</a></li>
-          </c:if>
-          <c:if test="${permissions.contains(QuyenTruyCap_BC)}">
-          	<li><img src="image-source/BCTK.svg"alt="">
-	            <a class="collapsible" data-bs-toggle="collapse" href="#collapsebchk">Báo cáo thống kê</a>
-	          </li>
-	          <div class="collapse" id="collapsebchk">
-	            <ul>
-	              <li class="submenu"><a href="8.BCTK-KLNX.jsp"target="main-frame"> > Khối lượng nhập xuất</a></li>
-	              <li class="submenu"><a href="9.BCTK-HTK.jsp"target="main-frame"> > Hàng tồn kho</a></li>
-	              <li class="submenu"><a href="10.BCTK-LSGD.jsp"target="main-frame"> > Lịch sử giao dịch</a></li>
-	            </ul>
-	          </div>
-          </c:if>
-          <c:if test="${ChucVu eq QuanLyRole}">
-          	<li><img src="image-source/doitac.svg" alt=""><a href="14.doitac.jsp"target="main-frame">Thông tin đối tác</a></li>
-          </c:if>
-          <a href="${pageContext.request.contextPath}/logout" class="menu-item dangxuat"><img src="${pageContext.request.contextPath}/image-source/logout.svg" alt="Đăng xuất"> Đăng xuất</a>
-        </ul>
-      </div>
-    </div>
-    <iframe class="col-10" name="main-frame"
-      src="${pageContext.request.contextPath}/2.trangchu.jsp"
-      style="flex: 1; border: none; width: 100%; height: 100vh; padding: 0;"></iframe>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
->>>>>>> branch 'main' of https://github.com/thienje052/CNPM.git
 </body>
 </html>
