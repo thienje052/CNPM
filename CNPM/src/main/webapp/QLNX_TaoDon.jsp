@@ -94,13 +94,13 @@
         <c:if test="${not empty sessionScope.cart}">
           <c:forEach var="hh" items="${sessionScope.cart}">
             <tr>
-              <td><input type="radio" name="selectedMaHang" value="${hh.id}" /></td>
-              <td>${hh.id}</td>
-              <td>${hh.name}</td>
-              <td>${hh.catagory}</td>
-              <td>${hh.quantity}</td>
-              <td>${hh.measurement}</td>
-              <td>${hh.description}</td>
+              <td><input type="radio" name="selectedMaHang" value="${hh.ID}" /></td>
+              <td>${hh.ID}</td>
+              <td>${hh.Name}</td>
+              <td>${hh.Catagory}</td>
+              <td>${hh.Quantity}</td>
+              <td>${hh.Measurement}</td>
+              <td>${hh.Description}</td>
               <td>
                 <c:choose>
                   <c:when test="${not empty param.viTri}">${param.viTri}</c:when>

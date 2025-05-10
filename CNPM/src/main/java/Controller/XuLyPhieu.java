@@ -15,9 +15,14 @@ import DAO.DBConnector;
 import Model.HangHoa;
 import Model.LoaiPhieu;
 import Model.Phieu;
+
 @WebServlet("/XuLyPhieu")
 public class XuLyPhieu extends HttpServlet {
-    private DAOPhieu daoPhieu;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private DAOPhieu daoPhieu;
     private DAOHangHoa daoHangHoa;
 	
 	@Override
@@ -53,7 +58,7 @@ public class XuLyPhieu extends HttpServlet {
                 HangHoa hh = new HangHoa(maHang, ten, soLuong, dvt, moTa, loai);
                 dshh.add(hh);
                 req.setAttribute("message", "Đã thêm hàng " + ten);
-                req.getRequestDispatcher("/QLNX_TaoDon.jsp").forward(req, resp);
+                req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
                 break;
 
             case "xoaHang":
@@ -61,12 +66,12 @@ public class XuLyPhieu extends HttpServlet {
                 String selected = req.getParameter("selectedMaHang");
                 if (selected != null && !selected.isEmpty()) {
                     int selId = Integer.parseInt(selected);
-                    dshh.removeIf(item -> item.getID() == selId);
+                    dshh.removeIf(item -> item.getId() == selId);
                     req.setAttribute("message", "Đã xóa mã hàng " + selId);
                 } else {
                     req.setAttribute("error", "Vui lòng chọn một hàng để xóa.");
                 }
-                req.getRequestDispatcher("/QLNX_TaoDon.jsp").forward(req, resp);
+                req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
                 break;
 
             case "xacNhan":
@@ -86,7 +91,7 @@ public class XuLyPhieu extends HttpServlet {
                     resp.sendRedirect("danhsach-phieu?msg=success");
                 } catch (Exception ex) {
                     req.setAttribute("error", "Lỗi khi lưu đơn: " + ex.getMessage());
-                    req.getRequestDispatcher("/QLNX_TaoDon.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
                 }
                 break;
 
@@ -102,7 +107,7 @@ public class XuLyPhieu extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/QLNX_TaoDon.jsp").forward(req, resp);
+        req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
     }
 }
 

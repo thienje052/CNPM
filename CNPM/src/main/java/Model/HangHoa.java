@@ -1,55 +1,67 @@
 package Model;
 
 public class HangHoa {
-	private int ID;
-	private String Name;
-	private int Quantity;
-	private String Measurement;
-	private String Description;
-	private String Catagory;
-	public HangHoa(int iD, String name, int quantity, String measurement, String description, String catagory) {
-		super();
-		ID = iD;
-		Name = name;
-		Quantity = quantity;
-		Measurement = measurement;
-		Description = description;
-		Catagory = catagory;
-	}
-	public int getID() {
-		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
-	}
-	public String getName() {
-		return Name;
-	}
-	public void setName(String name) {
-		Name = name;
-	}
-	public int getQuantity() {
-		return Quantity;
-	}
-	public void setQuantity(int quantity) {
-		Quantity = quantity;
-	}
-	public String getMeasurement() {
-		return Measurement;
-	}
-	public void setMeasurement(String measurement) {
-		Measurement = measurement;
-	}
-	public String getDescription() {
-		return Description;
-	}
-	public void setDescription(String description) {
-		Description = description;
-	}
-	public String getCatagory() {
-		return Catagory;
-	}
-	public void setCatagory(String catagory) {
-		Catagory = catagory;
-	}
+    private int id;
+    private String name;
+    private int quantity;
+    private String measurement;
+    private String description;
+    private String catagory;
+
+    public HangHoa(int id, String name, int quantity, String measurement, String description, String catagory) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.measurement = measurement;
+        this.description = description;
+        this.catagory = catagory;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getMeasurement() {
+        return measurement;
+    }
+
+    public void setMeasurement(String measurement) {
+        this.measurement = measurement;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCatagory() {
+        return catagory;
+    }
+
+    public void setCatagory(String catagory) {
+        this.catagory = catagory;
+    }
 }

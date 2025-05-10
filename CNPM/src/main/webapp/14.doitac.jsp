@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -34,6 +35,7 @@
     <table class="table table-bordered">
       <thead class="table-light">
         <tr>
+          <th>Chọn</th>
           <th>Mã đối tác</th>
           <th>Tên đối tác</th>
           <th>Số điện thoại</th>

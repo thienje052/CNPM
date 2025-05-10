@@ -34,7 +34,10 @@
 
             <div class="text-center">
                 <button type="submit" class="btn btn-primary btn-custom me-2">Xác nhận</button>
-                <button type="button" class="btn btn-primary btn-custom">Xóa</button>
+                <a href="14.doitac.jsp">
+                <button type="button" class="btn btn-primary btn-custom">Hủy</button>
+                </a>
+                
             </div>
         </form>
     </div>
