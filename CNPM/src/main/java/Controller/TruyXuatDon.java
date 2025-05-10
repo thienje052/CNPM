@@ -22,7 +22,9 @@ import java.sql.*;
 
 @WebServlet("/TruyXuatDon")
 public class TruyXuatDon extends HttpServlet {
+
 	private DAOPhieu phieu;
+
     public void init() {
         try {
             Connection conn = DBConnector.getConnectionAuth();
