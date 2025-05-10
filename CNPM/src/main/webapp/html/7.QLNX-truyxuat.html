@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý nhập/xuất - Truy xuất đơn</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <div class="header">Quản lý nhập/xuất - Truy xuất đơn</div>
+  <div class="container">
+
+    <!-- Form dạng lưới 3 cột -->
+    <div class="fami-form">
+      <div class="fami-group">
+        <label for="loaiDon">Loại đơn</label>
+        <select id="loaiDon">
+          <option value="">-- Chọn --</option>
+        </select>
+      </div>
+
+      <div class="fami-group">
+        <label for="maDoiTac">Mã đối tác</label>
+        <input type="text" id="maDoiTac">
+      </div>
+
+      <div class="fami-group">
+        <label for="ngay">Ngày</label>
+        <input type="date" id="ngay">
+      </div>
+
+      <div class="fami-group">
+        <label for="maDon">Mã đơn</label>
+        <input type="text" id="maDon">
+      </div>
+
+      <div class="fami-group">
+        <label for="maNhanVien">Mã nhân viên</label>
+        <input type="text" id="maNhanVien">
+      </div>
+    </div>
+
+    <!-- Bảng dữ liệu -->
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Mã đối tác</th>
+          <th>Mã nhân viên</th>
+          <th>Mã đơn</th>
+          <th>Ngày lập đơn</th>
+          <th>Loại đơn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="5" style="height: 50px;"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
