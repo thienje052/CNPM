@@ -7,7 +7,7 @@ import javax.servlet.http.*;
 import java.util.List;
 
 import DAO.DAODoiTac;
-import DAO.DAODonHang;
+import DAO.DAOPhieu;
 import DAO.DBConnector;
 import Model.Phieu;
 import java.io.IOException;
@@ -16,11 +16,11 @@ import java.sql.*;
 
 @WebServlet("/TruyXuatDon")
 public class TruyXuatDon extends HttpServlet {
-	private DAODonHang donHangDAO;
+	private DAOPhieu donHangDAO;
     public void init() {
         try {
             Connection conn = DBConnector.getConnectionAuth();
-            donHangDAO = new DAODonHang(conn);
+            donHangDAO = new DAOPhieu(conn);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
