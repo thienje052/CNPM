@@ -6,4 +6,11 @@ public enum QuyenTruyCap {
 	QuyenTruyCap(String description) {
 		this.description = description;
 	}
+	public static QuyenTruyCap fromString(String value) {
+        try {
+            return QuyenTruyCap.valueOf(value);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
 }

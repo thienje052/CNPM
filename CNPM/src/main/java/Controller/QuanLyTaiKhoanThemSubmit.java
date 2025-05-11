@@ -56,17 +56,22 @@ public class QuanLyTaiKhoanThemSubmit extends HttpServlet {
 			else if (employeeID < nhanVien.getID())
 				employeeID = nhanVien.getID();
 		}
-		String[] input = req.getParameterValues("permissions[]");
-		List<QuyenTruyCap> listQTC = new ArrayList<QuyenTruyCap>() ;
-		for(QuyenTruyCap qtc: QuyenTruyCap.values())
-			if(Arrays.asList(input).contains(qtc)) {
-				listQTC.add(qtc);
-				System.out.println(qtc);
-			}
+		String[] selectedPermissions = req.getParameterValues("permissions[]"); // Lấy danh sách quyền từ form
+
+        List<QuyenTruyCap> permissionsList = new ArrayList<>();
+
+        if (selectedPermissions != null) {
+            for (String permission : selectedPermissions) {
+                QuyenTruyCap p = QuyenTruyCap.fromString(permission);
+                if (p != null) {
+                    permissionsList.add(p);
+                }
+            }
+        }
 				
 		int warehouse = Integer.parseInt(req.getParameter("warehouse"));
-		DAOTK.addUserAccount(new TaiKhoanNhanVien(0, account, password, listQTC, employeeID, warehouse));
-		DAOQTC.addDSQuyenTruyCapbyIDNV(employeeID, listQTC);
+		DAOTK.addUserAccount(new TaiKhoanNhanVien(0, account, password, permissionsList, employeeID, warehouse));
+		DAOQTC.addDSQuyenTruyCapbyIDNV(employeeID, permissionsList);
 		req.getRequestDispatcher("QuanLyTaiKhoan").forward(req, resp);
 	}
 	@Override
