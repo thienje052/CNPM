@@ -50,7 +50,7 @@ body{
 }
 
   .sidebar-header img {
-  margin-top: 16px;
+  margin-top: 20px;
   margin-bottom: 20px;
   width: 100px;
   height: 100px;
@@ -58,9 +58,6 @@ body{
   object-fit: cover;
   border: 3px solid #B0BEC5;
 }
-
-
-
 
 
 .dangxuat {
