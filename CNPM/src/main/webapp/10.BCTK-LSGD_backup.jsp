@@ -24,6 +24,14 @@
             document.write(`<option value="${i}" ${i === 4 ? "selected" : ""}>${i}</option>`);
           }
         </script>
+        
+        
+        
+        <script>
+          for (let i = 1; i <= 12; i++) {
+            document.write(`<option value="${i}" ${i === 4 ? "selected" : ""}>${i}</option>`);
+          }
+        </script>
       </select>
 
       <label for="year">Năm</label>

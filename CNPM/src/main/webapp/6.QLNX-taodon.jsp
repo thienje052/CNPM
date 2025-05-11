@@ -43,10 +43,7 @@
 				<!-- chỗ trống hoặc dùng sau nếu cần -->
 			</div>
 			<!-- Hàng 2 -->
-			<div class="fimi-group">
-				<label for="maHang">Mã hàng</label> <input type="text" id="maHang"
-					name="maHang" value="${param.maHang}" />
-			</div>
+			
 			<div class="fimi-group">
 				<label for="tenHang">Tên hàng</label> <input type="text"
 					id="tenHang" name="tenHang" value="${param.tenHang}" />
