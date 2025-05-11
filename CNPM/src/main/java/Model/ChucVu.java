@@ -1,7 +1,7 @@
 package Model;
 
 public enum ChucVu {
-	Manager("Quản lý"), Employee("Nhân viên");
+	Manager("Quan Ly"), Employee("Nhan vien");
 	private String description;
 	ChucVu(String description){
 		this.description = description;

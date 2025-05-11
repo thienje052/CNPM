@@ -174,17 +174,7 @@ public class DAOTaiKhoanNhanVien {
 				pstmt.setString(2, newAccount.getPassword());
 				pstmt.setString(3, String.valueOf(newAccount.getID_Employee()));
 				pstmt.setString(4, String.valueOf(newAccount.getID_Warehouse()));
-				int success = pstmt.executeUpdate();
-				if (success != 0) {
-				    Statement stmt = conn.createStatement();
-				    stmt.executeUpdate("CREATE LOGIN [" + newAccount.getUserAccount() + "] WITH PASSWORD = '" + newAccount.getPassword() + "'");
-				    stmt.executeUpdate("CREATE USER [" + newAccount.getUserAccount() + "] FOR LOGIN [" + newAccount.getUserAccount() + "]");
-				    String grant = "{call sp_QLNhapXuat(?, ?)}";
-				    CallableStatement grantstmt = conn.prepareCall(grant);
-				    grantstmt.setString(1, newAccount.getUserAccount());
-				    grantstmt.setString(2, newAccount.getPassword());
-				    return grantstmt.execute();
-				}
+				return pstmt.executeUpdate() != 0;
 			} catch (SQLException e) {
 				// TODO: handle exception
 				e.printStackTrace();

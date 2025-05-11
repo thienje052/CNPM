@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.DAODSQuyenTruyCap;
 import DAO.DAOKho;
 import DAO.DAONhanVien;
 import DAO.DAOTaiKhoanNhanVien;
@@ -33,6 +34,7 @@ public class QuanLyTaiKhoanThemSubmit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(DBConnector.conn);
 	private DAONhanVien DAONV = new DAONhanVien(DBConnector.conn);
+	private DAODSQuyenTruyCap DAOQTC = new DAODSQuyenTruyCap(DBConnector.conn);
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -57,11 +59,15 @@ public class QuanLyTaiKhoanThemSubmit extends HttpServlet {
 		String[] input = req.getParameterValues("permissions[]");
 		List<QuyenTruyCap> listQTC = new ArrayList<QuyenTruyCap>() ;
 		for(QuyenTruyCap qtc: QuyenTruyCap.values())
-			if(Arrays.asList(input).contains(qtc))
+			if(Arrays.asList(input).contains(qtc)) {
 				listQTC.add(qtc);
+				System.out.println(qtc);
+			}
+				
 		int warehouse = Integer.parseInt(req.getParameter("warehouse"));
 		DAOTK.addUserAccount(new TaiKhoanNhanVien(0, account, password, listQTC, employeeID, warehouse));
-		req.getRequestDispatcher("/11.account.jsp").forward(req, resp);
+		DAOQTC.addDSQuyenTruyCapbyIDNV(employeeID, listQTC);
+		req.getRequestDispatcher("QuanLyTaiKhoan").forward(req, resp);
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
