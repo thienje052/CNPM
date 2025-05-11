@@ -47,7 +47,7 @@
 				<div class="collapse" id="collapsenx" style=''>
 					<ul>
 						<li class="submenu"><a href="6.QLNX-taodon.jsp" target="main-frame"> &gt; Tạo đơn</a></li>
-						<li class="submenu"><a href="7.QLNX-truyxuat.jsp" target="main-frame"> &gt; Truy xuất đơn</a></li>
+						<li class="submenu"><a href="TruyXuatDon" target="main-frame"> &gt; Truy xuất đơn</a></li>
 					</ul>
 				</div>
       		</c:if>
