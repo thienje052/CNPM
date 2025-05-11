@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Báo cáo tồn kho</title>
-    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/9.BCTK-HTK.css" />
 </head>
 <body>
   <div class="header">Báo cáo thống kê - Hàng tồn kho</div>
@@ -36,7 +36,8 @@
         </tbody>
       </table>
 
-
+      <!-- Nếu bạn cần gửi form để lấy dữ liệu theo điều kiện -->
+      <!-- <button type="submit" class="btn-submit">Lọc hàng tồn</button> -->
     </form>
   </div>
 </body>
