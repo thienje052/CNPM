@@ -13,8 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.DAOKho;
+import DAO.DAONhanVien;
+import DAO.DAOTaiKhoanNhanVien;
 import DAO.DBConnector;
 import Model.Kho;
+import Model.NhanVien;
+import Model.TaiKhoanNhanVien;
 
 @WebServlet("/QuanLyTaiKhoan")
 public class QuanLyTaiKhoan extends HttpServlet {
@@ -23,16 +27,17 @@ public class QuanLyTaiKhoan extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	private DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(DBConnector.conn);
+	private DAONhanVien DAONV = new DAONhanVien(DBConnector.conn);
+	private DAOKho DAOK = new DAOKho(DBConnector.conn);
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Connection conn = DBConnector.conn;
-		DAOKho DAOK = new DAOKho(conn);
+		List<NhanVien> listNV = DAONV.getAll();
+		List<TaiKhoanNhanVien> listTKNV = DAOTK.getAll();
 		List<Kho> listKho = DAOK.findAll();
-		List<Integer> listID = new ArrayList<Integer>();
-		for (Kho k:listKho)
-			listID.add(k.getID());
-		req.setAttribute("Kho", listID);
+		req.setAttribute("NhanVien", listNV);
+		req.setAttribute("Kho", listKho);
+		req.setAttribute("TaiKhoan", listTKNV);
 		req.getRequestDispatcher("11.account.jsp").forward(req, resp);
 	}
 	@Override

@@ -38,7 +38,7 @@
 			    <p>Không có dữ liệu kho.</p>
 			</c:if>
 			<c:forEach var="kho" items="${Kho}">
-		        <option value="${kho}">${kho}</option>
+		        <option value="${kho.ID}">${kho.ID}</option>
 		    </c:forEach>
         </select>
       </div>
@@ -54,19 +54,47 @@
     <table>
       <thead>
         <tr>
-          <th>Mã tài khoản</th>
-          <th>Mã nhân viên</th>
-          <th>Tên nhân viên</th>
-          <th>Tên tài khoản</th>
-          <th>Mật khẩu</th>
-          <th>Email</th>
-          <th>Kho phụ trách</th>
-          <th>Quyền truy cập</th>
+        	<th>Chọn</th>
+			<th>Mã tài khoản</th>
+			<th>Mã nhân viên</th>
+			<th>Tên nhân viên</th>
+			<th>Tên tài khoản</th>
+			<th>Mật khẩu</th>
+			<th>Email</th>
+			<th>Kho phụ trách</th>
+			<th>Quyền truy cập</th>
         </tr>
       </thead>
-      <tbody>
-        <tr><td colspan="8">Không có dữ liệu</td></tr>
-      </tbody>
+      <c:choose>
+            <c:when test="${not empty TaiKhoan}">
+                <c:forEach var="tk" items="${TaiKhoan}">
+				    <tr>
+				        <td><input type="checkbox" name="selectedAccount" value="${tk.ID}" /></td>
+				        <td>${tk.ID}</td>
+				        
+				        <!-- Tìm nhân viên phù hợp với mã nhân viên -->
+				        <c:set var="matchedNV" value="" />
+				        <c:forEach var="nv" items="${NhanVien}">
+				            <c:if test="${nv.ID == tk.ID_Employee}">
+				                <c:set var="matchedNV" value="${nv}" />
+				            </c:if>
+				        </c:forEach>
+						<td>${matchedNV.ID}</td>
+				        <td>${matchedNV.Name}</td>
+				        <td>${tk.UserAccount}</td>
+				        <td>${tk.Password}</td>
+				        <td>${matchedNV.Email}</td>
+				        <td>${matchedNV.PhoneNumber}</td>
+				        <td>${tk.ID_Warehouse}</td>
+				        <td>${tk.Roles}</td>
+				        <td>${matchedNV.Position}</td>
+				    </tr>
+				</c:forEach>
+            </c:when>
+            <c:otherwise>
+                <tr><td colspan="9">Không có dữ liệu</td></tr>
+            </c:otherwise>
+        </c:choose>
     </table>
 
   </div>
