@@ -94,7 +94,7 @@ public class XuLyPhieu extends HttpServlet {
 
             case "huy":
                 session.removeAttribute("dshh");
-                resp.sendRedirect("frame.jsp");
+                req.getRequestDispatcher("/2.trangchu.jsp").forward(req, resp);
                 break;
 
             default:
