@@ -12,7 +12,7 @@
 	<div class="header">Quản lý hàng hóa - Danh mục hàng hóa</div>
 
 
-	<form class="xulydanhmuc" action="/xu-ly-danh-muc" method="POST">
+	<form class="xulydanhmuc" action="DanhMucHangHoa" method="POST">
 		<div class="form-top">
 			<div class="foam-group">
 				<label for="maLoai">Mã loại</label> <input type="text" id="maLoai"
@@ -38,11 +38,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="loai" items="${dsLoaiHang}">
+				<c:forEach var="loai" items="${dslh}">
 					<tr>
-						<td><input type="radio" name="chonMaLoai" value=""></td>
-						<td>${loai.ID}</td>
-						<td>${loai.Name}</td>
+						<td><input type="radio" name="chonMaLoai" value="${loai.id}"></td>
+						<td>${loai.id}</td>
+						<td>${loai.name}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -1,30 +1,30 @@
 package Model;
 
 public class LoaiHang {
-	private String ID;
-	private String Name;
+	private String id;
+	private String name;
 	
-	public LoaiHang(String iD, String name) {
+	public LoaiHang(String id, String name) {
 		super();
-		ID = iD;
-		Name = name;
+		this.id = id;
+		this.name = name;
 	}
 	
-	public String getID() {
-		return ID;
+	public String getId() {
+	    return id;
 	}
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+	    this.id = id;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	@Override
 	public String toString() {
-		return "LoaiHang [ID=" + ID + ", Name=" + Name + "]";
+		return "LoaiHang [ID=" + id + ", Name=" + name + "]";
 	}
 	
 }

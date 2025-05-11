@@ -35,7 +35,7 @@
 				</li>
 				<div class="collapse" id="collapseHangHoa">
 					<ul>
-    					<li class="submenu"><a href="${pageContext.request.contextPath}/3.QLHH-DMHH.jsp" target="main-frame"> > Danh mục hàng hóa</a></li>
+    					<li class="submenu"><a href="DanhMucHangHoa" target="main-frame"> > Danh mục hàng hóa</a></li>
 						<li class="submenu"><a href="${pageContext.request.contextPath}/4.QLHH-TX.jsp" target="main-frame"> > Truy xuất hàng hóa</a></li>
   					</ul>
 				</div>
