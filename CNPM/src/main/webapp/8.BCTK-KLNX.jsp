@@ -6,27 +6,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Báo cáo thống kê</title>
-    <link rel="stylesheet" href="./css/8.BCTK-KLNX.css" />
+  <link rel="stylesheet" href="./css/main.css" />
 </head>
 <body>
   <div class="header">Báo cáo thống kê - Khối lượng nhập/xuất</div>
 
-  <div class="section">
+  <div class="sectiona">
     <h4>KHỐI LƯỢNG NHẬP</h4>
-    <form class="form-inline" action="/report/import" method="POST">
+    <form class="fami-inline" action="/report/import" method="POST">
       <label for="thang-nhap">Tháng</label>
       <select name="thang" id="thang-nhap">
-        <option>1</option><option>2</option><option>3</option><option selected>4</option>
-        <option>5</option><option>6</option><option>7</option><option>8</option>
-        <option>9</option><option>10</option><option>11</option><option>12</option>
+        <c:forEach begin="1" end="12" var="i">
+          <option value="${i}" ${param.thang == i ? 'selected' : ''}>${i}</option>
+        </c:forEach>
       </select>
 
       <label for="nam-nhap">Năm</label>
       <select name="nam" id="nam-nhap">
-        <option>2023</option><option>2024</option><option selected>2025</option>
+        <option>2023</option>
+        <option>2024</option>
+        <option ${param.nam == '2025' ? 'selected' : ''}>2025</option>
       </select>
 
-      <button type="submit" class="btn-submit">Submit</button>
+      <button type="submit" class="btn-submita">Submit</button>
     </form>
 
     <table>
@@ -41,38 +43,46 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Data rows go here -->
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <c:forEach var="phieu" items="${dsNhap}">
+          <tr>
+            <td>${phieu.maPhieu}</td>
+            <td>${phieu.doiTac}</td>
+            <td>${phieu.nhanVien}</td>
+            <td>${phieu.maHang}</td>
+            <td>${phieu.loaiPhieu}</td>
+            <td>${phieu.ngayLap}</td>
+          </tr>
+        </c:forEach>
       </tbody>
     </table>
 
     <div class="summary">
-      Tổng đơn nhập: 15<br/>
-      Loại hàng: ......
+      Tổng đơn nhập: ${tongDonNhap}<br/>
+      Loại hàng: ...
     </div>
   </div>
 
-  <div class="section">
+  <div class="sectiona">
     <h4>KHỐI LƯỢNG XUẤT</h4>
-    <form class="form-inline" action="/report/export" method="POST">
+    <form class="fami-inline" action="/report/export" method="POST">
       <label for="thang-xuat">Tháng</label>
       <select name="thang" id="thang-xuat">
-        <option>1</option><option>2</option><option>3</option><option selected>4</option>
-        <option>5</option><option>6</option><option>7</option><option>8</option>
-        <option>9</option><option>10</option><option>11</option><option>12</option>
+        <c:forEach begin="1" end="12" var="i">
+          <option value="${i}" ${param.thang == i ? 'selected' : ''}>${i}</option>
+        </c:forEach>
       </select>
 
       <label for="nam-xuat">Năm</label>
       <select name="nam" id="nam-xuat">
-        <option>2023</option><option>2024</option><option selected>2025</option>
+        <option>2023</option>
+        <option>2024</option>
+        <option ${param.nam == '2025' ? 'selected' : ''}>2025</option>
       </select>
 
-      <button type="submit" class="btn-submit">Submit</button>
+      <button type="submit" class="btn-submita">Submit</button>
     </form>
 
-    <table>
+    <table class="bangdulieu">
       <thead>
         <tr>
           <th>Mã đơn</th>
@@ -84,16 +94,22 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Data rows go here -->
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <c:forEach var="phieu" items="${dsXuat}">
+          <tr>
+            <td>${phieu.maPhieu}</td>
+            <td>${phieu.doiTac}</td>
+            <td>${phieu.nhanVien}</td>
+            <td>${phieu.maHang}</td>
+            <td>${phieu.loaiPhieu}</td>
+            <td>${phieu.ngayLap}</td>
+          </tr>
+        </c:forEach>
       </tbody>
     </table>
 
     <div class="summary">
-      Tổng đơn xuất: <br/>
-      Loại hàng:
+      Tổng đơn xuất: ${tongDonXuat}<br/>
+      Loại hàng: ...
     </div>
   </div>
 </body>
