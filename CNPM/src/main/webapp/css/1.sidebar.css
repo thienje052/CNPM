@@ -6,6 +6,7 @@ body{
   height: 100vh;
 }
 
+
 .menu ul li a{
   text-decoration: none;
   color: #0D47A1;
@@ -24,10 +25,11 @@ body{
   text-align: center;
   background-color: #BBDEFB;
   line-height: 30px;
+   padding-top: 20px;
+  text-align: center;
 }
 .menu div ul li{
   list-style: none;
-  border: 0.5px solid #B0BEC5;
   margin: 0;
   padding-left: 25%;
   text-align: left;
@@ -46,14 +48,20 @@ body{
   height: 100vh; 
   min-width: 250px;
 }
-.sidebar-header img {
+
+  .sidebar-header img {
+  margin-top: 16px;
+  margin-bottom: 20px;
   width: 100px;
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #B0BEC5; /* viền xám */
-  margin-bottom: 20px;
+  border: 3px solid #B0BEC5;
 }
+
+
+
+
 
 .dangxuat {
   text-decoration: none;
@@ -90,9 +98,7 @@ body{
   color: #1976D2;
   margin-bottom: 20px;
 }
-.sidebar-header img{
-  margin-bottom: 20px;
-}
+
 .menu ul li:hover{
    background-color: #1976D2;
    
