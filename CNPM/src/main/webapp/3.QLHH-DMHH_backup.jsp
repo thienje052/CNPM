@@ -5,26 +5,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Danh mục hàng hóa</title>
-  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/3.QLHH-DMHH.css">
   
 </head>
 <body>
-  <div class="header">
+  <header>
     Quản lý hàng hóa - Danh mục hàng hóa
-  </div>
+  </header>
 
 
-  <form class= "xulydanhmuc" action="/xu-ly-danh-muc" method="POST">
+  <form action="/xu-ly-danh-muc" method="POST">
     <div class="form-top">
-      <div class="foam-group">
+      <div class="form-group">
         <label for="maLoai">Mã loại</label>
-        <input type="text" id="maLoai" name="maLoai" >
+        <input type="text" id="maLoai" name="maLoai" placeholder="Mã loại">
       </div>
-      <div class="foam-group">
+      <div class="form-group">
         <label for="tenLoai">Tên loại</label>
-        <input type="text" id="tenLoai" name="tenLoai">
+        <input type="text" id="tenLoai" name="tenLoai" placeholder="Tên loại">
       </div>
-      <div class="fom-buttons">
+      <div class="form-buttons">
         <button type="submit" name="action" value="them">Thêm</button>
         <button type="submit" name="action" value="xoa">Xóa</button>
         <button type="submit" name="action" value="sua">Sửa</button>
