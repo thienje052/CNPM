@@ -1,0 +1,52 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý đối tác</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/14.doitac.css">
+</head>
+<body>
+
+  <div class="header">Quản lý đối tác</div>
+
+  <form action="doiTac" method="POST" class="p-3">
+    <div class="d-flex mb-3 form-inline">
+      <div class="form-group">
+        <label for="partnerId" class="form-label">Mã đối tác</label>
+        <input type="text" class="form-control" id="partnerId" name="partnerId" />
+      </div>
+      <div class="form-group">
+        <label for="partnerName" class="form-label">Tên đối tác</label>
+        <input type="text" class="form-control" id="partnerName" name="partnerName" />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <a href="15.doitac-themDT.html" class="btn btn-primary btn-custom">Thêm</a>
+      <button type="submit" class="btn btn-primary btn-custom">Xóa</button>
+      <a href="suaDoiTac" class="btn btn-primary btn-custom">Sửa</a>
+    </div>
+  </form>
+
+  <div class="table-responsive px-3">
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Chọn</th>
+          <th>Mã đối tác</th>
+          <th>Tên đối tác</th>
+          <th>Số điện thoại</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dữ liệu sẽ được hiển thị ở đây -->
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

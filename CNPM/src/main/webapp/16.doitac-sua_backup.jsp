@@ -5,40 +5,34 @@
   <meta charset="UTF-8">
   <title>Quản lý đối tác - Sửa thông tin đối tác</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/16.doitac-sua.css">
 </head>
 <body>
 
   <div class="header">Quản lý đối tác - Sửa thông tin đối tác</div>
 
-  <div class="form-containerthemsuaDT">
+  <div class="form-container">
     <form action="suaDoiTac" method="POST">
-      <!-- Gửi ID đối tác để biết đang sửa ai -->
-      <input type="hidden" name="id" value="${doiTac.ID}" />
-
       <div class="mb-3 form-group">
         <label for="partnerName" class="form-label">Tên đối tác</label>
-        <input type="text" class="form-control" id="partnerName" name="partnerName"
-               value="${doiTac.Name}" required>
+        <input type="text" class="form-control" id="partnerName" name="partnerName" required>
       </div>
 
       <div class="mb-3 form-group">
         <label for="phone" class="form-label">Số điện thoại</label>
-        <input type="text" class="form-control" id="phone" name="phone"
-               value="${doiTac.PhoneNumber}" required>
+        <input type="text" class="form-control" id="phone" name="phone" required>
       </div>
 
       <div class="mb-3 form-group">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email"
-               value="${doiTac.Email}" required>
+        <input type="email" class="form-control" id="email" name="email" required>
       </div>
 
       <hr>
 
       <div class="text-center">
         <button type="submit" class="btn btn-primary btn-custom me-2">Xác nhận</button>
-        <a href="14.doitac.jsp" class="btn btn-primary btn-custom">Hủy</a>
+        <a href="/14.doitac.html" class="btn btn-primary btn-custom">Hủy</a>
       </div>
     </form>
   </div>
