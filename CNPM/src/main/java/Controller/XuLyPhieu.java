@@ -26,9 +26,7 @@ public class XuLyPhieu extends HttpServlet {
 	private DAOPhieu daoPhieu = new DAOPhieu(DBConnector.conn);
     private DAOHangHoa daoHangHoa = new DAOHangHoa(DBConnector.conn);
     private DAOViTri daoViTri;
-    List<HangHoa> dshh;
-    int MAXID = daoHangHoa.findMAXID();   
-	
+
     @SuppressWarnings("unchecked")
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,40 +34,37 @@ public class XuLyPhieu extends HttpServlet {
     	resp.setContentType("text/html; charset=UTF-8");
     	String action = req.getParameter("action");
         HttpSession session = req.getSession();
-             
+        List<HangHoa> dshh = (List<HangHoa>) session.getAttribute("dshh");
+        if (dshh == null) {
+            dshh = new ArrayList<>();
+        }  
         switch (action) {
             case "themHang":
-            	int maHang;
-            	if (MAXID == 0) {
-            		maHang = 1;
-                }
-            	else {
-            		maHang=MAXID+1;
-            	}
-                MAXID +=1;
                 String ten    = req.getParameter("tenHang");
                 String loai   = req.getParameter("loaiHang");
                 String viTri  = req.getParameter("viTri");
                 int soLuong   = Integer.parseInt(req.getParameter("soLuong"));
                 String dvt    = req.getParameter("donViTinh");
                 String moTa   = req.getParameter("moTa");
-                HangHoa hh = new HangHoa(maHang, ten, soLuong, dvt, moTa, loai);
+                HangHoa hh = new HangHoa( 0, ten, soLuong, dvt, moTa, loai);
+                int maxId = 0;
+                for (HangHoa h : dshh) {
+                    if (h.getId() > maxId) maxId = h.getId();
+                }
+                hh.setId(maxId + 1);
                 dshh.add(hh);
-                req.setAttribute("MAXID", MAXID);
-                req.setAttribute("message", "Đã thêm hàng " + ten);
-                req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
+                session.setAttribute("dshh", dshh);
+                resp.sendRedirect("6.QLNX-taodon.jsp");
                 break;
 
             case "xoaHang":
                 // Lấy mã hàng đã chọn qua radio button
                 String selected = req.getParameter("selectedHang");
-                List<HangHoa> dshh = (List<HangHoa>) session.getAttribute("dshh");
                 if (selected != null && !selected.isEmpty()) {
                     int id = Integer.parseInt(selected);
                     dshh.removeIf(item -> item.getId() == id );
                     session.setAttribute("selected", selected);
                     session.setAttribute("dshh", dshh);
-                    MAXID -=1;
                 } else {
                     req.setAttribute("error", "Vui lòng chọn một hàng để xóa.");
                 }
@@ -99,7 +94,7 @@ public class XuLyPhieu extends HttpServlet {
 
             case "huy":
                 session.removeAttribute("dshh");
-                resp.sendRedirect("1.sidebar.html");
+                resp.sendRedirect("frame.jsp");
                 break;
 
             default:
