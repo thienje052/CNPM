@@ -46,11 +46,16 @@ public class TruyXuatDon extends HttpServlet {
 
         // Truy xuất danh sách đơn hàng phù hợp
         List<Phieu> result = phieu.getAllPhieu();
+        if(result == null)
+        {
+        	result = new ArrayList<>();
+        }
 
         if (loaiDon != null && !loaiDon.isEmpty()) {
             try {
                 LoaiPhieu lp = LoaiPhieu.valueOf(loaiDon);
-                result.retainAll(phieu.findByLoaiPhieu(lp));
+                if(result != null)
+                	result.retainAll(phieu.findByLoaiPhieu(lp));
             } catch (IllegalArgumentException e) {
                 // nếu không đúng enum
             }
@@ -61,7 +66,8 @@ public class TruyXuatDon extends HttpServlet {
                 int idNV = Integer.parseInt(maNhanVien);
                 TaiKhoanNhanVien nv = new TaiKhoanNhanVien();
                 nv.setID_Employee(idNV);
-                result.retainAll(phieu.findByIDNV(nv));
+                if(result != null)
+                	result.retainAll(phieu.findByIDNV(nv));
             } catch (NumberFormatException e) {
                 // xử lý nếu nhập sai số
             }
@@ -72,7 +78,8 @@ public class TruyXuatDon extends HttpServlet {
                 int idDoiTac = Integer.parseInt(maDoiTac);
                 DoiTac dt = new DoiTac();
                 dt.setID(idDoiTac);
-                result.retainAll(phieu.findByLoaiIDDoiTac(dt));
+                if(result != null)
+                	result.retainAll(phieu.findByLoaiIDDoiTac(dt));
             } catch (NumberFormatException e) {
                 // xử lý nếu nhập sai số
             }
@@ -83,7 +90,8 @@ public class TruyXuatDon extends HttpServlet {
                 LocalDateTime date = LocalDateTime.parse(ngay + "T00:00:00");
                 Phieu p = new Phieu();
                 p.setDateTime(date);
-                result.retainAll(phieu.findByIDPhieu(p));
+                if(result != null)
+                	result.retainAll(phieu.findByIDPhieu(p));
             } catch (Exception e) {
                 // định dạng sai
             }
@@ -106,6 +114,7 @@ public class TruyXuatDon extends HttpServlet {
         }
 
         // Chuyển hướng sang giao diện JSP để hiển thị kết quả
+        request.setAttribute("dsPhieu", result);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/7.QLNX-truyxuat.jsp");
         dispatcher.forward(request, response);
     }

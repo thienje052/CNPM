@@ -21,7 +21,7 @@
     <div class="search-bar">
       <input type="text" name="maDon" placeholder="Mã đơn" value="${param.maDon}" onchange="this.form.submit()"/>
       <select name="loaiDon" onchange="this.form.submit()">
-    <option value="">Chọn loại đơn</option>
+      <option value="Export" ${param.loaiDon == '' ? 'selected' : ''}></option>
     <option value="Export" ${param.loaiDon == 'Export' ? 'selected' : ''}>Phiếu Xuất</option>
     <option value="Import" ${param.loaiDon == 'Import' ? 'selected' : ''}>Phiếu Nhập</option>
 </select>
