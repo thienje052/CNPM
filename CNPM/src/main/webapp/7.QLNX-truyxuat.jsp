@@ -46,7 +46,7 @@
 					onchange="this.form.submit()">
 			</div>
 		</form>
-
+	
 		<table class="data-table">
 			<thead>
 				<tr>
@@ -69,6 +69,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
+	
 	</div>
 </body>
 </html>

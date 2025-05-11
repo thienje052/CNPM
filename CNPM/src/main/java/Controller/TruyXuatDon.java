@@ -23,16 +23,17 @@ import java.sql.*;
 @WebServlet("/TruyXuatDon")
 public class TruyXuatDon extends HttpServlet {
 
-	private DAOPhieu phieu;
+	
+	private DAOPhieu phieu = new DAOPhieu(DBConnector.conn);
 
-    public void init() {
-        try {
-            Connection conn = DBConnector.getConnectionAuth();
-            phieu = new DAOPhieu(conn);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public void init() {
+//        try {
+//            Connection conn = DBConnector.getConnectionAuth();
+//            phieu = new DAOPhieu(conn);
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -122,7 +123,13 @@ public class TruyXuatDon extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	request.getRequestDispatcher("/7.QLNX-truyxuat.jsp").forward(request, response);
+    	
+			List<Phieu> result = phieu.getAllPhieu();
+			request.setAttribute("dsPhieu", result);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/7.QLNX-truyxuat.jsp");
+			dispatcher.forward(request, response);
+		
+    	
     }
     
 }
