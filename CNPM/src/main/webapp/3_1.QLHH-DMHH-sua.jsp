@@ -12,21 +12,23 @@
 	<div class="header">Quản lý hàng hóa - Danh mục hàng hóa</div>
 
 
-	<form class="xulydanhmuc" action="/xu-ly-danh-muc" method="POST">
+	<form class="xulydanhmuc" action="SuaLoaiHang" method="post">
 		<div class="form-top">
-			
 			<div class="foam-group">
-				<label for="tenLoai">Tên loại</label> <input type="text"
-					id="tenLoai" name="tenLoai">
+				<label for="tenLoai">Tên loại</label> 
+				<input type="hidden" name="maLoai" value="${loaiHang.id}" />
+				<input type="text" id="tenLoai" name="tenLoai" value="${loaiHang.name}">
 			</div>
 			<div class="fom-buttons">
 				<button type="submit" name="action" value="sua">Sửa</button>
 				<button type="button" onclick="window.history.back()" class="button-cancel">Hủy</button>
-				
 			</div>
+			<div class="foam-group">
+				<c:if test="${not empty error}">
+        			<p style="color:red">${error}</p>
+    			</c:if>	
+    		</div>
 		</div>
-
-		
 	</form>
 </body>
 </html>

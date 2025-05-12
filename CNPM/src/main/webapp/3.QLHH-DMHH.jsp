@@ -11,7 +11,6 @@
 <body>
 	<div class="header">Quản lý hàng hóa - Danh mục hàng hóa</div>
 
-
 	<form class="xulydanhmuc" action="DanhMucHangHoa" method="POST">
 		<div class="form-top">
 			<div class="foam-group">
@@ -27,18 +26,28 @@
 				<button type="submit" name="action" value="xoa">Xóa</button>
 				<button type="submit" name="action" value="sua">Sửa</button>
 			</div>
-			<c:if test="${not empty xacNhanXoa}">
-			    <form action="DanhMucHangHoa" method="post" style="border: 1px solid gray; padding: 10px; margin: 10px 0;">
-			        <p>Bạn có chắc chắn muốn xóa loại hàng có mã: <strong>${xacNhanXoa}</strong> không?</p>
-        			<input type="hidden" name="chonMaLoai" value="${xacNhanXoa}">
-       				<input type="hidden" name="action" value="xoa">
-        			<input type="hidden" name="xacNhan" value="true">
-        			<button type="submit">Xác nhận xóa</button>
-        			<a href="DanhMucHangHoa">Hủy</a>
-        		</form>
-        	</c:if>
+			<div class="form-top">
+				<c:if test="${not empty error}">
+					<p style="color: red;">${error}</p>
+				</c:if>
+			</div>
 		</div>
-
+		<div class="form-top">
+			<div class="foam-group">
+				<c:if test="${not empty xacNhanXoa}">
+			    	<form action="DanhMucHangHoa" method="post" style="border: 1px solid gray; padding: 10px; margin: 10px 0;">
+			        	<p>Bạn có chắc chắn muốn xóa loại hàng có mã: <strong>${xacNhanXoa}</strong> không?</p>
+        				<input type="hidden" name="chonMaLoai" value="${xacNhanXoa}">
+       					<input type="hidden" name="action" value="xoa">
+        				<input type="hidden" name="xacNhan" value="true">
+        				<div class="fom-buttons">
+        					<button type="submit">Xác nhận xóa</button>
+        					<button type="button" onclick="window.history.back()" class="button-cancel">Hủy</button>
+        				</div>
+        			</form>
+        		</c:if>
+        	</div>
+        </div>
 		<table>
 			<thead>
 				<tr>

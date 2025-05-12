@@ -53,10 +53,10 @@ public class DAOLoaiHang {
 		try {
 			String sql = "select * from LoaiHang where ID like ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, String.valueOf(loaihang.getId()));
+			pstmt.setString(1, loaihang.getId());
 			ResultSet success = pstmt.executeQuery();
-			if(success.getFetchSize() != 0)
-				return loaihang;
+			if(success.next())
+				return new LoaiHang(success.getString("ID"), success.getString("TenHang"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -94,10 +94,10 @@ public class DAOLoaiHang {
 
 	public boolean update(LoaiHang loaiHang) {
 		try {
-			String sql = "update LoaiHang set TenHang=? where ID like ?";
+			String sql = "update LoaiHang set TenHang=? where ID = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, loaiHang.getName());
-			pstmt.setString(2, String.valueOf(loaiHang.getId()));
+			pstmt.setString(1, loaiHang.getName	());
+			pstmt.setString(2, loaiHang.getId());
 			int success = pstmt.executeUpdate();
 			if(success != 0)
 				return true;

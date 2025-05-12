@@ -13,48 +13,38 @@ import Model.LoaiHang;
 @WebServlet("/SuaLoaiHang")
 public class SuaLoaiHang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DAOLoaiHang daoLoaiHang;
-	
+	private DAOLoaiHang daoLoaiHang = new DAOLoaiHang(DBConnector.conn);
+		
 	@Override
-    public void init() throws ServletException {
-        super.init();
-        try {
-            Connection conn = DBConnector.getConnectionAuth();
-            daoLoaiHang = new DAOLoaiHang(conn);
-        } catch (Exception e) {
-            throw new ServletException(e);
-        }
-    }
-	
-	@Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String maLoai = (String) req.getSession().getAttribute("maLoaiSua");
-        if (maLoai == null) {
-            resp.sendRedirect(req.getContextPath() + "/danhmuc-loai-hang");
-            return;
-        }
-        req.getRequestDispatcher("/suaLoaiHang.jsp").forward(req, resp);
-    }
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		String maLoai = (String) session.getAttribute("maLoaiSua");
+		LoaiHang loai = daoLoaiHang.findByID(new LoaiHang(maLoai, null));
+	    req.setAttribute("loaiHang", loai);
+	    req.getRequestDispatcher("/3_1.QLHH-DMHH-sua.jsp").forward(req, resp);
+	}
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         String action = req.getParameter("action");
-        String maLoai  = req.getParameter("maLoai");
-
-        if ("xacNhan".equals(action)) {
-            String tenLoaiMoi = req.getParameter("tenLoai");
-            if (maLoai != null && tenLoaiMoi != null && !tenLoaiMoi.trim().isEmpty()) {
-                LoaiHang lh = new LoaiHang(maLoai, tenLoaiMoi.trim());
-                boolean ok = daoLoaiHang.update(lh);
-                if (!ok) {
-                    req.setAttribute("error", "Cập nhật thất bại, vui lòng thử lại.");
-                    req.getRequestDispatcher("/suaLoaiHang.jsp").forward(req, resp);
-                    return;
+        String maLoai = req.getParameter("maLoai");
+        String tenLoaiMoi = req.getParameter("tenLoai");
+        if ("sua".equals(action)) {
+        	if (tenLoaiMoi == null || tenLoaiMoi.trim().isEmpty()) {
+        		req.setAttribute("error", "Tên loại hàng không được để trống.");
+        		LoaiHang loaiHang = new LoaiHang(maLoai, "");
+                req.setAttribute("loaiHang", loaiHang);
+                req.getRequestDispatcher("/3_1.QLHH-DMHH-sua.jsp").forward(req, resp);
+                return;
                 }
-            }
+        	LoaiHang lh = new LoaiHang(maLoai, tenLoaiMoi.trim());
+            daoLoaiHang.update(lh);
+            session.removeAttribute("maLoaiSua");
+            resp.sendRedirect("DanhMucHangHoa");
+        } else {
+        	resp.sendRedirect("SuaLoaiHang");
         }
-        session.removeAttribute("maLoaiSua");
-        resp.sendRedirect(req.getContextPath() + "/3.QLHH-DMHH.html");
     }
 }

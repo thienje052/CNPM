@@ -41,6 +41,7 @@ public class DanhMucHangHoa extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
     	req.setCharacterEncoding("UTF-8");
+    	
         String action = req.getParameter("action");
         String maLoai = req.getParameter("maLoai");
         String tenLoai = req.getParameter("tenLoai");
@@ -61,9 +62,14 @@ public class DanhMucHangHoa extends HttpServlet {
                 req.setAttribute("error", "Vui lòng chọn một hàng để xóa.");
             }
         } else if ("sua".equals(action)) {
-            req.getSession().setAttribute("maLoaiSua", maLoai);
-            resp.sendRedirect("3_1.QLHH-DMHH-sua.jsp");
-            return;
+        	String chonMaLoai = req.getParameter("chonMaLoai");
+            if (chonMaLoai != null && !chonMaLoai.isEmpty()) {
+                req.getSession().setAttribute("maLoaiSua", chonMaLoai);
+                resp.sendRedirect("SuaLoaiHang");
+                return;
+            } else {
+                req.setAttribute("error", "Vui lòng chọn một hàng để sửa.");
+            }
         }
         hienThiDanhSach(req, resp);
        }catch (Exception e) {
