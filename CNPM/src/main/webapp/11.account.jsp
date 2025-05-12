@@ -41,14 +41,16 @@
 			</div>
 		</div>
 			<div class="button-group1">
-				<a href="QuanLyTaiKhoanThemInterface" class="button">Thêm</a> 
-				<a href="QuanLyTaiKhoanXoa" class="button">Xóa</a> 
-				<a href="12.account-suatk.jsp" class="button">Sửa</a>
-			</div>
-			<div>
-				<c:if test="${error != null}">
-					<strong style="color:red;">${error}</strong>
-				</c:if>
+				<div>
+					<a href="QuanLyTaiKhoanThemInterface" class="button">Thêm</a> 
+					<a href="QuanLyTaiKhoanXoa" class="button">Xóa</a> 
+					<a href="12.account-suatk.jsp" class="button">Sửa</a>
+				</div>
+				<div class="error">
+					<c:if test="${error != null}">
+						<strong style="color:red;">${error}</strong>
+					</c:if>
+				</div>
 			</div>
 		</div>
 		<!-- BẢNG TÀI KHOẢN -->
@@ -73,8 +75,6 @@
 						<tr>
 					        <td><input type="radio" name="selectedAccount" value="${tk.ID}" /></td>
 					        <td>${tk.ID}</td>
-					        
-					        <!-- Tìm nhân viên phù hợp với mã nhân viên -->
 					        <c:set var="matchedNV" value="" />
 					        <c:forEach var="nv" items="${NhanVien}">
 					            <c:if test="${nv.ID == tk.ID_Employee}">
