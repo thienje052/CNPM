@@ -43,7 +43,7 @@
 				<!-- chỗ trống hoặc dùng sau nếu cần -->
 			</div>
 			<!-- Hàng 2 -->
-			
+
 			<div class="fimi-group">
 				<label for="tenHang">Tên hàng</label> <input type="text"
 					id="tenHang" name="tenHang" value="${param.tenHang}" />
@@ -57,8 +57,8 @@
 					name="viTri" value="${param.viTri}" />
 			</div>
 
-			<!-- Hàng 3 -->
 
+			<!-- Hàng 3 -->
 			<div class="fimi-group">
 				<label for="soLuong">Số lượng</label> <input type="number"
 					id="soLuong" name="soLuong" value="${param.soLuong}" />
@@ -71,6 +71,7 @@
 				<label for="moTa">Mô tả</label> <input type="text" id="moTa"
 					name="moTa" value="${param.moTa}" />
 			</div>
+
 
 
 			<div class="fimi-group buttons-cell">
