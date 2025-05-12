@@ -67,16 +67,16 @@
           <label class="a">Quyền truy cập <span class="required">( * )</span></label>
           <div class="checkbox-group">
             <label class="a"><input type="checkbox" name="permissions[]" value="nhapxuat"
-              <c:if test="${tk.permissions.contains('nhapxuat')}">checked</c:if>> Quản lý nhập/xuất</label>
+              <c:if test="${tk.permissions.contains('nhapxuat')}"></c:if> Quản lý nhập/xuất</label>
 
             <label class="a"><input type="checkbox" name="permissions[]" value="hanghoa"
-              <c:if test="${tk.permissions.contains('hanghoa')}">checked</c:if>> Quản lý hàng hóa</label>
+              <c:if test="${tk.permissions.contains('hanghoa')}"></c:if>  Quản lý hàng hóa</label>
 
             <label class="a"><input type="checkbox" name="permissions[]" value="taikhoan"
-              <c:if test="${tk.permissions.contains('taikhoan')}">checked</c:if>> Quản lý tài khoản</label>
+              <c:if test="${tk.permissions.contains('taikhoan')}"></c:if> Quản lý tài khoản</label>
 
             <label class="a"><input type="checkbox" name="permissions[]" value="thongke"
-              <c:if test="${tk.permissions.contains('thongke')}">checked</c:if>> Báo cáo thống kê</label>
+              <c:if test="${tk.permissions.contains('thongke')}"></c:if> Báo cáo thống kê</label>
           </div>
         </div>
       </div>
