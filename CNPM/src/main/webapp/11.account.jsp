@@ -18,22 +18,18 @@
 		<div class="faho-row">
 			<div class="form-left">
 				<div class="faho-group">
-					<label for="accountId">Mã tài khoản</label> <input type="text"
-						id="accountId" name="accountId">
+					<label for="accountId">Mã tài khoản</label> <input type="text" id="accountId" name="accountId">
 				</div>
 
 				<div class="faho-group">
-					<label for="employeeId">Mã nhân viên</label> <input type="text"
-						id="employeeId" name="employeeId">
+					<label for="employeeId">Mã nhân viên</label> <input type="text" id="employeeId" name="employeeId">
 				</div>
 
 				<div class="faho-group">
-					<label for="employeeName">Tên nhân viên</label> <input type="text"
-						id="employeeName" name="employeeName">
+					<label for="employeeName">Tên nhân viên</label> <input type="text" id="employeeName" name="employeeName">
 				</div>
 			<div class="faho-group">
-				<label for="warehouse">Kho phụ trách</label> <select id="warehouse"
-					name="warehouse">
+				<label for="warehouse">Kho phụ trách</label> <select id="warehouse" name="warehouse">
 					<option value="">-Chọn kho-</option>
 					<c:if test="${empty Kho}">
 					    <p>Không có dữ liệu kho.</p>

@@ -68,10 +68,9 @@ public class QuanLyTaiKhoanThemSubmit extends HttpServlet {
                 }
             }
         }
-				
 		int warehouse = Integer.parseInt(req.getParameter("warehouse"));
 		DAOTK.addUserAccount(new TaiKhoanNhanVien(0, account, password, permissionsList, employeeID, warehouse));
-		DAOQTC.addDSQuyenTruyCapbyIDNV(employeeID, permissionsList);
+		DAOQTC.addDSQuyenTruyCapbyIDNV(DAOTK.findNewestID(), permissionsList);
 		req.getRequestDispatcher("QuanLyTaiKhoan").forward(req, resp);
 	}
 	@Override

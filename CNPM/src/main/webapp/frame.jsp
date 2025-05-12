@@ -98,15 +98,13 @@
 					<c:if test="${permissions.contains(QuyenTruyCap_TK)}">
 						<li><img
 							src="${pageContext.request.contextPath}/image-source/STAFF.svg"
-							alt=""> <a href="QuanLyTaiKhoan" target="main-frame">Quản
-								lý tài khoản</a></li>
+							alt=""> <a href="QuanLyTaiKhoan" target="main-frame">Quản lý tài khoản</a></li>
 					</c:if>
 
 					<c:if test="${ChucVu eq QuanLyRole}">
 						<li><img
 							src="${pageContext.request.contextPath}/image-source/doitac.svg"
-							alt=""> <a href="14.doitac.jsp" target="main-frame">Thông
-								tin đối tác</a></li>
+							alt=""> <a href="14.doitac.jsp" target="main-frame">Thông tin đối tác</a></li>
 					</c:if>
 				</ul>
 			</div>

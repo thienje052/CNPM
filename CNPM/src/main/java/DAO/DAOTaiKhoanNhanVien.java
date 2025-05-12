@@ -162,6 +162,22 @@ public class DAOTaiKhoanNhanVien {
 		return null;
 	}
 	
+	public int findNewestID() {
+		TaiKhoanNhanVien tk = null;
+		DAODSQuyenTruyCap tc = new DAODSQuyenTruyCap(conn);
+		try {
+			String sql = "select max(id) as ID from TaiKhoanNhanVien";
+			Statement pstmt = conn.createStatement();
+			ResultSet rs = pstmt.executeQuery(sql);
+			while(rs.next()) {
+				return rs.getInt("ID");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	public boolean addUserAccount(TaiKhoanNhanVien newAccount) {
 		DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(conn);
 		DAODSQuyenTruyCap DAODSQTC = new DAODSQuyenTruyCap(conn);
