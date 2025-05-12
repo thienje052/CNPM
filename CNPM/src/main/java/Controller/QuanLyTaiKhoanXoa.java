@@ -28,6 +28,7 @@ public class QuanLyTaiKhoanXoa extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String selected = req.getParameter("selectedAccount");
+        System.out.println(selected);
 	    if (selected != null) {
 	    	DAOTK.deleteUserAccount(Integer.parseInt(selected));
 	        req.getRequestDispatcher("QuanLyTaiKhoan").forward(req, resp);

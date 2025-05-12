@@ -206,12 +206,13 @@ public class DAOTaiKhoanNhanVien {
 		if(existed != null) {
 			try {
 				boolean deleteQuyenTruyCap = DAOQTC.deleteDSQuyenTruyCapbyIDNV(id);
-				String sql = "delete from TaiKhoanNhanVien where TenDangNhap like ?";
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, id);
-				int success = pstmt.executeUpdate();
-				if(success != 0 && deleteQuyenTruyCap)
-					return true;
+				System.out.println(deleteQuyenTruyCap);
+				if(deleteQuyenTruyCap == true) {
+					String sql = "delete from TaiKhoanNhanVien where ID=?";
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, id);
+					return pstmt.executeUpdate() != 0;
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -219,18 +220,18 @@ public class DAOTaiKhoanNhanVien {
 		return false;
 	}
 	
-	public boolean updateUserAccount(TaiKhoanNhanVien Account) {
+	public boolean updateUserAccount(int ID) {
 		DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(conn);
 		DAODSQuyenTruyCap DAOQTC = new DAODSQuyenTruyCap(conn);
-		TaiKhoanNhanVien existed = DAOTK.findByAccountID(Account.getID());
+		TaiKhoanNhanVien existed = DAOTK.findByAccountID(ID);
 		if(existed != null) {
 			try {
-				boolean deleteQuyenTruyCap = DAOQTC.deleteDSQuyenTruyCapbyIDNV(Account);
+				boolean deleteQuyenTruyCap = DAOQTC.deleteDSQuyenTruyCapbyIDNV(ID);
 				String sql = "update TaiKhoanNhanVien "
 						+ "set TenDangNhap=?, MatKhau=?, ID_NV=?, ID_Kho=?"
 						+ " where ID like ?";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, Account.getUserAccount());
+				pstmt.setInt(1, ID);
 				int success = pstmt.executeUpdate();
 				if(success != 0 && deleteQuyenTruyCap)
 					return true;
