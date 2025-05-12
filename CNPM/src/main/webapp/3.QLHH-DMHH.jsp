@@ -27,6 +27,16 @@
 				<button type="submit" name="action" value="xoa">Xóa</button>
 				<button type="submit" name="action" value="sua">Sửa</button>
 			</div>
+			<c:if test="${not empty xacNhanXoa}">
+			    <form action="DanhMucHangHoa" method="post" style="border: 1px solid gray; padding: 10px; margin: 10px 0;">
+			        <p>Bạn có chắc chắn muốn xóa loại hàng có mã: <strong>${xacNhanXoa}</strong> không?</p>
+        			<input type="hidden" name="chonMaLoai" value="${xacNhanXoa}">
+       				<input type="hidden" name="action" value="xoa">
+        			<input type="hidden" name="xacNhan" value="true">
+        			<button type="submit">Xác nhận xóa</button>
+        			<a href="DanhMucHangHoa">Hủy</a>
+        		</form>
+        	</c:if>
 		</div>
 
 		<table>
