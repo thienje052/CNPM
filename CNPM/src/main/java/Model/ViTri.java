@@ -6,15 +6,13 @@ public class ViTri {
 	private int Hang;
 	private int Tang;
 	private int ID_Warehouse;
-	private int ID_Goods;
-	public ViTri(int iD, int ke, int hang, int tang, int iD_Warehouse, int iD_Goods) {
+	public ViTri(int iD, int ke, int hang, int tang, int iD_Warehouse) {
 		super();
 		ID = iD;
 		Ke = ke;
 		Hang = hang;
 		Tang = tang;
 		ID_Warehouse = iD_Warehouse;
-		ID_Goods = iD_Goods;
 	}
 	public int getID() {
 		return ID;
@@ -45,11 +43,5 @@ public class ViTri {
 	}
 	public void setID_Warehouse(int iD_Warehouse) {
 		ID_Warehouse = iD_Warehouse;
-	}
-	public int getID_Goods() {
-		return ID_Goods;
-	}
-	public void setID_Goods(int iD_Goods) {
-		ID_Goods = iD_Goods;
 	}
 }

@@ -52,7 +52,7 @@ public class DAODSQuyenTruyCap {
 			pstmt.setInt(1, ID);
 			int success = 0;
 			for (QuyenTruyCap qtc : List) {
-				pstmt.setString(2, String.valueOf(qtc));
+				pstmt.setString(2, qtc.name());
 				success += pstmt.executeUpdate();
 			}
 			return success == List.size();

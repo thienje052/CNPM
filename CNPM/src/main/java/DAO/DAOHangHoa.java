@@ -42,7 +42,8 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getString("ID_LH"));
+						rs.getString("ID_LH"),
+						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,7 +64,8 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getString("ID_LH"));
+						rs.getString("ID_LH"),
+						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,7 +86,8 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getString("ID_LH"));
+						rs.getString("ID_LH"),
+						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,7 +98,7 @@ private static Connection conn;
 	public HangHoa findByIDViTri(int IDViTri) {
 		HangHoa hh = null;
 		try {
-			String sql = "select HangHoa.* from HangHoa join ViTri on HangHoa.ID=ViTri.IDHang where like ID=?";	
+			String sql = "select * from HangHoa ID_ViTri?";	
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, IDViTri);
 			ResultSet rs = pstmt.executeQuery();
@@ -105,7 +108,8 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getString("ID_LH"));
+						rs.getString("ID_LH"),
+						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -114,7 +118,7 @@ private static Connection conn;
 	}
 	
 	public boolean add(HangHoa hh) {
-	    String sql = "INSERT INTO HangHoa (Ten, So_Luong, Don_Vi_Tinh, Mo_ta, ID_LH) VALUES (?, ?, ?, ?, ?)";
+	    String sql = "INSERT INTO HangHoa (Ten, So_Luong, Don_Vi_Tinh, Mo_ta, ID_LH, ID_ViTri) VALUES (?, ?, ?, ?, ?, ?)";
 	    try {
 	        PreparedStatement pst = conn.prepareStatement(sql);
 	        pst.setString(1, hh.getName());
@@ -122,6 +126,7 @@ private static Connection conn;
 	        pst.setString(3, hh.getMeasurement());
 	        pst.setString(4, hh.getDescription());
 	        pst.setString(5, hh.getCatagory());
+	        pst.setInt(6, hh.getId_position());
 
 	        int rowsAffected = pst.executeUpdate();
 	        return rowsAffected > 0;
@@ -144,7 +149,7 @@ private static Connection conn;
 	    }
 	}
 	public boolean update(HangHoa hh) {
-	    String sql = "UPDATE HangHoa SET Ten = ?, So_Luong = ?, Don_Vi_Tinh = ?, Mo_ta = ?, ID_LH = ? WHERE ID = ?";
+	    String sql = "UPDATE HangHoa SET Ten=?, So_Luong=?, Don_Vi_Tinh=?, Mo_ta=?, ID_LH=?, ID_ViTri=? WHERE ID = ?";
 	    try {
 	        PreparedStatement pst = conn.prepareStatement(sql);
 	        pst.setString(1, hh.getName());
@@ -152,7 +157,8 @@ private static Connection conn;
 	        pst.setString(3, hh.getMeasurement());
 	        pst.setString(4, hh.getDescription());
 	        pst.setString(5, hh.getCatagory());
-	        pst.setInt(6, hh.getId());
+	        pst.setInt(6, hh.getId_position());
+	        pst.setInt(7, hh.getId());
 
 	        int rowsAffected = pst.executeUpdate();
 	        return rowsAffected > 0;

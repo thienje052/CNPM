@@ -25,7 +25,7 @@ public class DAOViTri {
 			while(rs.next()) {
 				return new ViTri(rs.getInt("ID"),
 						rs.getInt("Ke"), rs.getInt("Hang"),
-						rs.getInt("Tang"), rs.getInt("ID_Hang"),
+						rs.getInt("Tang"),
 						rs.getInt("Kho"));
 			}
 		} catch (SQLException e) {
@@ -37,14 +37,14 @@ public class DAOViTri {
 	public List<ViTri> findTrong(int ID_Kho) {
 		List<ViTri> list = new ArrayList<ViTri>();
 		try {
-			String sql = "select * from ViTri where ID_Kho=? and ID_Hang is null";
+			String sql = "select * from ViTri where ID_Kho=? and ID not in (SELECT ID_ViTri from HangHoa)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, ID_Kho);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next())
 				list.add(new ViTri(rs.getInt("ID"),
 						rs.getInt("Ke"), rs.getInt("Hang"),
-						rs.getInt("Tang"), rs.getInt("ID_Hang"),
+						rs.getInt("Tang"),
 						rs.getInt("Kho")));
 			return list;
 		} catch (SQLException e) {
