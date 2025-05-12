@@ -50,14 +50,19 @@ public class DanhMucHangHoa extends HttpServlet {
         	daoLoaiHang.add(new LoaiHang(maLoai, tenLoai));
         } else if ("xoa".equals(action)) {
         	String chonMaLoai = req.getParameter("chonMaLoai");
+        	String xacNhan = req.getParameter("xacNhan");
             if (chonMaLoai != null && !chonMaLoai.isEmpty()) {
-                daoLoaiHang.delete(new LoaiHang(chonMaLoai, null));
+            	 if ("true".equals(xacNhan)) {
+                     daoLoaiHang.delete(new LoaiHang(chonMaLoai, null));
+                 } else {
+                     req.setAttribute("xacNhanXoa", chonMaLoai);
+                 }
             } else {
                 req.setAttribute("error", "Vui lòng chọn một hàng để xóa.");
             }
         } else if ("sua".equals(action)) {
             req.getSession().setAttribute("maLoaiSua", maLoai);
-            resp.sendRedirect("suaLoaiHang.jsp");
+            resp.sendRedirect("3_1.QLHH-DMHH-sua.jsp");
             return;
         }
         hienThiDanhSach(req, resp);
