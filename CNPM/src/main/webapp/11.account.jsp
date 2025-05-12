@@ -44,8 +44,6 @@
 				</select>
 			</div>
 		</div>
->>>>>>> branch 'main' of https://github.com/thienje052/CNPM.git
-
 			<div class="button-group1">
 				<a href="QuanLyTaiKhoanThemInterface" class="button">Thêm</a> <a
 					href="/xoa-tai-khoan" class="button">Xóa</a> <a
