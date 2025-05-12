@@ -304,20 +304,7 @@
      border-radius: 6px;
      width: 100%;
      box-sizing: border-box;
-     
  }
- 
- .fimi-row-group {
-  display: flex;
-  gap: 20px;
-  width: 100%;
-}
-
-.fimi-subgroup {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
 
  .action-buttons {
      display: flex;
@@ -621,8 +608,15 @@
 
 .button-group1 {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center; /* căn giữa theo chiều ngang */
+  gap: 6px; /* khoảng cách giữa nút và dòng lỗi */
+  margin-top: 8px;
+}
+
+.button-group1 > div:first-child {
+  display: flex;
+  gap: 10px;
 }
 
 .button {
@@ -726,6 +720,11 @@ select:focus {
     .button-cancel {
       background-color: #6c757d;
     }
+    .form1-group input,
+.form1-group select {
+  width: 100%;
+  max-width: 100%;
+}
    /*==doitac==*/
     .form-wrapper {
        display: flex;
