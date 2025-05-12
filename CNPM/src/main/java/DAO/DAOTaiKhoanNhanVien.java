@@ -205,14 +205,11 @@ public class DAOTaiKhoanNhanVien {
 		TaiKhoanNhanVien existed = DAOTK.findByAccountID(id);
 		if(existed != null) {
 			try {
-				boolean deleteQuyenTruyCap = DAOQTC.deleteDSQuyenTruyCapbyIDNV(id);
-				System.out.println(deleteQuyenTruyCap);
-				if(deleteQuyenTruyCap == true) {
-					String sql = "delete from TaiKhoanNhanVien where ID=?";
-					PreparedStatement pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, id);
-					return pstmt.executeUpdate() != 0;
-				}
+				boolean deleteQuyenTruyCap = DAOQTC.deleteDSQuyenTruyCapbyIDNV(id);		
+				String sql = "delete from TaiKhoanNhanVien where ID=?";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, id);
+				return pstmt.executeUpdate() != 0;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

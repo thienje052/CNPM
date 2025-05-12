@@ -56,7 +56,7 @@ public class QuanLyTaiKhoanThemSubmit extends HttpServlet {
 			else if (employeeID < nhanVien.getID())
 				employeeID = nhanVien.getID();
 		}
-		String[] selectedPermissions = req.getParameterValues("permissions[]"); // Lấy danh sách quyền từ form
+		String[] selectedPermissions = req.getParameterValues("permissions[]"); 
 
         List<QuyenTruyCap> permissionsList = new ArrayList<>();
 

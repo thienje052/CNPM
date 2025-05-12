@@ -9,11 +9,9 @@
 <link rel="stylesheet" href="./css/main.css" />
 </head>
 <body>
-
+	<form action="QuanLyTaiKhoanXyLy" method="post">
 	<div class="header">Quản lý tài khoản</div>
-
 	<div class="containeraccount">
-
 		<!-- FORM INPUT -->
 		<div class="faho-row">
 			<div class="form-left">
@@ -29,7 +27,8 @@
 					<label for="employeeName">Tên nhân viên</label> <input type="text" id="employeeName" name="employeeName">
 				</div>
 			<div class="faho-group">
-				<label for="warehouse">Kho phụ trách</label> <select id="warehouse" name="warehouse">
+				<label for="warehouse">Kho phụ trách</label> 
+				<select id="warehouse" name="warehouse">
 					<option value="">-Chọn kho-</option>
 					<c:if test="${empty Kho}">
 					    <p>Không có dữ liệu kho.</p>
@@ -42,9 +41,9 @@
 		</div>
 			<div class="button-group1">
 				<div>
-					<a href="QuanLyTaiKhoanThemInterface" class="button">Thêm</a> 
-					<a href="QuanLyTaiKhoanXoa" class="button">Xóa</a> 
-					<a href="12.account-suatk.jsp" class="button">Sửa</a>
+					<input type="submit" name="action" class="button" value="Thêm">
+					<input type="submit" name="action" class="button" value="Xóa">
+					<input type="submit" name="action" class="button" value="Sửa">
 				</div>
 				<div class="error">
 					<c:if test="${error != null}">
@@ -100,5 +99,6 @@
 		</tbody>
 	</table>
 	</div>
+	</form>
 </body>
 </html>
