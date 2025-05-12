@@ -29,10 +29,7 @@ public class QuanLyTaiKhoanThemInterface extends HttpServlet {
 		Connection conn = DBConnector.conn;
 		DAOKho DAOK = new DAOKho(conn);
 		List<Kho> listKho = DAOK.findAll();
-		List<Integer> listID = new ArrayList<Integer>();
-		for (Kho k:listKho)
-			listID.add(k.getID());
-		req.setAttribute("Kho", listID);
+		req.setAttribute("Kho", listKho);
 		req.getRequestDispatcher("13.account-themtk.jsp").forward(req, resp);
 	}
 	@Override

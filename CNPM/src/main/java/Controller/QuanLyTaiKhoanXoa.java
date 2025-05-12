@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import DAO.DAONhanVien;
 import DAO.DAOTaiKhoanNhanVien;
 import DAO.DBConnector;
+import Model.TaiKhoanNhanVien;
 
 @WebServlet("/QuanLyTaiKhoanXoa")
 public class QuanLyTaiKhoanXoa extends HttpServlet{
@@ -26,26 +27,18 @@ public class QuanLyTaiKhoanXoa extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String[] selectedParams = req.getParameterValues("selectedItems");
-
-	    if (selectedParams != null) {
-	        List<Integer> selectedList = new ArrayList<Integer>();
-
-	        // Chuyển đổi từ String sang Integer
-	        for (String item : selectedParams) {
-	            try {
-	                selectedList.add(Integer.parseInt(item)); // Chuyển từ String sang int
-	            } catch (NumberFormatException e) {
-	                System.out.println("Lỗi định dạng số: " + item);
-	            }
-	        }
-
-	        // Gửi danh sách về JSP để hiển thị
-	        req.setAttribute("selectedList", selectedList);
-	        req.getRequestDispatcher("DanhSach.jsp").forward(req, resp);
+        String selected = req.getParameter("selectedAccount");
+	    if (selected != null) {
+	    	DAOTK.deleteUserAccount(Integer.parseInt(selected));
+	        req.getRequestDispatcher("QuanLyTaiKhoan").forward(req, resp);
 	    } else {
-	        System.out.println("Không có dữ liệu được chọn!");
-	        resp.sendRedirect("DanhSach.jsp");
+	    	req.setAttribute("error", "Chọn tài khoản để xóa!");
+	        req.getRequestDispatcher("QuanLyTaiKhoan").forward(req, resp);
 	    }
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
 	}
 }

@@ -57,7 +57,7 @@
               <option disabled>Không có dữ liệu kho.</option>
             </c:if>
             <c:forEach var="kho" items="${Kho}">
-              <option value="${kho}">${kho}</option>
+              <option value="${kho.ID}">${kho.ID}</option>
             </c:forEach>
           </select>
         </div>

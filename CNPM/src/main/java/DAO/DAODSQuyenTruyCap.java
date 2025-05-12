@@ -62,11 +62,11 @@ public class DAODSQuyenTruyCap {
 		}
 		return false;
 	}
-	public boolean deleteDSQuyenTruyCapbyIDNV(TaiKhoanNhanVien Account) {
+	public boolean deleteDSQuyenTruyCapbyIDNV(int id) {
 		try {
 			String sql = "delete from DSQuyenTruyCap where ID_NV=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, Account.getID());
+			pstmt.setInt(1, id);
 			int success = pstmt.executeUpdate();
 			return success != 0;
 		} catch (Exception e) {

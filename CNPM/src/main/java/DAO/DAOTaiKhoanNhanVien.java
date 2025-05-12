@@ -199,16 +199,16 @@ public class DAOTaiKhoanNhanVien {
 		return false;
 	}
 	
-	public boolean deleteUserAccount(TaiKhoanNhanVien Account) {
+	public boolean deleteUserAccount(int id) {
 		DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(conn);
 		DAODSQuyenTruyCap DAOQTC = new DAODSQuyenTruyCap(conn);
-		TaiKhoanNhanVien existed = DAOTK.findByAccountID(Account.getID());
+		TaiKhoanNhanVien existed = DAOTK.findByAccountID(id);
 		if(existed != null) {
 			try {
-				boolean deleteQuyenTruyCap = DAOQTC.deleteDSQuyenTruyCapbyIDNV(Account);
+				boolean deleteQuyenTruyCap = DAOQTC.deleteDSQuyenTruyCapbyIDNV(id);
 				String sql = "delete from TaiKhoanNhanVien where TenDangNhap like ?";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, Account.getUserAccount());
+				pstmt.setInt(1, id);
 				int success = pstmt.executeUpdate();
 				if(success != 0 && deleteQuyenTruyCap)
 					return true;
