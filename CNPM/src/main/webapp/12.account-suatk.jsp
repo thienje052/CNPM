@@ -5,69 +5,88 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sửa tài khoản</title>
-    <link rel="stylesheet" href="./css/12.account-suatk.css">
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 
   <div class="header">Quản lý tài khoản - Sửa tài khoản</div>
 
-  <div class="container">
-    <form method="POST" action="/sua-tai-khoan">
-      <div class="form-column">
-        <div class="form-group">
-          <label for="employeeName">Tên nhân viên</label>
-          <input type="text" id="employeeName" name="employeeName" required>
+  <div class="containerthemsuatk">
+    <form class="themsuatkform" method="POST" action="/sua-tai-khoan">
+
+      <!-- Cột trái -->
+      <div class="form1-column">
+        <div class="form1-group">
+          <label class="a" for="employeeName">Tên nhân viên</label>
+          <input type="text" id="employeeName" name="employeeName" value="${tk.tenNhanVien}" required>
         </div>
-        <div class="form-group">
-          <label for="phone">Số điện thoại</label>
-          <input type="text" id="phone" name="phone">
+
+        <div class="form1-group">
+          <label class="a" for="phone">Số điện thoại</label>
+          <input type="text" id="phone" name="phone" value="${tk.soDienThoai}">
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email">
+
+        <div class="form1-group">
+          <label class="a" for="email">Email</label>
+          <input type="email" id="email" name="email" value="${tk.email}">
         </div>
-        <div class="form-group">
-          <label for="position">Vị trí</label>
+
+        <div class="form1-group">
+          <label class="a" for="position">Vị trí</label>
           <select id="position" name="position">
             <option value="">-- Chọn vị trí --</option>
-            <option value="nhanvien">Nhân viên</option>
-            <option value="quanly">Quản lý</option>
+            <option value="nhanvien" ${tk.vitri == 'nhanvien' ? 'selected' : ''}>Nhân viên</option>
+            <option value="quanly" ${tk.vitri == 'quanly' ? 'selected' : ''}>Quản lý</option>
           </select>
         </div>
       </div>
 
-      <div class="form-column">
-        <div class="form-group">
-          <label for="username">Tên đăng nhập</label>
-          <input type="text" id="username" name="username" required>
+      <!-- Cột phải -->
+      <div class="form1-column">
+        <div class="form1-group">
+          <label class="a" for="username">Tên đăng nhập</label>
+          <input type="text" id="username" name="username" value="${tk.username}" required>
         </div>
-        <div class="form-group">
-          <label for="password">Mật khẩu</label>
-          <input type="password" id="password" name="password" required>
+
+        <div class="form1-group">
+          <label class="a" for="password">Mật khẩu</label>
+          <input type="password" id="password" name="password" value="${tk.password}" required>
         </div>
-        <div class="form-group">
-          <label for="warehouse">Kho phụ trách</label>
+
+        <div class="form1-group">
+          <label class="a" for="warehouse">Kho phụ trách</label>
           <select id="warehouse" name="warehouse">
             <option value="">-- Chọn kho --</option>
-            <option value="kho1">Kho 1</option>
-            <option value="kho2">Kho 2</option>
+            <c:forEach var="k" items="${dsKho}">
+              <option value="${k}" ${tk.kho == k ? 'selected' : ''}>${k}</option>
+            </c:forEach>
           </select>
         </div>
-        <div class="form-group">
-          <label>Quyền truy cập <span class="required">( * )</span></label>
+
+        <div class="form1-group">
+          <label class="a">Quyền truy cập <span class="required">( * )</span></label>
           <div class="checkbox-group">
-            <label><input type="checkbox" name="permissions[]" value="nhapxuat"> Quản lý nhập/xuất</label>
-            <label><input type="checkbox" name="permissions[]" value="hanghoa"> Quản lý hàng hóa</label>
-            <label><input type="checkbox" name="permissions[]" value="taikhoan"> Quản lý tài khoản</label>
-            <label><input type="checkbox" name="permissions[]" value="thongke"> Báo cáo thống kê</label>
+            <label class="a"><input type="checkbox" name="permissions[]" value="nhapxuat"
+              <c:if test="${tk.permissions.contains('nhapxuat')}">checked</c:if>> Quản lý nhập/xuất</label>
+
+            <label class="a"><input type="checkbox" name="permissions[]" value="hanghoa"
+              <c:if test="${tk.permissions.contains('hanghoa')}">checked</c:if>> Quản lý hàng hóa</label>
+
+            <label class="a"><input type="checkbox" name="permissions[]" value="taikhoan"
+              <c:if test="${tk.permissions.contains('taikhoan')}">checked</c:if>> Quản lý tài khoản</label>
+
+            <label class="a"><input type="checkbox" name="permissions[]" value="thongke"
+              <c:if test="${tk.permissions.contains('thongke')}">checked</c:if>> Báo cáo thống kê</label>
           </div>
         </div>
       </div>
 
-      <div class="button-group" style="width: 100%;">
+      <!-- Nút hành động -->
+      <div class="button-group3" style="width: 100%;">
         <button type="submit" class="button-confirm">Xác nhận</button>
         <button type="button" onclick="window.history.back()" class="button-cancel">Hủy</button>
       </div>
+
     </form>
   </div>
 
