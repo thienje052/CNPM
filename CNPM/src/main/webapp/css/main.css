@@ -644,87 +644,139 @@
   padding: 8px;
   text-align: center;
 }
-input[type="text"],
-select {
-  height: 38px;
-  padding: 0 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
-  font-family: inherit;
-  width: 220px;
-  background-color: white;
-  transition: border-color 0.2s ease-in-out;
+
+/*==account-themsuatk==*/
+/* Vùng header */
+.custom-acc-header {
+  background-color: #e5e5e5;
+  padding: 16px 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #0D47A1;;
 }
 
-input[type="text"]:focus,
-select:focus {
-  border-color: #1976d2;
+/* Container */
+.custom-acc-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 25px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px #eee;
+}
+
+/* Form */
+.custom-acc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Chia 2 cột */
+.custom-acc-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* Cột trái/phải */
+.custom-acc-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Nhóm label + input/select */
+.custom-acc-group label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Input & Select */
+.custom-acc-input,
+.custom-acc-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.custom-acc-input:focus,
+.custom-acc-select:focus {
+  border-color: #0057b8;
   outline: none;
 }
-/*==account-themsuatk==*/
-.containerthemsuatk {
-      padding: 20px 40px;
-    }
-    .themsuatkform {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-    }
-    .form1-column {
-      flex: 1;
-      min-width: 300px;
-    }
-    .form1-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 15px;
-    }
-    .a {
-      margin-bottom: 5px;
-      font-size: 14px;
-    }
-    input, select {
-      padding: 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .checkbox-group {
-      margin-top: 8px;
-    }
-    .checkbox-group label {
-      display: block;
-      font-size: 14px;
-      margin: 3px 0;
-    }
-    .required {
-      color: red;
-    }
-    .button-group3 {
-      margin-top: 20px;
-      text-align: center;
-    }
-    .button-group3 button {
-      padding: 8px 20px;
-      margin: 0 10px;
-      border: none;
-      border-radius: 4px;
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    .button-confirm {
-      background-color: #007bff;
-    }
-    .button-cancel {
-      background-color: #6c757d;
-    }
-    .form1-group input,
-.form1-group select {
-  width: 100%;
-  max-width: 100%;
+
+/* Required dấu sao */
+.custom-acc-required {
+  color: red;
+  font-weight: bold;
 }
+
+/* Checkbox layout */
+.custom-acc-checkbox-grid {
+  display: flex;
+  gap: 40px;
+  margin-top: 8px;
+}
+
+.custom-acc-checkbox-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Checkbox khoảng cách */
+.custom-acc-checkbox {
+  margin-right: 6px;
+}
+
+/* Button group */
+.custom-acc-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+/* Buttons style */
+.custom-acc-btn {
+  padding: 10px 24px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 120px;
+  transition: background-color 0.3s;
+}
+
+/* Confirm button */
+.custom-acc-btn-confirm {
+  background-color: #007bff;
+  color: white;
+}
+
+.custom-acc-btn-confirm:hover {
+  background-color: #0056b3;
+}
+
+/* Cancel button */
+.custom-acc-btn-cancel {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.custom-acc-btn-cancel:hover {
+  background-color: #c2c2c2;
+}
+
+
    /*==doitac==*/
     .form-wrapper {
        display: flex;
