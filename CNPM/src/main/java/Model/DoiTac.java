@@ -1,42 +1,42 @@
 package Model;
 
 public class DoiTac {
-	private int ID;
-	private String Name;
-	private String Email;
-	private String PhoneNumber;
-	public DoiTac(int iD, String name, String email, String phoneNumber) {
+    private int id;
+    private String name;
+    private String email;
+    private String phoneNumber;
+	public DoiTac(int id, String name, String phoneNumber, String email) {
 		super();
-		ID = iD;
-		Name = name;
-		Email = email;
-		PhoneNumber = phoneNumber;
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
 	}
 	public DoiTac() {
 		super();
 	}
-	public int getID() {
-		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
-	}
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
-	}
-	public String getEmail() {
-		return Email;
-	}
-	public void setEmail(String email) {
-		Email = email;
+		this.name = name;
 	}
 	public String getPhoneNumber() {
-		return PhoneNumber;
+		return phoneNumber;
 	}
 	public void setPhoneNumber(String phoneNumber) {
-		PhoneNumber = phoneNumber;
+		this.phoneNumber = phoneNumber;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

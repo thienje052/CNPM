@@ -104,7 +104,7 @@
 					<c:if test="${ChucVu eq QuanLyRole}">
 						<li><img
 							src="${pageContext.request.contextPath}/image-source/doitac.svg"
-							alt=""> <a href="14.doitac.jsp" target="main-frame">Thông tin đối tác</a></li>
+							alt=""> <a href="doiTac" target="main-frame">Thông tin đối tác</a></li>
 					</c:if>
 				</ul>
 			</div>

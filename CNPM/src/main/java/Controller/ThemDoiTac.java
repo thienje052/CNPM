@@ -8,26 +8,18 @@ import java.sql.*;
 
 import Model.DoiTac;
 import DAO.DAODoiTac;
+import DAO.DAOLoaiHang;
 import DAO.DBConnector;
 
 @WebServlet("/themDoiTac")
 public class ThemDoiTac extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DAODoiTac dAODoiTac;
+	private DAODoiTac dAODoiTac = new DAODoiTac(DBConnector.conn);
 
-    @Override
-    public void init() {
-        try {
-            Connection conn = DBConnector.getConnectionAuth();
-            dAODoiTac = new DAODoiTac(conn);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/15.doitac-themDT.html").forward(req, resp);
+        req.getRequestDispatcher("/15.doitac-themDT.jsp").forward(req, resp);
     }
 
     // Xử lý thêm đối tác
@@ -37,8 +29,8 @@ public class ThemDoiTac extends HttpServlet {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
-        DoiTac doiTac = new DoiTac(0, name, email, phone);
+        DoiTac doiTac = new DoiTac(0, name, phone, email);
         dAODoiTac.add(doiTac);
-        req.getRequestDispatcher("/15.doitac-themDT.html").forward(req, resp);
+        req.getRequestDispatcher("doiTac").forward(req, resp);
     }
 }

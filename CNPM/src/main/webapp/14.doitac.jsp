@@ -14,7 +14,7 @@
 
 	<div class="header">Quản lý đối tác</div>
 
-	<form action="/delete-partner" method="POST">
+	<form action="doiTac" method="POST">
 		<div class="form-wrapper">
 			<div class="form-group-custom">
 				<label for="partnerId" class="form-label">Mã đối tác</label> <input
@@ -29,12 +29,31 @@
 
 		<div class="button-group">
 			<a href="15.doitac-themDT.jsp" class="btn btn-primary btn-custom">Thêm</a>
-			<button type="submit" class="btn btn-primary btn-custom">Xóa</button>
+			<button type="submit" class="btn btn-primary btn-custom" name="action" value="xoa">Xóa</button>
 			<a href="16.doitac-sua.jsp" class="btn btn-primary btn-custom">Sửa</a>
 		</div>
-	</form>
-
-	<div class="table-responsive px-3">
+		<div class="form-top">
+			<c:if test="${not empty error}">
+				<p style="color: red;">${error}</p>
+			</c:if>
+		</div>
+		<div class="form-top">
+			<div class="foam-group">
+				<c:if test="${not empty xacNhanXoa}">
+					<div>
+			        	<p>Bạn có chắc chắn muốn xóa loại hàng có mã: <strong>${xacNhanXoa}</strong> không?</p>
+        				<input type="hidden" name="chonDoiTac" value="${xacNhanXoa}">
+       					<input type="hidden" name="action" value="xoa">
+        				<input type="hidden" name="xacNhan" value="true">
+        				<div class="fom-buttons">
+        					<button type="submit">Xác nhận xóa</button>
+        					<button type="button" onclick="window.history.back()" class="button-cancel">Hủy</button>
+        				</div>
+        			</div>
+        		</c:if>
+        	</div>
+        </div>
+        <div class="table-responsive px-3">
 		<table class="table table-bordered">
 			<thead class="table-light">
 				<tr>
@@ -50,11 +69,11 @@
 					<c:when test="${not empty dsDoiTac}">
 						<c:forEach var="dt" items="${dsDoiTac}">
 							<tr>
-								<td><input type="radio" name="chonDoiTac" value="${dt.ID}" /></td>
-								<td>${dt.ID}</td>
-								<td>${dt.Name}</td>
-								<td>${dt.PhoneNumber}</td>
-								<td>${dt.Email}</td>
+								<td><input type="radio" name="chonDoiTac" value="${dt.id}" /></td>
+								<td>${dt.id}</td>
+								<td>${dt.name}</td>
+								<td>${dt.phoneNumber}</td>
+								<td>${dt.email}</td>
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -67,6 +86,6 @@
 			</tbody>
 		</table>
 	</div>
-
+	</form>
 </body>
 </html>
