@@ -1,20 +1,25 @@
 package Model;
+import java.util.List;
 import java.util.Objects;
 import java.time.LocalDateTime;
 
 public class Phieu {
+	
 	private int ID;
 	private int ID_Partner;
 	private int ID_Employee;
 	private LoaiPhieu Type;
 	private LocalDateTime DateTime;
-	public Phieu(int iD, int iD_Partner, int iD_Employee, LoaiPhieu type, LocalDateTime dateTime) {
+//	private List<String> maHangList;
+	public Phieu(int iD, int iD_Partner, int iD_Employee, LoaiPhieu type, LocalDateTime dateTime/*,
+			List<String> maHangList*/) {
 		super();
 		ID = iD;
 		ID_Partner = iD_Partner;
 		ID_Employee = iD_Employee;
 		Type = type;
 		DateTime = dateTime;
+		//this.maHangList = maHangList;
 	}
 	public Phieu() {
 		super();
@@ -49,6 +54,12 @@ public class Phieu {
 	public void setDateTime(LocalDateTime dateTime) {
 		DateTime = dateTime;
 	}
+//	public List<String> getMaHangList() {
+//		return maHangList;
+//	}
+//	public void setMaHangList(List<String> maHangList) {
+//		this.maHangList = maHangList;
+//	}
 	
 	@Override
     public boolean equals(Object o) {

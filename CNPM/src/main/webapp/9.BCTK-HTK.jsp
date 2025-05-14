@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -36,7 +38,9 @@
 							<td>${hang.quantity}</td>
 							<td>${hang.measurement}</td>
 							<td>${hang.id_position}</td>
-							<td>${hang.ngayNhap}</td>
+							<td>
+								<fmt:formatDate value="${mapNgay[hang.id]}" pattern="dd/MM/yyyy" />
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

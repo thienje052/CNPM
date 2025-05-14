@@ -1,6 +1,7 @@
 package DAO;
 
 	import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,16 +17,18 @@ private static Connection conn;
 		DAOHangHoa.conn = conn;
 	}
 	
-	public List<HangHoa> getAllByTime(int month, int year) {
-		List<HangHoa> list = new ArrayList<HangHoa>();
+	public List<HangHoa> getAllByTime() {//int month, int year
+		List<HangHoa> list = new ArrayList<>();//HangHoa
+		String sql = "SELECT * FROM HangHoa WHERE ID_ViTri IS NOT NULL";
 		try {
-			String sql = "select HangHoa.*, NgayTao from HangHoa join ChiTietPhieu on ChiTietPhieu.ID_HangHoa=HangHoa.ID"
-					+ " join Phieu on Phieu.ID=ChiTietPhieu.ID_Phieu"
-					+ " where ID_ViTri is not null and MONTH(NgayTao)=? and YEAR(NgayTao)=?";	
+//			String sql = "select HangHoa.*, NgayTao from HangHoa join ChiTietPhieu on ChiTietPhieu.ID_HangHoa=HangHoa.ID"
+//					+ " join Phieu on Phieu.ID=ChiTietPhieu.ID_Phieu"
+//					+ " where ID_ViTri is not null and MONTH(NgayTao)=? and YEAR(NgayTao)=?";	
+			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, month);
-			pstmt.setInt(2, year);
-			ResultSet rs = pstmt.executeQuery(sql);
+//			pstmt.setInt(1, month);
+//			pstmt.setInt(2, year);
+			ResultSet rs = pstmt.executeQuery();//sql
 			while(rs.next()) {
 				list.add(new HangHoa(rs.getInt("ID"),
 						rs.getString("Ten"), 
@@ -41,6 +44,24 @@ private static Connection conn;
 		}
 		return null;
 	}
+	
+	public Date getNgayNhapForHang(int ID) {
+        String sql = "SELECT NgayTao AS NgayNhap " +
+                     "FROM Phieu " +
+                     "JOIN ChiTietPhieu ON Phieu.ID = ChiTietPhieu.ID_Phieu " +
+                     "WHERE ChiTietPhieu.ID_HangHoa = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, ID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getDate("NgayNhap");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;  
+    }
 	
 	public int findMAXID() {
 		try {

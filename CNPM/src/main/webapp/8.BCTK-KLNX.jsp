@@ -33,7 +33,7 @@
 
     <table>
       <thead>
-        <tr>
+        <tr>	
           <th>Mã đơn</th>
           <th>Mã đối tác</th>
           <th>Mã nhân viên</th>

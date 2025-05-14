@@ -28,6 +28,7 @@ public class DAOPhieu {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
+				
 				String loaiPhieuDB = rs.getString("loaiPhieu").trim();
 
 	            // Chuyển đổi từ mô tả sang Enum
@@ -85,7 +86,7 @@ public class DAOPhieu {
 		try {
 			String sql = "select * from Phieu where ID_DoiTac=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, doitac.getId());
+			pstmt.setString(1, String.valueOf(doitac.getId()));
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(new Phieu(rs.getInt("ID"), 
