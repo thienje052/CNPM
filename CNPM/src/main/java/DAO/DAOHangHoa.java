@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import Model.HangHoa;
 import Model.LoaiHang;
@@ -13,6 +15,28 @@ public class DAOHangHoa {
 private static Connection conn;
 	public DAOHangHoa(Connection conn) {
 		DAOHangHoa.conn = conn;
+	}
+	
+	public List<HangHoa> getAll() {
+		List<HangHoa> list = new ArrayList<HangHoa>();
+		try {
+			String sql = "select * from HangHoa where ID_ViTri is not null";	
+			Statement pstmt = conn.createStatement();
+			ResultSet rs = pstmt.executeQuery(sql);
+			while(rs.next()) {
+				list.add(new HangHoa(rs.getInt("ID"),
+						rs.getString("Ten"), 
+						rs.getInt("So_Luong"),
+						rs.getString("Don_Vi_Tinh"),
+						rs.getString("Mo_ta"),	
+						rs.getString("ID_LH"),
+						rs.getInt("ID_ViTri")));
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public int findMAXID() {
