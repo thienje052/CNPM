@@ -9,7 +9,7 @@ public class HangHoa {
     private int quantity;
     private String measurement;
     private String description;
-    private int catagory;
+    private String catagory;
     private int id_position;
     @Override
     public boolean equals(Object obj) {
@@ -23,7 +23,7 @@ public class HangHoa {
                Objects.equals(catagory, hangHoa.catagory);
     }
 
-    public HangHoa(int id, String name, int quantity, String measurement, String description, int catagory, int id_position) {
+    public HangHoa(int id, String name, int quantity, String measurement, String description, String catagory, int id_position) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -73,11 +73,11 @@ public class HangHoa {
         this.description = description;
     }
 
-    public int getCatagory() {
+    public String getCatagory() {
         return catagory;
     }
 
-    public void setCatagory(int catagory) {
+    public void setCatagory(String catagory) {
         this.catagory = catagory;
     }
 
