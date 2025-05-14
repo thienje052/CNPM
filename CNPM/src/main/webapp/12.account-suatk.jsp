@@ -1,5 +1,13 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'main' of https://github.com/thienje052/CNPM.git
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'main' of https://github.com/thienje052/CNPM.git
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -32,6 +40,7 @@
           <input type="email" id="email" name="email" value="${nv.email}">
         </div>
 
+<<<<<<< HEAD
         <div class="form1-group">
           <label class="a" for="position">Vị trí</label>
           <select id="position" name="position">
@@ -98,6 +107,17 @@
 
     </form>
   </div>
+=======
+			<!-- Nút -->
+			<div class="custom-acc-btn-group">
+				<button type="submit" class="custom-acc-btn custom-acc-btn-confirm">Xác
+					nhận</button>
+				<button type="button" onclick="window.history.back()"
+					class="custom-acc-btn custom-acc-btn-cancel">Hủy</button>
+			</div>
+		</form>
+	</div>
+>>>>>>> branch 'main' of https://github.com/thienje052/CNPM.git
 
 </body>
 </html>
