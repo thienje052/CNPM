@@ -77,10 +77,8 @@
 			<div class="fimi-group buttons-cell">
 				<label>&nbsp;</label>
 				<div class="action-buttons">
-					<button type="submit" name="action" value="themHang">Thêm
-						hàng</button>
-					<button type="submit" name="action" value="xoaHang">Xóa
-						hàng</button>
+					<button type="submit" name="action" value="themHang">Thêm hàng</button>
+					<button type="submit" name="action" value="xoaHang">Xóa hàng</button>
 				</div>
 			</div>
 		</div>
@@ -110,16 +108,15 @@
 							<td>${hh.quantity}</td>
 							<td>${hh.measurement}</td>
 							<td>${hh.description}</td>
-							<td><c:choose>
-									<c:when test="${not empty param.viTri}">${param.viTri}</c:when>
-									<c:otherwise></c:otherwise>
-								</c:choose></td>
+							<td></td>
+						<c:if test="${empty sessionScope.dshh}">
+            				<tr><td colspan="8" class="text-center">Chưa có hàng nào.</td></tr>
+          				</c:if>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</tbody>
 		</table>
-
 		<div class="footer-buttons">
 			<button type="submit" name="action" value="xacNhan">Xác nhận</button>
 			<button type="submit" name="action" value="huy">Hủy</button>
