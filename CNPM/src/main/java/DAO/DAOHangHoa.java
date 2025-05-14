@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.HangHoa;
-import Model.LoaiHang;
 public class DAOHangHoa {
 	
 private static Connection conn;
@@ -17,19 +16,23 @@ private static Connection conn;
 		DAOHangHoa.conn = conn;
 	}
 	
-	public List<HangHoa> getAll() {
+	public List<HangHoa> getAllByTime(int month, int year) {
 		List<HangHoa> list = new ArrayList<HangHoa>();
 		try {
-			String sql = "select * from HangHoa where ID_ViTri is not null";	
-			Statement pstmt = conn.createStatement();
+			String sql = "select HangHoa.*, NgayTao from HangHoa join ChiTietPhieu on ChiTietPhieu.ID_HangHoa=HangHoa.ID"
+					+ " join Phieu on Phieu.ID=ChiTietPhieu.ID_Phieu"
+					+ " where ID_ViTri is not null and MONTH(NgayTao)=? and YEAR(NgayTao)=?";	
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, month);
+			pstmt.setInt(2, year);
 			ResultSet rs = pstmt.executeQuery(sql);
 			while(rs.next()) {
 				list.add(new HangHoa(rs.getInt("ID"),
 						rs.getString("Ten"), 
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
-						rs.getString("Mo_ta"),	
-						rs.getString("ID_LH"),
+						rs.getString("Mo_ta"),
+						rs.getInt("ID_LH"),
 						rs.getInt("ID_ViTri")));
 			}
 			return list;
@@ -66,7 +69,7 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getString("ID_LH"),
+						rs.getInt("ID_LH"),
 						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
@@ -88,7 +91,7 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getString("ID_LH"),
+						rs.getInt("ID_LH"),
 						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
@@ -110,7 +113,7 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getString("ID_LH"),
+						rs.getInt("ID_LH"),
 						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
@@ -132,7 +135,7 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getString("ID_LH"),
+						rs.getInt("ID_LH"),
 						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
@@ -149,7 +152,7 @@ private static Connection conn;
 	        pst.setInt(2, hh.getQuantity());
 	        pst.setString(3, hh.getMeasurement());
 	        pst.setString(4, hh.getDescription());
-	        pst.setString(5, hh.getCatagory());
+	        pst.setInt(5, hh.getCatagory());
 	        pst.setInt(6, hh.getId_position());
 
 	        int rowsAffected = pst.executeUpdate();
@@ -179,7 +182,7 @@ private static Connection conn;
 	        pst.setInt(2, hh.getQuantity());
 	        pst.setString(3, hh.getMeasurement());
 	        pst.setString(4, hh.getDescription());
-	        pst.setString(5, hh.getCatagory());
+	        pst.setInt(5, hh.getCatagory());
 	        pst.setInt(6, hh.getId_position());
 	        pst.setInt(7, hh.getId());
 

@@ -83,10 +83,3 @@
       <div class="custom-acc-btn-group">
         <button type="submit" class="custom-acc-btn custom-acc-btn-confirm">Xác nhận</button>
         <button type="button" onclick="window.history.back()" class="custom-acc-btn custom-acc-btn-cancel">Hủy</button>
-      </div>
-
-    </form>
-  </div>
-
-</body>
-</html>
