@@ -10,16 +10,15 @@ public class Phieu {
 	private int ID_Employee;
 	private LoaiPhieu Type;
 	private LocalDateTime DateTime;
-//	private List<String> maHangList;
-	public Phieu(int iD, int iD_Partner, int iD_Employee, LoaiPhieu type, LocalDateTime dateTime/*,
-			List<String> maHangList*/) {
+
+	public Phieu(int iD, int iD_Partner, int iD_Employee, LoaiPhieu type, LocalDateTime dateTime) {
 		super();
 		ID = iD;
 		ID_Partner = iD_Partner;
 		ID_Employee = iD_Employee;
 		Type = type;
 		DateTime = dateTime;
-		//this.maHangList = maHangList;
+
 	}
 	public Phieu() {
 		super();
@@ -54,12 +53,7 @@ public class Phieu {
 	public void setDateTime(LocalDateTime dateTime) {
 		DateTime = dateTime;
 	}
-//	public List<String> getMaHangList() {
-//		return maHangList;
-//	}
-//	public void setMaHangList(List<String> maHangList) {
-//		this.maHangList = maHangList;
-//	}
+
 	
 	@Override
     public boolean equals(Object o) {

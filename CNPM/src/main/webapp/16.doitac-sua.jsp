@@ -13,32 +13,32 @@
 
   <div class="form-containerthemsuaDT">
     <form action="suaDoiTac" method="POST">
-      <!-- Gửi ID đối tác để biết đang sửa ai -->
-      <input type="hidden" name="id" value="${doiTac.ID}" />
+      <input type="hidden" name="action" value="sua" />
+      <input type="hidden" name="id" value="${dt.id}" />
 
       <div class="mb-3 form-group">
         <label for="partnerName" class="form-label">Tên đối tác</label>
         <input type="text" class="form-control" id="partnerName" name="partnerName"
-               value="${doiTac.Name}" required>
+               value="${dt.name}" required>
       </div>
 
       <div class="mb-3 form-group">
         <label for="phone" class="form-label">Số điện thoại</label>
         <input type="text" class="form-control" id="phone" name="phone"
-               value="${doiTac.PhoneNumber}" required>
+               value="${dt.phoneNumber}" required>
       </div>
 
       <div class="mb-3 form-group">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control" id="email" name="email"
-               value="${doiTac.Email}" required>
+               value="${dt.email}" required>
       </div>
 
       <hr>
 
       <div class="text-center">
         <button type="submit" class="btn btn-primary btn-custom me-2">Xác nhận</button>
-        <a href="14.doitac.jsp" class="btn btn-primary btn-custom">Hủy</a>
+        <a href="doiTac" class="btn btn-primary btn-custom">Hủy</a>
       </div>
     </form>
   </div>

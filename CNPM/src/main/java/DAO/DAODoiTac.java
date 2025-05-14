@@ -39,7 +39,7 @@ public class DAODoiTac {
 			while(rs.next()) {
 				dt = new DoiTac(rs.getInt("ID"),
 						rs.getString("Ten"),
-						rs.getString(""),
+						rs.getString("So_Dien_Thoai"),
 						rs.getString("Email"));
 			}
 		} catch (SQLException e) {
@@ -58,7 +58,7 @@ public class DAODoiTac {
 			while(rs.next()) {
 				dt = new DoiTac(rs.getInt("ID"),
 						rs.getString("Ten"),
-						rs.getString("SDT"),
+						rs.getString("So_Dien_Thoai"),
 						rs.getString("Email"));
 			}
 		} catch (SQLException e) {

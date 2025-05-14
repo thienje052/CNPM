@@ -16,8 +16,8 @@
 	<div class="sectionb">
 		<h4>Hàng tồn kho</h4>
 
-		<form action="/inventory-report" method="POST">
-			<!-- Bạn có thể thêm bộ lọc tại đây nếu muốn -->
+		<form action="/HangTonKho" method="POST">
+			<!-- Bạn có thể thêm bộ lọc tại đây nếu muốn inventory-report-->
 
 			<table class="bangdulieu">
 				<thead>

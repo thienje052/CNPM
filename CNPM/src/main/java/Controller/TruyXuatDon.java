@@ -26,15 +26,6 @@ public class TruyXuatDon extends HttpServlet {
 	
 	private DAOPhieu phieu = new DAOPhieu(DBConnector.conn);
 
-//    public void init() {
-//        try {
-//            Connection conn = DBConnector.getConnectionAuth();
-//            phieu = new DAOPhieu(conn);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	request.setCharacterEncoding("UTF-8");
