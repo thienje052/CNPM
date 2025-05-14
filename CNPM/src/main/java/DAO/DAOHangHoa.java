@@ -32,7 +32,7 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),
-						rs.getInt("ID_LH"),
+						rs.getString("ID_LH"),
 						rs.getInt("ID_ViTri")));
 			}
 			return list;
@@ -69,7 +69,7 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getInt("ID_LH"),
+						rs.getString("ID_LH"),
 						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
@@ -91,7 +91,7 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getInt("ID_LH"),
+						rs.getString("ID_LH"),
 						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
@@ -113,7 +113,7 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getInt("ID_LH"),
+						rs.getString("ID_LH"),
 						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
@@ -135,7 +135,7 @@ private static Connection conn;
 						rs.getInt("So_Luong"),
 						rs.getString("Don_Vi_Tinh"),
 						rs.getString("Mo_ta"),	
-						rs.getInt("ID_LH"),
+						rs.getString("ID_LH"),
 						rs.getInt("ID_ViTri"));
 			}
 		} catch (SQLException e) {
@@ -152,7 +152,7 @@ private static Connection conn;
 	        pst.setInt(2, hh.getQuantity());
 	        pst.setString(3, hh.getMeasurement());
 	        pst.setString(4, hh.getDescription());
-	        pst.setInt(5, hh.getCatagory());
+	        pst.setString(5, hh.getCatagory());
 	        pst.setInt(6, hh.getId_position());
 
 	        int rowsAffected = pst.executeUpdate();
@@ -182,7 +182,7 @@ private static Connection conn;
 	        pst.setInt(2, hh.getQuantity());
 	        pst.setString(3, hh.getMeasurement());
 	        pst.setString(4, hh.getDescription());
-	        pst.setInt(5, hh.getCatagory());
+	        pst.setString(5, hh.getCatagory());
 	        pst.setInt(6, hh.getId_position());
 	        pst.setInt(7, hh.getId());
 
