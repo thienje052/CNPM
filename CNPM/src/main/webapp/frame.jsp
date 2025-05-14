@@ -116,7 +116,7 @@
 		</div>
 
 		<iframe class="col-10" name="main-frame"
-			src="${pageContext.request.contextPath}/2.trangchu.jsp"
+			src="TrangChu"
 			style="flex: 1; border: none; width: 100%; height: 100vh; padding: 0;"></iframe>
 	</div>
 

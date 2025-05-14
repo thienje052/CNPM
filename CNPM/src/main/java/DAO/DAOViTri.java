@@ -34,6 +34,20 @@ public class DAOViTri {
 		return null;
 	}
 	
+	public int soKeTrong(int ID_Kho) {
+		try {
+			String sql = "select count(ID) as Number from ViTri where ID_Kho=? and ID not in (SELECT ID_ViTri from HangHoa)";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ID_Kho);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next())
+				return rs.getInt("Number");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
 	public List<ViTri> findTrong(int ID_Kho) {
 		List<ViTri> list = new ArrayList<ViTri>();
 		try {

@@ -39,7 +39,7 @@
 
     <div class="box so-ke-trong">
       <h3>Số kệ trống</h3>
-      <div class="ke-trong">8</div>
+      <div class="ke-trong">${SoKeTrong}</div>
     </div>
 </div>
 </body>
