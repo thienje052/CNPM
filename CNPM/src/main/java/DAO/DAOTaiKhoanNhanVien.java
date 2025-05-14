@@ -217,21 +217,19 @@ public class DAOTaiKhoanNhanVien {
 		return false;
 	}
 	
-	public boolean updateUserAccount(int ID) {
-		DAOTaiKhoanNhanVien DAOTK = new DAOTaiKhoanNhanVien(conn);
-		DAODSQuyenTruyCap DAOQTC = new DAODSQuyenTruyCap(conn);
-		TaiKhoanNhanVien existed = DAOTK.findByAccountID(ID);
+	public boolean updateUserAccount(TaiKhoanNhanVien ID) {
+		TaiKhoanNhanVien existed = findByAccountID(ID.getID());
 		if(existed != null) {
 			try {
-				boolean deleteQuyenTruyCap = DAOQTC.deleteDSQuyenTruyCapbyIDNV(ID);
-				String sql = "update TaiKhoanNhanVien "
-						+ "set TenDangNhap=?, MatKhau=?, ID_NV=?, ID_Kho=?"
-						+ " where ID like ?";
+				String sql = "update TaiKhoanNhanVien"
+						+ " set TenDangNhap=?, MatKhau=?, ID_Kho=?"
+						+ " where ID=?";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, ID);
-				int success = pstmt.executeUpdate();
-				if(success != 0 && deleteQuyenTruyCap)
-					return true;
+				pstmt.setString(1, ID.getUserAccount());
+				pstmt.setString(2, ID.getPassword());
+				pstmt.setInt(3, ID.getID_Warehouse());
+				pstmt.setInt(4, ID.getID());
+				return pstmt.executeUpdate() != 0;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

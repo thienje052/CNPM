@@ -42,11 +42,11 @@ public class XuLyPhieu extends HttpServlet {
             case "themHang":
                 String ten    = req.getParameter("tenHang");
                 String loai   = req.getParameter("loaiHang");
-                String viTri  = req.getParameter("viTri");
+                int viTri  = Integer.parseInt(req.getParameter("viTri"));
                 int soLuong   = Integer.parseInt(req.getParameter("soLuong"));
                 String dvt    = req.getParameter("donViTinh");
                 String moTa   = req.getParameter("moTa");
-                HangHoa hh = new HangHoa( 0, ten, soLuong, dvt, moTa, loai);
+                HangHoa hh = new HangHoa( 0, ten, soLuong, dvt, moTa, loai, viTri);
                 int maxId = 0;
                 for (HangHoa h : dshh) {
                     if (h.getId() > maxId) maxId = h.getId();
@@ -78,14 +78,10 @@ public class XuLyPhieu extends HttpServlet {
                     LoaiPhieu type = LoaiPhieu.valueOf(req.getParameter("loaiDon"));
                     LocalDate date = LocalDate.parse(req.getParameter("ngay"));
                     Phieu phieu = new Phieu(0, idPartner, idEmployee, type, date.atStartOfDay());
-
-                    boolean ok = daoPhieu.add(phieu);
-                    if (!ok) throw new RuntimeException("Lưu phiếu thất bại");
-
+                    daoPhieu.add(phieu);
                     // TODO: Lưu chi tiết phiếu với DAOChiTietPhieu
-
                     session.removeAttribute("dshh");
-                    resp.sendRedirect("danhsach-phieu?msg=success");
+                    resp.sendRedirect("TruyXuatDon");
                 } catch (Exception ex) {
                     req.setAttribute("error", "Lỗi khi lưu đơn: " + ex.getMessage());
                     req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);

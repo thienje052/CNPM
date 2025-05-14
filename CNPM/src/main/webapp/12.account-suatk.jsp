@@ -9,10 +9,12 @@
 <link rel="stylesheet" href="./css/main.css">
 </head>
 <body><div class="custom-acc-header">Quản lý tài khoản - Sửa tài khoản</div>
-
+	<%
+	    int ID = Integer.parseInt((String)request.getAttribute("IDAccount")) ;
+	%>
 	<div class="custom-acc-container">
-		<form class="custom-acc-form" method="POST" action="/sua-tai-khoan">
-
+		<form class="custom-acc-form" method="POST" action="QuanLyTaiKhoanSuaSubmit">
+			<input type="hidden" name="ID" value="<%= ID %>">
 			<div class="custom-acc-columns">
 				<!-- Cột bên trái -->
 				<div class="custom-acc-column">
@@ -57,13 +59,16 @@
 							value="${tk.password}" required>
 					</div>
 					<div class="custom-acc-group">
-						<label for="warehouse">Kho phụ trách</label> <select
-							id="warehouse" name="warehouse" class="custom-acc-select">
-							<option value="">-- Chọn kho --</option>
-							<c:forEach var="kho" items="${lstKho}">
-								<option value="${kho.ID}">${kho.ID}</option>
-							</c:forEach>
-						</select>
+						<label for="warehouse">Kho phụ trách</label> 
+						<select id="warehouse" name="warehouse" class="custom-acc-select">
+			              <option value="">-- Chọn kho --</option>
+			              <c:if test="${empty Kho}">
+			                <option disabled>Không có dữ liệu kho.</option>
+			              </c:if>
+			              <c:forEach var="kho" items="${lstKho}">
+			                <option value="${kho.ID}">${kho.ID}</option>
+			              </c:forEach>
+			            </select>
 					</div>
 
 					<div class="custom-acc-group">
@@ -71,23 +76,13 @@
 								* )</span></label>
 						<div class="custom-acc-checkbox-grid">
 							<div class="custom-acc-checkbox-col">
-								<label><input type="checkbox" name="roles[]"
-									value="nhapxuat" class="custom-acc-checkbox"
-									${tk.roles.contains('NXH') ? 'checked="checked"' : ''}>
-									Quản lý nhập/xuất</label> <label><input type="checkbox"
-									name="roles[]" value="hanghoa" class="custom-acc-checkbox"
-									${tk.roles.contains('HH') ? 'checked="checked"' : ''}>
-									Quản lý hàng hóa</label>
-							</div>
-							<div class="custom-acc-checkbox-col">
-								<label><input type="checkbox" name="roles[]"
-									value="taikhoan" class="custom-acc-checkbox"
-									${tk.roles.contains('TK') ? 'checked="checked"' : ''}>
-									Quản lý tài khoản</label> <label><input type="checkbox"
-									name="roles[]" value="thongke" class="custom-acc-checkbox"
-									${tk.roles.contains('BC') ? 'checked="checked"' : ''}>
-									Báo cáo thống kê</label>
-							</div>
+				                <label><input type="checkbox" name="permissions[]" value="NXH" class="custom-acc-checkbox"> Quản lý nhập/xuất</label>
+				                <label><input type="checkbox" name="permissions[]" value="HH" class="custom-acc-checkbox"> Quản lý hàng hóa</label>
+				              </div>
+				              <div class="custom-acc-checkbox-col">
+				                <label><input type="checkbox" name="permissions[]" value="TK" class="custom-acc-checkbox"> Quản lý tài khoản</label>
+				                <label><input type="checkbox" name="permissions[]" value="BC" class="custom-acc-checkbox"> Báo cáo thống kê</label>
+				              </div>
 						</div>
 					</div>
 				</div>
