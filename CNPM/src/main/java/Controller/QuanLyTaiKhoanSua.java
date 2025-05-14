@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.DAOKho;
 import DAO.DAONhanVien;
@@ -30,17 +31,24 @@ public class QuanLyTaiKhoanSua extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String selected = req.getParameter("selectedAccount");
+		HttpSession session = req.getSession();
+		TaiKhoanNhanVien SessionUser = (TaiKhoanNhanVien)session.getAttribute("currentUser");
 		if (selected != null && !selected.equals("null") && !selected.isEmpty()) {
-			TaiKhoanNhanVien tk = DAOTK.findByAccountID(Integer.parseInt(selected));
-			NhanVien nv = DAONV.findNVbyID(tk.getID_Employee());
-			List<Kho> listKho = DAOK.findAll();
-			req.setAttribute("lstKho", listKho);
-			req.setAttribute("tk", tk);
-			req.setAttribute("Kho", Kho.class);
-			req.setAttribute("nv", nv);
-	        req.getRequestDispatcher("12.account-suatk.jsp").forward(req, resp);
-		}
-		else {
+			if (Integer.parseInt(selected) == SessionUser.getID()) {
+				req.setAttribute("error", "Không được sửa tài khoản của chính mình!");
+		        req.getRequestDispatcher("QuanLyTaiKhoan").forward(req, resp);
+			} else {
+				TaiKhoanNhanVien tk = DAOTK.findByAccountID(Integer.parseInt(selected));
+				NhanVien nv = DAONV.findNVbyID(tk.getID_Employee());
+				List<Kho> listKho = DAOK.findAll();
+				req.setAttribute("lstKho", listKho);
+				req.setAttribute("tk", tk);
+				req.setAttribute("Kho", Kho.class);
+				req.setAttribute("nv", nv);
+				req.setAttribute("IDAccount", selected);
+		        req.getRequestDispatcher("12.account-suatk.jsp?selectedAccount=" + selected).forward(req, resp);
+			}
+		} else {
 			req.setAttribute("error", "Chọn tài khoản để sửa!");
 	        req.getRequestDispatcher("QuanLyTaiKhoan").forward(req, resp);
 		}

@@ -62,6 +62,7 @@ public class DAODSQuyenTruyCap {
 		}
 		return false;
 	}
+	
 	public boolean deleteDSQuyenTruyCapbyIDNV(int id) {
 		try {
 			String sql = "delete from DSQuyenTruyCap where ID_NV=?";
@@ -75,4 +76,6 @@ public class DAODSQuyenTruyCap {
 		}
 		return false;
 	}
+	
+	
 }

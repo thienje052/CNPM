@@ -40,8 +40,6 @@ public class login extends HttpServlet {
 	            HttpSession session = req.getSession();
 	            session.setAttribute("currentUser", taiKhoanNhanVien);
 	            List<QuyenTruyCap> userPermissions = taiKhoanNhanVien.getRoles();
-                conn.close();
-                conn = DBConnector.getConnectionForLogin(taiKhoanNhanVien.getUserAccount(), taiKhoanNhanVien.getPassword());
                 req.setAttribute("permissions", userPermissions);
                 req.setAttribute("ChucVu", chucVu);
                 req.setAttribute("QuanLyRole", ChucVu.Manager);

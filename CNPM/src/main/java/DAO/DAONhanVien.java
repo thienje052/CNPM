@@ -66,8 +66,7 @@ public class DAONhanVien {
 	}
 	
 	public boolean add(NhanVien nv) {
-		DAONhanVien DAONV = new DAONhanVien(conn);
-		NhanVien find = DAONV.findNVbyID(nv.getID());
+		NhanVien find = findNVbyID(nv.getID());
 		try {
 			if(find==null) {
 				String sql = "insert into NhanVien values (?,?,?,?)";
@@ -79,6 +78,34 @@ public class DAONhanVien {
 				return pstmt.executeUpdate() != 0;
 			}
 			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean update(NhanVien nv) {
+		try {
+			String sql = "update NhanVien set hoten=?, email=?, sdt=?, chucvu=? where id=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nv.getName());
+			pstmt.setString(2, nv.getEmail());
+			pstmt.setString(3, nv.getPhoneNumber());
+			pstmt.setString(4, String.valueOf(nv.getPosition()));
+			pstmt.setInt(5, nv.getID());
+			return pstmt.executeUpdate() != 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean delete(int ID) {
+		try {
+			String sql = "delete from NhanVien where id=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ID);
+			return pstmt.executeUpdate() != 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
