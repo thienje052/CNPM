@@ -9,7 +9,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Side bar</title>
+<title>Quản lý nhập/xuất kho</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/1.sidebar.css">
 <link
