@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.util.List;
 
 import DAO.DAOLoaiHang;
-import DAO.DAOPhieu;
 import Model.LoaiHang;
 import DAO.DBConnector;
 
