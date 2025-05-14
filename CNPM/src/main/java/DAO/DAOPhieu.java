@@ -21,6 +21,100 @@ public class DAOPhieu {
 		DAOPhieu.conn = conn;
 	}
 	
+	public List<Phieu> findImportByDate(int thang, int nam) {
+		List<Phieu> list = new ArrayList<>();
+        String sql = "SELECT * FROM Phieu " +
+                     "WHERE MONTH(NgayTao) = ? AND YEAR(NgayTao) = ? AND LoaiPhieu = Import";
+
+        try (
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, thang);
+            ps.setInt(2, nam);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                	String loaiPhieuDB = rs.getString("loaiPhieu").trim();
+    				list.add(new Phieu(rs.getInt("ID"), 
+    						rs.getInt("ID_DoiTac"), 
+    						rs.getInt("ID_TKNV"),
+    						LoaiPhieu.valueOf(rs.getString("loaiPhieu")),
+    						rs.getTimestamp("NgayTao").toLocalDateTime()));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+	
+	public List<Phieu> findExportByDate(int thang, int nam, LoaiPhieu loaiPhieu) {
+		List<Phieu> list = new ArrayList<>();
+        String sql = "SELECT * FROM Phieu " +
+                     "WHERE MONTH(NgayTao) = ? AND YEAR(NgayTao) = ? AND LoaiPhieu = Export";
+
+        try (
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, thang);
+            ps.setInt(2, nam);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                	String loaiPhieuDB = rs.getString("loaiPhieu").trim();
+    				list.add(new Phieu(rs.getInt("ID"), 
+    						rs.getInt("ID_DoiTac"), 
+    						rs.getInt("ID_TKNV"),
+    						LoaiPhieu.valueOf(rs.getString("loaiPhieu")),
+    						rs.getTimestamp("NgayTao").toLocalDateTime()));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+	
+	public int countByType(int thang, int nam, LoaiPhieu loaiPhieu) {
+	    int count = 0;
+	    int loaiValue = (loaiPhieu == LoaiPhieu.Import) ? 0 : 1;
+	    String sql = "SELECT COUNT(*) FROM Phieu WHERE MONTH(NgayTao) = ? AND YEAR(NgayTao) = ? AND LoaiPhieu = ?";
+
+	    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+	        ps.setInt(1, thang);
+	        ps.setInt(2, nam);
+	        ps.setInt(3, loaiValue);
+
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                count = rs.getInt(1);
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return count;
+	}
+	
+	public List<Integer> getMaHang(int id_don){
+		List<Integer> maHangList = new ArrayList<>(); // Danh sách chứa các mã hàng
+        String sql = "SELECT ID_HangHoa FROM ChiTietPhieu WHERE ID_Phieu = ?";
+
+        try (
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id_don);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    maHangList.add(rs.getInt("ID_HangHoa")); // Thêm mã hàng vào danh sách
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return maHangList;
+    
+	}
+	
 	public List<Phieu> getAllPhieu() {
 		List<Phieu> list = new ArrayList<Phieu>();
 		try {
@@ -30,28 +124,11 @@ public class DAOPhieu {
 			while(rs.next()) {
 				
 				String loaiPhieuDB = rs.getString("loaiPhieu").trim();
-
-	            // Chuyển đổi từ mô tả sang Enum
-//	            LoaiPhieu loaiPhieuEnum = null;
-//	            for (LoaiPhieu lp : LoaiPhieu.values()) {
-//	                if (lp.getDescription().equals(loaiPhieuDB)) {
-//	                    loaiPhieuEnum = lp;
-//	                    break;
-//	                }
-//	            }
-	            
-//	            if (loaiPhieuEnum == null) {
-//	                System.out.println("Lỗi: Không tìm thấy enum cho giá trị " + loaiPhieuDB);
-//	                continue;  // Bỏ qua nếu lỗi
-	            //}
-				
 				list.add(new Phieu(rs.getInt("ID"), 
 						rs.getInt("ID_DoiTac"), 
 						rs.getInt("ID_TKNV"),
-						//LoaiPhieu.Export,
 						LoaiPhieu.valueOf(rs.getString("loaiPhieu")),
 						rs.getTimestamp("NgayTao").toLocalDateTime()));
-						//LocalDateTime.parse((CharSequence) rs.getDate("NgayNhap"))));
 			}
 			return list;
 		} catch(SQLException e) {

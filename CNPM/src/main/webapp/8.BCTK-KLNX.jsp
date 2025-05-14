@@ -43,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach var="phieu" items="${dsNhap}">
+        <c:forEach var="phieu" items="${danhSachPhieu}">
           <tr>
             <td>${phieu.maPhieu}</td>
             <td>${phieu.doiTac}</td>
