@@ -34,8 +34,9 @@ public class QuanLyTaiKhoanSua extends HttpServlet{
 			TaiKhoanNhanVien tk = DAOTK.findByAccountID(Integer.parseInt(selected));
 			NhanVien nv = DAONV.findNVbyID(tk.getID_Employee());
 			List<Kho> listKho = DAOK.findAll();
-			req.setAttribute("Kho", listKho);
+			req.setAttribute("lstKho", listKho);
 			req.setAttribute("tk", tk);
+			req.setAttribute("Kho", Kho.class);
 			req.setAttribute("nv", nv);
 	        req.getRequestDispatcher("12.account-suatk.jsp").forward(req, resp);
 		}

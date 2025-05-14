@@ -57,13 +57,10 @@
           <label class="a" for="warehouse">Kho phụ trách</label>
           <select id="warehouse" name="warehouse">
 			    <option value="">-- Chọn kho --</option>
-			    <c:forEach var="kho" items="${Kho}">
-			        <option value="${kho.ID}">
-			            ${kho.ID}
-			        </option>
+			    <c:forEach var="kho" items="${lstKho}">
+			        <option value="${kho.ID}" ${kho.ID == nv.ID ? 'selected="selected"' : ''}>${kho.ID}</option>
 			    </c:forEach>
 			</select>
-
         </div>
 
         <div class="form1-group">
