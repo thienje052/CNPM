@@ -30,7 +30,7 @@
 		<div class="button-group">
 			<a href="15.doitac-themDT.jsp" class="btn btn-primary btn-custom">Thêm</a>
 			<button type="submit" class="btn btn-primary btn-custom" name="action" value="xoa">Xóa</button>
-			<a href="16.doitac-sua.jsp" class="btn btn-primary btn-custom">Sửa</a>
+			<button type="submit" class="btn btn-primary btn-custom" name="action" value="sua">Sửa</button>
 		</div>
 		<div class="form-top">
 			<c:if test="${not empty error}">

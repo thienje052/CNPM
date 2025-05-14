@@ -45,12 +45,11 @@ public class XoaDoiTac extends HttpServlet {
     	req.setCharacterEncoding("UTF-8");
     	
         String action = req.getParameter("action");
-
+        String chonDoiTac  = req.getParameter("chonDoiTac");
+        String xacNhan   = req.getParameter("xacNhan");
 
         try {
         if ("xoa".equals(action)) {
-        	String chonDoiTac = req.getParameter("chonDoiTac");
-        	String xacNhan = req.getParameter("xacNhan");
             if (chonDoiTac != null && !chonDoiTac.isEmpty()) {
             	 if ("true".equals(xacNhan)) {
             		DoiTac dt = new DoiTac(Integer.parseInt(req.getParameter("chonDoiTac")), null, null, null);
@@ -58,8 +57,17 @@ public class XoaDoiTac extends HttpServlet {
                  } else {
                      req.setAttribute("xacNhanXoa", chonDoiTac);
                  }
-            } else {
+            }
+            else {
                 req.setAttribute("error", "Vui lòng chọn đối tác cần xóa.");
+            }
+        }
+        else if ("sua".equals(action)) {
+            if (chonDoiTac != null && !chonDoiTac.isEmpty()) {
+            	resp.sendRedirect("suaDoiTac?id=" + chonDoiTac);
+                return;
+            } else {
+                req.setAttribute("error", "Vui lòng chọn đối tác cần sửa.");
             }
         }
         hienThiDanhSach(req, resp);
