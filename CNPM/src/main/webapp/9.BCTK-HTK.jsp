@@ -31,11 +31,11 @@
 				<tbody>
 					<c:forEach var="hang" items="${dsTonKho}">
 						<tr>
-							<td>${hang.maHang}</td>
-							<td>${hang.tenHang}</td>
-							<td>${hang.soLuong}</td>
-							<td>${hang.donViTinh}</td>
-							<td>${hang.viTri}</td>
+							<td>${hang.id}</td>
+							<td>${hang.name}</td>
+							<td>${hang.quantity}</td>
+							<td>${hang.measurement}</td>
+							<td>${hang.id_position}</td>
 							<td>${hang.ngayNhap}</td>
 						</tr>
 					</c:forEach>
