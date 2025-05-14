@@ -78,7 +78,7 @@ public class TruyXuatDon extends HttpServlet {
             try {
                 int idDoiTac = Integer.parseInt(maDoiTac);
                 DoiTac dt = new DoiTac();
-                dt.setID(idDoiTac);
+                dt.setId(idDoiTac);
                 if(result != null)
                 	result.retainAll(phieu.findByLoaiIDDoiTac(dt));
             } catch (NumberFormatException e) {
