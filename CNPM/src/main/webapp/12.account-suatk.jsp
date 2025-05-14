@@ -1,18 +1,14 @@
-
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-<html lang="vi">
-<head>
+<html lang="vi"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sửa tài khoản</title>
 <link rel="stylesheet" href="./css/main.css">
 </head>
-<body>
-
-	<div class="custom-acc-header">Quản lý tài khoản - Sửa tài khoản</div>
+<body><div class="custom-acc-header">Quản lý tài khoản - Sửa tài khoản</div>
 
 	<div class="custom-acc-container">
 		<form class="custom-acc-form" method="POST" action="/sua-tai-khoan">
@@ -64,7 +60,7 @@
 						<label for="warehouse">Kho phụ trách</label> <select
 							id="warehouse" name="warehouse" class="custom-acc-select">
 							<option value="">-- Chọn kho --</option>
-							<c:forEach var="kho" items="${Kho}">
+							<c:forEach var="kho" items="${lstKho}">
 								<option value="${kho.ID}">${kho.ID}</option>
 							</c:forEach>
 						</select>
@@ -106,6 +102,5 @@
 			</div>
 		</form>
 	</div>
-
 </body>
 </html>
