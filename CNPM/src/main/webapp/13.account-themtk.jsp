@@ -10,73 +10,81 @@
 </head>
 <body>
 
-  <div class="header">Quản lý tài khoản - Thêm tài khoản</div>
+  <div class="custom-acc-header">Quản lý tài khoản - Thêm tài khoản</div>
 
-  <div class="containerthemsuatk">
-    <form class="themsuatkform" method="POST" action="QuanLyTaiKhoanThemSubmit">
+  <div class="custom-acc-container">
+    <form class="custom-acc-form" method="POST" action="QuanLyTaiKhoanThemSubmit">
 
-      <!-- Cột trái -->
-      <div class="form1-column">
-        <div class="form1-group">
-          <label class="a" for="employeeName">Tên nhân viên</label>
-          <input type="text" id="employeeName" name="employeeName" required>
+      <div class="custom-acc-columns">
+        <!-- Cột bên trái -->
+        <div class="custom-acc-column">
+          <div class="custom-acc-group">
+            <label for="employeeName">Tên nhân viên</label>
+            <input type="text" id="employeeName" name="employeeName" required class="custom-acc-input">
+          </div>
+          <div class="custom-acc-group">
+            <label for="phone">Số điện thoại</label>
+            <input type="text" id="phone" name="phone" class="custom-acc-input">
+          </div>
+          <div class="custom-acc-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="custom-acc-input">
+          </div>
+          <div class="custom-acc-group">
+            <label for="position">Vị trí</label>
+            <select id="position" name="position" class="custom-acc-select">
+              <option value="">-- Chọn vị trí --</option>
+              <option value="nhanvien">Nhân viên</option>
+              <option value="quanly">Quản lý</option>
+            </select>
+          </div>
         </div>
-        <div class="form1-group">
-          <label class="a" for="phone">Số điện thoại</label>
-          <input type="text" id="phone" name="phone">
-        </div>
-        <div class="form1-group">
-          <label class="a" for="email">Email</label>
-          <input type="email" id="email" name="email">
-        </div>
-        <div class="form1-group">
-          <label class="a" for="position">Vị trí</label>
-          <select id="position" name="position">
-            <option value="">-- Chọn vị trí --</option>
-            <option value="nhanvien">Nhân viên</option>
-            <option value="quanly">Quản lý</option>
-          </select>
-        </div>
-      </div>
 
-      <!-- Cột phải -->
-      <div class="form1-column">
-        <div class="form1-group">
-          <label class="a" for="username">Tên đăng nhập</label>
-          <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form1-group">
-          <label class="a" for="password">Mật khẩu</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form1-group">
-          <label class="a" for="warehouse">Kho phụ trách</label>
-          <select id="warehouse" name="warehouse">
-            <option value="">-- Chọn kho --</option>
-            <c:if test="${empty Kho}">
-              <option disabled>Không có dữ liệu kho.</option>
-            </c:if>
-            <c:forEach var="kho" items="${Kho}">
-              <option value="${kho.ID}">${kho.ID}</option>
-            </c:forEach>
-          </select>
-        </div>
-        <div class="form1-group">
-          <label class="a">Quyền truy cập <span class="required">( * )</span></label>
-          <div class="checkbox-group">
-            <label class="a"><input type="checkbox" name="permissions[]" value="NXH"> Quản lý nhập/xuất</label>
-            <label class="a"><input type="checkbox" name="permissions[]" value="HH"> Quản lý hàng hóa</label>
-            <label class="a"><input type="checkbox" name="permissions[]" value="TK"> Quản lý tài khoản</label>
-            <label class="a"><input type="checkbox" name="permissions[]" value="BC"> Báo cáo thống kê</label>
+        <!-- Cột bên phải -->
+        <div class="custom-acc-column">
+          <div class="custom-acc-group">
+            <label for="username">Tên đăng nhập</label>
+            <input type="text" id="username" name="username" required class="custom-acc-input">
+          </div>
+          <div class="custom-acc-group">
+            <label for="password">Mật khẩu</label>
+            <input type="password" id="password" name="password" required class="custom-acc-input">
+          </div>
+          <div class="custom-acc-group">
+            <label for="warehouse">Kho phụ trách</label>
+            <select id="warehouse" name="warehouse" class="custom-acc-select">
+              <option value="">-- Chọn kho --</option>
+              <c:if test="${empty Kho}">
+                <option disabled>Không có dữ liệu kho.</option>
+              </c:if>
+              <c:forEach var="kho" items="${Kho}">
+                <option value="${kho.ID}">${kho.ID}</option>
+              </c:forEach>
+            </select>
+          </div>
+
+          <div class="custom-acc-group">
+            <label>Quyền truy cập <span class="custom-acc-required">( * )</span></label>
+            <div class="custom-acc-checkbox-grid">
+              <div class="custom-acc-checkbox-col">
+                <label><input type="checkbox" name="permissions[]" value="NXH" class="custom-acc-checkbox"> Quản lý nhập/xuất</label>
+                <label><input type="checkbox" name="permissions[]" value="HH" class="custom-acc-checkbox"> Quản lý hàng hóa</label>
+              </div>
+              <div class="custom-acc-checkbox-col">
+                <label><input type="checkbox" name="permissions[]" value="TK" class="custom-acc-checkbox"> Quản lý tài khoản</label>
+                <label><input type="checkbox" name="permissions[]" value="BC" class="custom-acc-checkbox"> Báo cáo thống kê</label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Nút hành động -->
-      <div class="button-group3" style="width: 100%;">
-        <button type="submit" class="button-confirm">Xác nhận</button>
-        <button type="button" onclick="window.history.back()" class="button-cancel">Hủy</button>
+      <!-- Nút -->
+      <div class="custom-acc-btn-group">
+        <button type="submit" class="custom-acc-btn custom-acc-btn-confirm">Xác nhận</button>
+        <button type="button" onclick="window.history.back()" class="custom-acc-btn custom-acc-btn-cancel">Hủy</button>
       </div>
+
     </form>
   </div>
 

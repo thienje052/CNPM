@@ -71,7 +71,7 @@
 							<ul>
 								<li class="submenu"><a href="6.QLNX-taodon.jsp"
 									target="main-frame"> > Tạo đơn</a></li>
-								<li class="submenu"><a href="7.QLNX-truyxuat.jsp"
+								<li class="submenu"><a href="TruyXuatDon"
 									target="main-frame"> > Truy xuất đơn</a></li>
 							</ul>
 						</div>
@@ -87,7 +87,7 @@
 							<ul>
 								<li class="submenu"><a href="8.BCTK-KLNX.jsp"
 									target="main-frame"> > Khối lượng nhập xuất</a></li>
-								<li class="submenu"><a href="9.BCTK-HTK.jsp"
+								<li class="submenu"><a href="HangTonKho"
 									target="main-frame"> > Hàng tồn kho</a></li>
 								<li class="submenu"><a href="10.BCTK-LSGD.jsp"
 									target="main-frame"> > Lịch sử giao dịch</a></li>
@@ -104,7 +104,7 @@
 					<c:if test="${ChucVu eq QuanLyRole}">
 						<li><img
 							src="${pageContext.request.contextPath}/image-source/doitac.svg"
-							alt=""> <a href="14.doitac.jsp" target="main-frame">Thông tin đối tác</a></li>
+							alt=""> <a href="doiTac" target="main-frame">Thông tin đối tác</a></li>
 					</c:if>
 				</ul>
 			</div>

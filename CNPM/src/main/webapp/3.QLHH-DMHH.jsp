@@ -57,13 +57,22 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="loai" items="${dslh}">
-					<tr>
-						<td><input type="radio" name="chonMaLoai" value="${loai.id}"></td>
-						<td>${loai.id}</td>
-						<td>${loai.name}</td>
-					</tr>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${not empty dslh}">
+						<c:forEach var="loai" items="${dslh}">
+							<tr>
+								<td><input type="radio" name="chonMaLoai" value="${loai.id}"></td>
+								<td>${loai.id}</td>
+								<td>${loai.name}</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="3" class="text-center">Không có dữ liệu</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 			</tbody>
 		</table>
 	</form>

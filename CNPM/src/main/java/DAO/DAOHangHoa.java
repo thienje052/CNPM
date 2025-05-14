@@ -164,7 +164,6 @@ private static Connection conn;
 	    try {
 	        PreparedStatement pst = conn.prepareStatement(sql);
 	        pst.setInt(1, id);
-
 	        int rowsAffected = pst.executeUpdate();
 	        return rowsAffected > 0;
 	    } catch (SQLException e) {
@@ -191,6 +190,4 @@ private static Connection conn;
 	        return false;
 	    }
 	}
-
-
 }
