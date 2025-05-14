@@ -27,8 +27,8 @@
 					<label for="employeeName">Tên nhân viên</label> <input type="text" id="employeeName" name="employeeName">
 				</div>
 			<div class="faho-group">
-				<label for="warehouse">Kho phụ trách</label> 
-				<select id="warehouse" name="warehouse">
+				<label for="warehouse" class="faho-label">Kho phụ trách</label> 
+				<select id="warehouse" name="warehouse" class="faho-select">
 					<option value="">-Chọn kho-</option>
 					<c:if test="${empty Kho}">
 					    <p>Không có dữ liệu kho.</p>
