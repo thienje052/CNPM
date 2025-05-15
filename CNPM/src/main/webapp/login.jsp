@@ -45,8 +45,18 @@
     if (togglePassword && passwordInput) {
       togglePassword.addEventListener('click', function () {
         const isPassword = passwordInput.type === 'password';
+
+        // Đổi kiểu input
         passwordInput.type = isPassword ? 'text' : 'password';
-        this.alt = isPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu';
+
+        // Đổi icon
+        const contextPath = '${pageContext.request.contextPath}';
+        togglePassword.src = isPassword
+          ? contextPath + '/image-source/eye-offlogin.svg'
+          : contextPath + '/image-source/loginyey.svg';
+
+        
+        togglePassword.alt = isPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu';
       });
     }
   });
