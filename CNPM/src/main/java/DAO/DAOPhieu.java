@@ -21,6 +21,44 @@ public class DAOPhieu {
 		DAOPhieu.conn = conn;
 	}
 	
+	public int countImport() {
+	    int count = 0;
+	    
+	    String sql = "SELECT COUNT(*) FROM Phieu WHERE LoaiPhieu = 'Import'";
+
+	    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                count = rs.getInt(1);
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return count;
+	}
+	
+	public int countExport() {
+	    int count = 0;
+	    
+	    String sql = "SELECT COUNT(*) FROM Phieu WHERE LoaiPhieu = 'Export'";
+
+	    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                count = rs.getInt(1);
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return count;
+	}
+	
 	public List<Phieu> findImportByDate(int thang, int nam) {
 		List<Phieu> list = new ArrayList<>();
         String sql = "SELECT * FROM Phieu " +

@@ -14,11 +14,13 @@
   <div class="dashboard">
     <div class="section don-nhap">
       <div class="section-title">Đơn nhập hôm nay</div>
-      <div class="section-number">10</div>
+      <div class="section-number">5</div>
+      
     </div>
     <div class="section don-xuat">
       <div class="section-title">Đơn xuất hôm nay</div>
-      <div class="section-number">6</div>
+      <div class="section-number">4</div>
+      
     </div>
   </div>
 
@@ -32,9 +34,11 @@
     </div>
 
     <div class="box nut">
-      <button>Tạo đơn mới</button>
-      <button>Truy xuất đơn</button>
-      <button>Thống kê tồn kho</button>
+	  <form action="XuLyPhieu"><button>Tạo đơn mới</button></form>
+      <form action="TruyXuatDon"><button>Truy xuất đơn</button></form>
+      <form action="HangTonKho"><button>Thống kê tồn kho</button></form>
+      
+      
     </div>
 
     <div class="box so-ke-trong">
