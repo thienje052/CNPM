@@ -63,6 +63,7 @@
 				<th>Tên tài khoản</th>
 				<th>Mật khẩu</th>
 				<th>Email</th>
+				<th>Số điện thoại</th>
 				<th>Kho phụ trách</th>
 				<th>Quyền truy cập</th>
 			</tr>
@@ -86,6 +87,7 @@
 					        <td>${tk.password}</td>
 					        <td>${matchedNV.email}</td>
 					        <td>${matchedNV.phoneNumber}</td>
+					        <td>${tk.ID_Warehouse}</td>
 					        <td>${tk.roles}</td>
 					    </tr>
 					</c:forEach>

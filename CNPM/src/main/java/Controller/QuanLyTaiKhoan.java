@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.DAOKho;
 import DAO.DAONhanVien;
@@ -32,8 +33,10 @@ public class QuanLyTaiKhoan extends HttpServlet {
 	private DAOKho DAOK = new DAOKho(DBConnector.conn);
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		TaiKhoanNhanVien current = (TaiKhoanNhanVien) session.getAttribute("currentUser");
 		List<NhanVien> listNV = DAONV.getAll();
-		List<TaiKhoanNhanVien> listTKNV = DAOTK.getAll();
+		List<TaiKhoanNhanVien> listTKNV = DAOTK.getAllByIDWarehouse(current.getID_Warehouse());
 		List<Kho> listKho = DAOK.findAll();
 		req.setAttribute("NhanVien", listNV);
 		req.setAttribute("Kho", listKho);

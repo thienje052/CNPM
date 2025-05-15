@@ -41,6 +41,29 @@ public class DAOTaiKhoanNhanVien {
 		return null;
 	}
 	
+	public List<TaiKhoanNhanVien> getAllByIDWarehouse(int ID) {
+		DAODSQuyenTruyCap tc = new DAODSQuyenTruyCap(conn);
+		try {
+			List<TaiKhoanNhanVien> list = new ArrayList<TaiKhoanNhanVien>();
+			String sql = "select * from TaiKhoanNhanVien where ID_Kho=?";	
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ID);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(new TaiKhoanNhanVien(rs.getInt("ID"),
+						rs.getString("TenDangNhap"),
+						rs.getString("MatKhau"),
+						tc.getDSQuyenTruyCapbyIDNV(rs.getInt("ID")),
+						rs.getInt("ID_NV"),
+						rs.getInt("ID_Kho")));
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public TaiKhoanNhanVien findByUserAccount(String userAccount) {
 		TaiKhoanNhanVien tk = null;
 		DAODSQuyenTruyCap tc = new DAODSQuyenTruyCap(conn);
