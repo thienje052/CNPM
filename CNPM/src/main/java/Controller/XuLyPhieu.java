@@ -50,7 +50,13 @@ public class XuLyPhieu extends HttpServlet {
         if (dshh == null) {
             dshh = new ArrayList<>();
         }
-        LocalDate date = LocalDate.parse(req.getParameter("ngay"));
+        LocalDate date;
+        try {
+        	 date = LocalDate.parse(req.getParameter("ngay"));
+        } catch (Exception e) {
+			// TODO: handle exception
+        	date = LocalDate.now();
+		}
         session.setAttribute("date", date);
         switch (action) {
             case "themHang":
@@ -120,7 +126,6 @@ public class XuLyPhieu extends HttpServlet {
                 session.removeAttribute("dshh");
                 req.getRequestDispatcher("/2.trangchu.jsp").forward(req, resp);
                 break;
-
             default:
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         }

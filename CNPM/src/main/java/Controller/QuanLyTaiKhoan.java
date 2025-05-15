@@ -37,7 +37,7 @@ public class QuanLyTaiKhoan extends HttpServlet {
 		HttpSession session = req.getSession();
 		TaiKhoanNhanVien current = (TaiKhoanNhanVien) session.getAttribute("currentUser");
 		List<NhanVien> listNV = DAONV.getAll();
-		List<TaiKhoanNhanVien> listTKNV = DAOTK.getAllByIDWarehouse(current.getID_Warehouse());
+		List<TaiKhoanNhanVien> listTKNV = DAOTK.getAll();
 		List<Kho> listKho = DAOK.findAll();
 		req.setAttribute("NhanVien", listNV);
 		req.setAttribute("Kho", listKho);
