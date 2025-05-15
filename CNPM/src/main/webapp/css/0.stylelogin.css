@@ -65,7 +65,7 @@ body {
   
   .password-field img {
     position: absolute;
-    top: 53%;
+    top: 8px; 
     right: 3%;
     transform: translateY(-50%);
     width: 20px;
