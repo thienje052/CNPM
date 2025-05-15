@@ -40,6 +40,7 @@ public class ThongKeNhap extends HttpServlet {
         Map<Integer, String> maHangMap = daoChiTietPhieu.getMaHangTheoPhieu(danhSachPhieuNhap);
 
         request.setAttribute("danhSachPhieuNhap", danhSachPhieuNhap);
+        request.setAttribute("mapMaHang", maHangMap);
         request.setAttribute("tongDonNhap", danhSachPhieuNhap.size());
 
         request.getRequestDispatcher("/8.BCTK-KLNX.jsp").forward(request, response);
