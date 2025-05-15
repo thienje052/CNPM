@@ -24,7 +24,7 @@ public class DAOViTri {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				return new ViTri(rs.getInt("ID"),
-						rs.getInt("Ke"), rs.getInt("Hang"),
+						rs.getString("Ke"), rs.getInt("Hang"),
 						rs.getInt("Tang"),
 						rs.getInt("Kho"));
 			}

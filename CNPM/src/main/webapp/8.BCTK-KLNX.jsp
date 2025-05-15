@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -50,7 +52,7 @@
             <td>${phieu.ID_Employee}</td>
             <td>${mapMaHang[phieu.ID]}</td>
             <td>${phieu.typeDescription}</td>
-            <td>${phieu.dateTime}</td>
+            <td><fmt:formatDate value="${phieu.dateTimeAsDate}" pattern="dd/MM/yyyy HH:mm" /></td>
           </tr>
         </c:forEach>
       </tbody>
@@ -100,7 +102,9 @@
             <td>${phieu.ID_Employee}</td>
             <td>${mapMaHang[phieu.ID]}</td>
             <td>${phieu.typeDescription}</td>
-            <td>${phieu.dateTime}</td>
+            <td><fmt:formatDate value="${phieu.dateTimeAsDate}" pattern="dd/MM/yyyy HH:mm" /></td>
+
+
           </tr>
         </c:forEach>
       </tbody>

@@ -74,4 +74,9 @@ public class Phieu {
     public int hashCode() {
     	return Objects.hash(ID, ID_Partner, ID_Employee, Type, DateTime);
     }
+    
+    public java.util.Date getDateTimeAsDate() {
+        return java.util.Date.from(this.DateTime.atZone(java.time.ZoneId.systemDefault()).toInstant());
+    }
+
 }
