@@ -25,7 +25,7 @@
 					<input type="password" id="password" placeholder="Mật khẩu"
 						name="password" required /> <img
 						src="${pageContext.request.contextPath}/image-source/loginyey.svg"
-						alt="Hiện mật khẩu" id="togglePassword" />
+						alt="Hiện mật khẩu" id="togglePassword" role="button" tabindex="0" />
 				</div>
 
 				<c:if test="${not empty error}">
@@ -44,8 +44,9 @@
 
     if (togglePassword && passwordInput) {
       togglePassword.addEventListener('click', function () {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        this.alt = isPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu';
       });
     }
   });
