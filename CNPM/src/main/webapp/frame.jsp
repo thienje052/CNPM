@@ -68,7 +68,7 @@
 						<div class="collapse" id="collapsenx"
 							data-bs-parent="#menu-accordion">
 							<ul>
-								<li class="submenu"><a href="6.QLNX-taodon.jsp"
+								<li class="submenu"><a href="XuLyPhieu"
 									target="main-frame"> > Tạo đơn</a></li>
 								<li class="submenu"><a href="TruyXuatDon"
 									target="main-frame"> > Truy xuất đơn</a></li>

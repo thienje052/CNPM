@@ -3,19 +3,25 @@ package Controller;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.websocket.Session;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import DAO.DAODoiTac;
 import DAO.DAOHangHoa;
 import DAO.DAOPhieu;
 import DAO.DAOViTri;
 import DAO.DBConnector;
+import Model.DoiTac;
 import Model.HangHoa;
 import Model.LoaiPhieu;
 import Model.Phieu;
+import Model.TaiKhoanNhanVien;
+import Model.ViTri;
 
 @WebServlet("/XuLyPhieu")
 public class XuLyPhieu extends HttpServlet {
@@ -25,7 +31,8 @@ public class XuLyPhieu extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DAOPhieu daoPhieu = new DAOPhieu(DBConnector.conn);
     private DAOHangHoa daoHangHoa = new DAOHangHoa(DBConnector.conn);
-    private DAOViTri daoViTri;
+    private DAOViTri daoViTri = new DAOViTri(DBConnector.conn);
+    private DAODoiTac daoDoiTac = new DAODoiTac(DBConnector.conn);
 
     @SuppressWarnings("unchecked")
     @Override
@@ -102,6 +109,16 @@ public class XuLyPhieu extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	req.setCharacterEncoding("UTF-8");
     	resp.setContentType("text/html; charset=UTF-8");
+    	HttpSession session = req.getSession();
+    	
+    	TaiKhoanNhanVien currentUser = (TaiKhoanNhanVien) session.getAttribute("currentUser");
+    	List<DoiTac> dsDoiTac = daoDoiTac.getAll();
+    	req.setAttribute("dsDoiTac", dsDoiTac);
+    	
+    	int id_kho = currentUser.getID_Warehouse();
+    	List<ViTri> dsViTri = daoViTri.findTrong(id_kho);
+    	req.setAttribute("dsViTri", dsViTri);
+    	
     	req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
     }
 }

@@ -57,9 +57,9 @@ public class DAOViTri {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next())
 				list.add(new ViTri(rs.getInt("ID"),
-						rs.getInt("Ke"), rs.getInt("Hang"),
+						rs.getString("Ke"), rs.getInt("Hang"),
 						rs.getInt("Tang"),
-						rs.getInt("Kho")));
+						rs.getInt("ID_Kho")));
 			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();

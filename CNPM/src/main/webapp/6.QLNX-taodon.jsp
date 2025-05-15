@@ -30,8 +30,14 @@
 
 
 			<div class="fimi-group">
-				<label for="maDoiTac">Mã đối tác</label> <input type="text"
-					id="maDoiTac" name="maDoiTac" value="${param.maDoiTac}" />
+				<label for="maDoiTac">Mã đối tác</label> 
+				<select id="maDoiTac" name="maDoiTac">
+				     <c:forEach var="dt" items="${dsDoiTac}">
+				         <option value="${dt.id}" ${param.maDoiTac == dt.id ? 'selected' : ''}>
+				             ${dt.id} – ${dt.name}
+				         </option>
+				     </c:forEach>
+				 </select>	
 			</div>
 
 			<div class="fimi-group">
@@ -53,15 +59,21 @@
 					id="loaiHang" name="loaiHang" value="${param.loaiHang}" />
 			</div>
 			<div class="fimi-group">
-				<label for="viTri">Vị trí</label> <input type="text" id="viTri"
-					name="viTri" value="${param.viTri}" />
+				<label for="viTri">Vị trí</label> 
+				  <select id="viTri" name="viTri">
+				    <c:forEach var="vt" items="${dsViTri}">
+				      <option value="${vt.ID}">
+				        ${vt.toString()}
+				      </option>
+				    </c:forEach>
+				  </select>
 			</div>
 
 
 			<!-- Hàng 3 -->
 			<div class="fimi-group">
 				<label for="soLuong">Số lượng</label> <input type="number"
-					id="soLuong" name="soLuong" value="${param.soLuong}" />
+					id="soLuong" name="soLuong" value="${param.soLuong}" min="1"/>
 			</div>
 			<div class="fimi-group">
 				<label for="donViTinh">Đơn vị tính</label> <input type="text"

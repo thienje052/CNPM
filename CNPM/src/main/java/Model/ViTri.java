@@ -1,12 +1,17 @@
 package Model;
 
 public class ViTri {
+	@Override
+	public String toString() {
+		return "ViTri [ID=" + ID + ", Ke=" + Ke + ", Hang=" + Hang + ", Tang=" + Tang + ", ID_Warehouse=" + ID_Warehouse
+				+ "]";
+	}
 	private int ID;
-	private int Ke;
+	private String Ke;
 	private int Hang;
 	private int Tang;
 	private int ID_Warehouse;
-	public ViTri(int iD, int ke, int hang, int tang, int iD_Warehouse) {
+	public ViTri(int iD, String ke, int hang, int tang, int iD_Warehouse) {
 		super();
 		ID = iD;
 		Ke = ke;
@@ -20,10 +25,10 @@ public class ViTri {
 	public void setID(int iD) {
 		ID = iD;
 	}
-	public int getKe() {
+	public String getKe() {
 		return Ke;
 	}
-	public void setKe(int ke) {
+	public void setKe(String ke) {
 		Ke = ke;
 	}
 	public int getHang() {
