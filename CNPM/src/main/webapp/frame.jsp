@@ -116,7 +116,7 @@
 		</div>
 
 		<iframe class="col-10" name="main-frame"
-			src="TrangChu"
+			src="2.trangchu.jsp"
 			style="flex: 1; border: none; width: 100%; height: 100vh; padding: 0;"></iframe>
 	</div>
 
