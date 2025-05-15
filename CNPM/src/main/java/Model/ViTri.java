@@ -3,8 +3,7 @@ package Model;
 public class ViTri {
 	@Override
 	public String toString() {
-		return "ViTri [ID=" + ID + ", Ke=" + Ke + ", Hang=" + Hang + ", Tang=" + Tang + ", ID_Warehouse=" + ID_Warehouse
-				+ "]";
+		return "ID=" + ID + ", Ke=" + Ke + ", Hang=" + Hang + ", Tang=" + Tang + ", ID Kho=" + ID_Warehouse;
 	}
 	private int ID;
 	private String Ke;

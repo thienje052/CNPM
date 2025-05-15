@@ -23,8 +23,8 @@
 			<div class="fimi-group">
 				<label for="loaiDon">Loại đơn</label> <select id="loaiDon"
 					name="loaiDon">
-					<option value="Nhập" ${param.loaiDon == 'Nhập' ? 'selected' : ''}>Nhập</option>
-					<option value="Xuất" ${param.loaiDon == 'Xuất' ? 'selected' : ''}>Xuất</option>
+					<option value="Phiếu nhập" ${param.loaiDon == 'Phiếu nhập' ? 'selected' : ''}>Phiếu nhập</option>
+					<option value="Phiếu xuất" ${param.loaiDon == 'Phiếu xuất' ? 'selected' : ''}>Phiếu xuất</option>
 				</select>
 			</div>
 
@@ -42,7 +42,7 @@
 
 			<div class="fimi-group">
 				<label for="ngay">Ngày</label> <input type="date" id="ngay"
-					name="ngay" value="${param.ngay}" />
+					name="ngay" value="${not empty sessionScope.date ? sessionScope.date : (not empty param.ngay ? param.ngay : '')}"  />
 			</div>
 			<div class="fimi-group">
 				<label>&nbsp;</label>
@@ -52,11 +52,17 @@
 
 			<div class="fimi-group">
 				<label for="tenHang">Tên hàng</label> <input type="text"
-					id="tenHang" name="tenHang" value="${param.tenHang}" />
+					id="tenHang" name="tenHang" value="${param.tenHang}"  />
 			</div>
 			<div class="fimi-group">
-				<label for="loaiHang">Loại hàng</label> <input type="text"
-					id="loaiHang" name="loaiHang" value="${param.loaiHang}" />
+				<label for="loaiHang">Loại hàng</label>
+					<select id="loaiHang" name="loaiHang">
+					   <c:forEach var="lh" items="${dsLoaiHang}">
+					     <option value="${lh.id}">
+					       ${lh.name}
+					     </option>
+					   </c:forEach>
+					</select>
 			</div>
 			<div class="fimi-group">
 				<label for="viTri">Vị trí</label> 
@@ -73,18 +79,16 @@
 			<!-- Hàng 3 -->
 			<div class="fimi-group">
 				<label for="soLuong">Số lượng</label> <input type="number"
-					id="soLuong" name="soLuong" value="${param.soLuong}" min="1"/>
+					id="soLuong" name="soLuong" value="${param.soLuong}" min="1" />
 			</div>
 			<div class="fimi-group">
 				<label for="donViTinh">Đơn vị tính</label> <input type="text"
-					id="donViTinh" name="donViTinh" value="${param.donViTinh}" />
+					id="donViTinh" name="donViTinh" value="${param.donViTinh}"  />
 			</div>
 			<div class="fimi-group">
 				<label for="moTa">Mô tả</label> <input type="text" id="moTa"
-					name="moTa" value="${param.moTa}" />
+					name="moTa" value="${param.moTa}"  />
 			</div>
-
-
 
 			<div class="fimi-group buttons-cell">
 				<label>&nbsp;</label>
@@ -120,7 +124,7 @@
 							<td>${hh.quantity}</td>
 							<td>${hh.measurement}</td>
 							<td>${hh.description}</td>
-							<td></td>
+							<td>${hh.id_position}</td>
 						<c:if test="${empty sessionScope.dshh}">
             				<tr><td colspan="8" class="text-center">Chưa có hàng nào.</td></tr>
           				</c:if>

@@ -47,7 +47,10 @@ public class DanhMucHangHoa extends HttpServlet {
 
         try {
         if ("them".equals(action)) {
-        	daoLoaiHang.add(new LoaiHang(maLoai, tenLoai));
+        	if(maLoai != null && !maLoai.isEmpty() && tenLoai != null && !tenLoai.isEmpty())
+        		daoLoaiHang.add(new LoaiHang(maLoai, tenLoai));
+        	else
+        		req.setAttribute("error", "Nhập mã và tên loại cần thêm.");
         } else if ("xoa".equals(action)) {
         	String chonMaLoai = req.getParameter("chonMaLoai");
         	String xacNhan = req.getParameter("xacNhan");

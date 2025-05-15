@@ -21,7 +21,7 @@
 			</div>
 			<div class="fom-buttons">
 				<button type="submit" name="action" value="sua">Sửa</button>
-				<button type="button" onclick="window.history.back()" class="button-cancel">Hủy</button>
+				<a href="DanhMucHangHoa"><button type="button" class="button-cancel">Hủy</button></a>
 			</div>
 			<div class="foam-group">
 				<c:if test="${not empty error}">

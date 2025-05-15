@@ -50,5 +50,17 @@ public class DAOChiTietPhieu {
 
         return result;
     }
+	
+	public boolean add(int idPhieu, int idHangHoa) {
+	    String sql = "INSERT INTO ChiTietPhieu (ID_Phieu, ID_HangHoa) VALUES (?, ?)";
+	    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+	        ps.setInt(1, idPhieu);
+	        ps.setInt(2, idHangHoa);
+	        return ps.executeUpdate() > 0;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
 
 }

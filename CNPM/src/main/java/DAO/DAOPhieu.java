@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -259,19 +260,27 @@ public class DAOPhieu {
 		return list;
 	}
 	
-	public boolean add(Phieu phieu) {
+	public int addAndReturnId(Phieu phieu) {
 		try {
-			String sql = "insert into Phieu(ID_DoiTac, ID_TKNV, NgayTao, LoaiPhieu) values (?,?,?,?)";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			String sql = "insert into Phieu(ID_DoiTac, NgayTao, ID_TKNV, LoaiPhieu) values (?, ?, ?, ?)";
+			PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, phieu.getID_Partner());
-			pstmt.setInt(2, phieu.getID_Employee());
-			pstmt.setDate(3, Date.valueOf(phieu.getDateTime().toLocalDate()));
+			pstmt.setDate(2, Date.valueOf(phieu.getDateTime().toLocalDate()));
+			pstmt.setInt(3, phieu.getID_Employee());
 			pstmt.setString(4, String.valueOf(phieu.getType()));
-			return pstmt.executeUpdate() != 0;
+	        int affected = pstmt.executeUpdate();
+	        if (affected == 0) {
+	            throw new SQLException("Tạo phiếu thất bại.");
+	        }
+			try (ResultSet rs = pstmt.getGeneratedKeys()){
+				if (rs.next()) {
+	                return rs.getInt(1);
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return -1;
 	}
 	
 	public boolean update(Phieu phieu) {

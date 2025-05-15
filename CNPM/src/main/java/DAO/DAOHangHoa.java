@@ -165,23 +165,29 @@ private static Connection conn;
 		return hh;
 	}
 	
-	public boolean add(HangHoa hh) {
+	public int addAndReturnId(HangHoa hh) {
 	    String sql = "INSERT INTO HangHoa (Ten, So_Luong, Don_Vi_Tinh, Mo_ta, ID_LH, ID_ViTri) VALUES (?, ?, ?, ?, ?, ?)";
 	    try {
-	        PreparedStatement pst = conn.prepareStatement(sql);
+	        PreparedStatement pst = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 	        pst.setString(1, hh.getName());
 	        pst.setInt(2, hh.getQuantity());
 	        pst.setString(3, hh.getMeasurement());
 	        pst.setString(4, hh.getDescription());
 	        pst.setString(5, hh.getCatagory());
 	        pst.setInt(6, hh.getId_position());
-
-	        int rowsAffected = pst.executeUpdate();
-	        return rowsAffected > 0;
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        return false;
-	    }
+	        int affected = pst.executeUpdate();
+	        if (affected == 0) {
+	            throw new SQLException("Tạo phiếu thất bại.");
+	        }
+	        try (ResultSet rs = pst.getGeneratedKeys()){
+				if (rs.next()) {
+	                return rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 	public boolean delete(int id) {
 	    String sql = "DELETE FROM HangHoa WHERE ID = ?";

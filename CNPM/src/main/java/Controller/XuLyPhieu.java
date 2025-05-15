@@ -11,13 +11,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import DAO.DAOChiTietPhieu;
 import DAO.DAODoiTac;
 import DAO.DAOHangHoa;
+import DAO.DAOLoaiHang;
 import DAO.DAOPhieu;
 import DAO.DAOViTri;
 import DAO.DBConnector;
 import Model.DoiTac;
 import Model.HangHoa;
+import Model.LoaiHang;
 import Model.LoaiPhieu;
 import Model.Phieu;
 import Model.TaiKhoanNhanVien;
@@ -33,6 +36,8 @@ public class XuLyPhieu extends HttpServlet {
     private DAOHangHoa daoHangHoa = new DAOHangHoa(DBConnector.conn);
     private DAOViTri daoViTri = new DAOViTri(DBConnector.conn);
     private DAODoiTac daoDoiTac = new DAODoiTac(DBConnector.conn);
+    private DAOLoaiHang daoLoaiHang = new DAOLoaiHang(DBConnector.conn);
+    private DAOChiTietPhieu daoChiTietPhieu = new DAOChiTietPhieu(DBConnector.conn);
 
     @SuppressWarnings("unchecked")
     @Override
@@ -44,7 +49,9 @@ public class XuLyPhieu extends HttpServlet {
         List<HangHoa> dshh = (List<HangHoa>) session.getAttribute("dshh");
         if (dshh == null) {
             dshh = new ArrayList<>();
-        }  
+        }
+        LocalDate date = LocalDate.parse(req.getParameter("ngay"));
+        session.setAttribute("date", date);
         switch (action) {
             case "themHang":
                 String ten    = req.getParameter("tenHang");
@@ -61,7 +68,7 @@ public class XuLyPhieu extends HttpServlet {
                 hh.setId(maxId + 1);
                 dshh.add(hh);
                 session.setAttribute("dshh", dshh);
-                resp.sendRedirect("6.QLNX-taodon.jsp");
+                resp.sendRedirect("XuLyPhieu");
                 break;
 
             case "xoaHang":
@@ -75,21 +82,35 @@ public class XuLyPhieu extends HttpServlet {
                 } else {
                     req.setAttribute("error", "Vui lòng chọn một hàng để xóa.");
                 }
-                req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
-                break;
+                resp.sendRedirect("XuLyPhieu");
+                return;
 
             case "xacNhan":
                 try {
                     int idPartner  = Integer.parseInt(req.getParameter("maDoiTac"));
-                    int idEmployee = (int) session.getAttribute("currentUserId");
-                    LoaiPhieu type = LoaiPhieu.valueOf(req.getParameter("loaiDon"));
-                    LocalDate date = LocalDate.parse(req.getParameter("ngay"));
+                    TaiKhoanNhanVien currentUser = (TaiKhoanNhanVien) session.getAttribute("currentUser");
+                    int idEmployee = currentUser.getID();
+                    LoaiPhieu type = LoaiPhieu.fromDescription((String)req.getParameter("loaiDon"));
+                    
+                    List<HangHoa> dsHangHoa = (List<HangHoa>) session.getAttribute("dshh");
+                    List<Integer> listIDHangHoa = new ArrayList<Integer>();
+                    for(HangHoa h: dsHangHoa) {
+                    	int id = daoHangHoa.addAndReturnId(h);
+                    	listIDHangHoa.add(id);
+                    }
                     Phieu phieu = new Phieu(0, idPartner, idEmployee, type, date.atStartOfDay());
-                    daoPhieu.add(phieu);
-                    // TODO: Lưu chi tiết phiếu với DAOChiTietPhieu
+                    int idPhieu = daoPhieu.addAndReturnId(phieu);
+                    
+                    if (listIDHangHoa != null) {
+                    	daoChiTietPhieu = new DAOChiTietPhieu(DBConnector.conn);
+                    	for (Integer items: listIDHangHoa) {
+                    		daoChiTietPhieu.add(idPhieu, items);
+                    	}
+                    }
                     session.removeAttribute("dshh");
-                    resp.sendRedirect("TruyXuatDon");
+                    resp.sendRedirect("XuLyPhieu");
                 } catch (Exception ex) {
+                	ex.printStackTrace();
                     req.setAttribute("error", "Lỗi khi lưu đơn: " + ex.getMessage());
                     req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
                 }
@@ -112,12 +133,15 @@ public class XuLyPhieu extends HttpServlet {
     	HttpSession session = req.getSession();
     	
     	TaiKhoanNhanVien currentUser = (TaiKhoanNhanVien) session.getAttribute("currentUser");
-    	List<DoiTac> dsDoiTac = daoDoiTac.getAll();
-    	req.setAttribute("dsDoiTac", dsDoiTac);
-    	
     	int id_kho = currentUser.getID_Warehouse();
     	List<ViTri> dsViTri = daoViTri.findTrong(id_kho);
     	req.setAttribute("dsViTri", dsViTri);
+    	
+    	List<LoaiHang> dsLoaiHang = daoLoaiHang.getAll();
+    	req.setAttribute("dsLoaiHang", dsLoaiHang);
+
+    	List<DoiTac> dsDoiTac = daoDoiTac.getAll();
+    	req.setAttribute("dsDoiTac", dsDoiTac);
     	
     	req.getRequestDispatcher("/6.QLNX-taodon.jsp").forward(req, resp);
     }
