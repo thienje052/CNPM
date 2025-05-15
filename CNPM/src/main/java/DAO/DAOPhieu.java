@@ -24,7 +24,7 @@ public class DAOPhieu {
 	public List<Phieu> findImportByDate(int thang, int nam) {
 		List<Phieu> list = new ArrayList<>();
         String sql = "SELECT * FROM Phieu " +
-                     "WHERE MONTH(NgayTao) = ? AND YEAR(NgayTao) = ? AND LoaiPhieu = Import";
+                     "WHERE MONTH(NgayTao) = ? AND YEAR(NgayTao) = ? AND loaiPhieu = 'Import'";
 
         try (
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -47,10 +47,10 @@ public class DAOPhieu {
         return list;
     }
 	
-	public List<Phieu> findExportByDate(int thang, int nam, LoaiPhieu loaiPhieu) {
+	public List<Phieu> findExportByDate(int thang, int nam) {
 		List<Phieu> list = new ArrayList<>();
         String sql = "SELECT * FROM Phieu " +
-                     "WHERE MONTH(NgayTao) = ? AND YEAR(NgayTao) = ? AND LoaiPhieu = Export";
+                     "WHERE MONTH(NgayTao) = ? AND YEAR(NgayTao) = ? AND LoaiPhieu = 'Export'";
 
         try (
              PreparedStatement ps = conn.prepareStatement(sql)) {

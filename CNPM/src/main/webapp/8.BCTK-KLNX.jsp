@@ -13,7 +13,7 @@
 
   <div class="sectiona">
     <h4>KHỐI LƯỢNG NHẬP</h4>
-    <form class="fami-inline" action="/report/import" method="POST">
+    <form class="fami-inline" action="${pageContext.request.contextPath}/ThongKeNhap" method="POST">
       <label for="thang-nhap">Tháng</label>
       <select name="thang" id="thang-nhap">
         <c:forEach begin="1" end="12" var="i">
@@ -43,14 +43,14 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach var="phieu" items="${danhSachPhieu}">
+        <c:forEach var="phieu" items="${danhSachPhieuNhap}">
           <tr>
-            <td>${phieu.maPhieu}</td>
-            <td>${phieu.doiTac}</td>
-            <td>${phieu.nhanVien}</td>
-            <td>${phieu.maHang}</td>
-            <td>${phieu.loaiPhieu}</td>
-            <td>${phieu.ngayLap}</td>
+            <td>${phieu.ID}</td>
+            <td>${phieu.ID_Partner}</td>
+            <td>${phieu.ID_Employee}</td>
+            <td>${mapMaHang[phieu.ID]}</td>
+            <td>${phieu.typeDescription}</td>
+            <td>${phieu.dateTime}</td>
           </tr>
         </c:forEach>
       </tbody>
@@ -58,13 +58,12 @@
 
     <div class="summary">
       Tổng đơn nhập: ${tongDonNhap}<br/>
-      Loại hàng: ...
     </div>
   </div>
 
   <div class="sectiona">
     <h4>KHỐI LƯỢNG XUẤT</h4>
-    <form class="fami-inline" action="/report/export" method="POST">
+    <form class="fami-inline" action="${pageContext.request.contextPath}/ThongKeXuat" method="POST">
       <label for="thang-xuat">Tháng</label>
       <select name="thang" id="thang-xuat">
         <c:forEach begin="1" end="12" var="i">
@@ -96,12 +95,12 @@
       <tbody>
         <c:forEach var="phieu" items="${dsXuat}">
           <tr>
-            <td>${phieu.maPhieu}</td>
-            <td>${phieu.doiTac}</td>
-            <td>${phieu.nhanVien}</td>
-            <td>${phieu.maHang}</td>
-            <td>${phieu.loaiPhieu}</td>
-            <td>${phieu.ngayLap}</td>
+            <td>${phieu.ID}</td>
+            <td>${phieu.ID_Partner}</td>
+            <td>${phieu.ID_Employee}</td>
+            <td>${mapMaHang[phieu.ID]}</td>
+            <td>${phieu.typeDescription}</td>
+            <td>${phieu.dateTime}</td>
           </tr>
         </c:forEach>
       </tbody>
@@ -109,7 +108,6 @@
 
     <div class="summary">
       Tổng đơn xuất: ${tongDonXuat}<br/>
-      Loại hàng: ...
     </div>
   </div>
 </body>

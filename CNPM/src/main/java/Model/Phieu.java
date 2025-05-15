@@ -53,6 +53,9 @@ public class Phieu {
 	public void setDateTime(LocalDateTime dateTime) {
 		DateTime = dateTime;
 	}
+	public String getTypeDescription() {
+	    return (Type != null) ? Type.getDescription() : "";
+	}
 
 	
 	@Override
